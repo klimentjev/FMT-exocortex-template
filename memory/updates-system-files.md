@@ -30,7 +30,7 @@ bash update.sh
 **Обновляет:** репозиторий FPF (принципы, мета-онтология).
 
 ```bash
-cd ~/Github/FPF
+cd ~/Github/Principles/FPF
 git pull
 ```
 
@@ -43,11 +43,11 @@ git pull
 **Обновляет:** репозиторий SPF (форма и процесс Pack, контракты).
 
 ```bash
-cd ~/Github/SPF
+cd ~/Github/Principles/SPF
 git pull
 ```
 
-Справка: `SPF/CLAUDE.md`.
+Справка: `Principles/SPF/CLAUDE.md`.
 
 ---
 
@@ -74,8 +74,8 @@ git pull --rebase
 ## Порядок при полном обновлении
 
 1. FMT-exocortex-template: `bash update.sh` (включает CLAUDE.md + memory + MCP).
-2. FPF: `cd ~/Github/FPF && git pull`.
-3. SPF: `cd ~/Github/SPF && git pull`.
+2. FPF: `cd ~/Github/Principles/FPF && git pull`.
+3. SPF: `cd ~/Github/Principles/SPF && git pull`.
 4. DS-strategy: `cd ~/Github/DS-strategy && git pull --rebase`.
 
 Backup на Close: `memory/ + CLAUDE.md → DS-strategy/exocortex/` (протокол Close).
