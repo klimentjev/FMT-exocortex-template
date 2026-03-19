@@ -4,12 +4,12 @@
 
 ---
 
-## 1. Шаблон экзокортекса (FMT-exocortex-template)
+## 1. Шаблон экзокортекса (DS-exocortex)
 
 **Обновляет:** upstream → твой fork: протоколы, memory/*.md (кроме MEMORY.md), CLAUDE.md, промпты ролей, MCP-конфиг.
 
 ```bash
-cd ~/Github/FMT-exocortex-template   # или /mnt/c/Users/admin/Github/FMT-exocortex-template
+cd ~/Github/DS-exocortex   # или /mnt/c/Users/admin/Github/DS-exocortex
 bash update.sh
 ```
 
@@ -21,7 +21,7 @@ bash update.sh
 
 **Не трогается:** MEMORY.md (твои РП), DS-strategy/, PACK-*.
 
-> Если папка называется `FMT-exocortex-template`, скрипт берёт её как exocortex (есть CLAUDE.md и memory/).
+> Если папка называется `DS-exocortex`, скрипт берёт её как exocortex (есть CLAUDE.md и memory/).
 
 ---
 
@@ -55,8 +55,8 @@ git pull
 
 - **Из шаблона:** после `update.sh` они уже скопированы в корень workspace и в `~/.claude/.../memory/`.
 - **Ручная копия** (если update.sh не использовался):
-  - CLAUDE.md: `cp FMT-exocortex-template/CLAUDE.md ~/Github/CLAUDE.md`
-  - memory: `cp FMT-exocortex-template/memory/*.md ~/.claude/projects/<slug>/memory/` — **не перезаписывать MEMORY.md**, если там твои РП.
+  - CLAUDE.md: `cp DS-exocortex/CLAUDE.md ~/Github/CLAUDE.md`
+  - memory: `cp DS-exocortex/memory/*.md ~/.claude/projects/<slug>/memory/` — **не перезаписывать MEMORY.md**, если там твои РП.
 
 ---
 
@@ -73,7 +73,7 @@ git pull --rebase
 
 ## Порядок при полном обновлении
 
-1. FMT-exocortex-template: `bash update.sh` (включает CLAUDE.md + memory + MCP).
+1. DS-exocortex: `bash update.sh` (включает CLAUDE.md + memory + MCP).
 2. FPF: `cd ~/Github/Principles/FPF && git pull`.
 3. SPF: `cd ~/Github/Principles/SPF && git pull`.
 4. DS-strategy: `cd ~/Github/DS-strategy && git pull --rebase`.

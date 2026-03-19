@@ -212,7 +212,7 @@ done
 - [ ] **WP context:** коммиты реализуют пункт WP-плана → пункт done?
 - [ ] **Draft-list:** Pack обогащён → предложить черновик? Черновики из сессии → draft-list обновлён?
 - [ ] **Видео:** обработанные видео помечены, captures извлечены (если video.enabled)
-- [ ] **CHANGELOG шаблона:** коммиты в FMT-exocortex-template? → обновить `FMT-exocortex-template/CHANGELOG.md` (новая версия или дописать в текущую)
+- [ ] **CHANGELOG шаблона:** коммиты в DS-exocortex? → обновить `DS-exocortex/CHANGELOG.md` (новая версия или дописать в текущую)
 - [ ] **Governance-синхронизация:** новые репо/сервисы → обновить: REPOSITORY-REGISTRY, navigation.md, MAP.002↔PROCESSES.md
 - [ ] Backup → DS-strategy/exocortex/ синхронизирован
 - [ ] Context file: done → `mv inbox/WP-*.md → archive/wp-contexts/` (сразу при Close)

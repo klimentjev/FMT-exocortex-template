@@ -1,5 +1,5 @@
 #!/bin/bash
-# Exocortex Update — pull upstream changes from FMT-exocortex-template
+# Exocortex Update — pull upstream changes from DS-exocortex
 #
 # Использование:
 #   update.sh              # fetch + merge + reinstall platform-space

@@ -12,7 +12,7 @@ set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 STATE_DIR="$HOME/.local/state/exocortex"
-LOG_DIR="{{HOME_DIR}}/logs/synchronizer"
+LOG_DIR="/home/wklim/logs/synchronizer"
 STRATEGY_DIR="/mnt/c/Users/admin/IWE/DS-strategy"
 REPORT_DIR="$STRATEGY_DIR/current"
 ARCHIVE_DIR="$STRATEGY_DIR/archive/scheduler-reports"
@@ -27,7 +27,7 @@ DRY_RUN=false
 
 REPORT_FILE="$REPORT_DIR/SchedulerReport $DATE.md"
 SCHEDULER_LOG="$LOG_DIR/scheduler-$DATE.log"
-STRATEGIST_LOG="{{HOME_DIR}}/logs/strategist/$DATE.log"
+STRATEGIST_LOG="/home/wklim/logs/strategist/$DATE.log"
 
 mkdir -p "$ARCHIVE_DIR"
 
