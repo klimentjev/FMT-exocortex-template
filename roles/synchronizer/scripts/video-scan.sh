@@ -17,7 +17,7 @@ set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 CONFIG_DIR="$(cd "$SCRIPT_DIR/../../.." && pwd)/memory"
-WORKSPACE="/mnt/c/Users/admin/IWE"
+WORKSPACE="/c/Users/admin/IWE"
 LOG_DIR="/home/wklim/logs/synchronizer"
 DATE=$(date +%Y-%m-%d)
 LOG_FILE="$LOG_DIR/video-scan-$DATE.log"

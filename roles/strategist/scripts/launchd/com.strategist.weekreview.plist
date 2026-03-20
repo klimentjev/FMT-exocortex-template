@@ -7,7 +7,7 @@
 
     <key>ProgramArguments</key>
     <array>
-        <string>/mnt/c/Users/admin/IWE/DS-exocortex/roles/strategist/scripts/strategist.sh</string>
+        <string>/c/Users/admin/IWE/DS-exocortex/roles/strategist/scripts/strategist.sh</string>
         <string>week-review</string>
     </array>
 

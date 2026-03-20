@@ -2,8 +2,8 @@
 # Шаблон уведомлений: Стратег (R1)
 # Вызывается из notify.sh через source
 
-STRATEGY_DIR="/mnt/c/Users/admin/IWE/DS-strategy/current"
-STRATEGY_REPO_DIR="/mnt/c/Users/admin/IWE/DS-strategy"
+STRATEGY_DIR="/c/Users/admin/IWE/DS-strategy/current"
+STRATEGY_REPO_DIR="/c/Users/admin/IWE/DS-strategy"
 DATE=$(date +%Y-%m-%d)
 
 find_strategy_file() {

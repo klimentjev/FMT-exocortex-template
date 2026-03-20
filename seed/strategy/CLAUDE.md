@@ -22,10 +22,10 @@
 
 ### WORKPLAN.md — Hub-and-Spoke
 
-Каждый репозиторий в `/mnt/c/Users/admin/IWE/` содержит `WORKPLAN.md` в корне с текущими РП.
+Каждый репозиторий в `/c/Users/admin/IWE/` содержит `WORKPLAN.md` в корне с текущими РП.
 
 **Агрегация:** При создании плана дня/недели Стратег:
-1. Обходит все `/mnt/c/Users/admin/IWE/*/WORKPLAN.md`
+1. Обходит все `/c/Users/admin/IWE/*/WORKPLAN.md`
 2. Собирает РП со статусом pending/in-progress
 3. Формирует агрегированный план в `current/`
 
@@ -38,16 +38,16 @@
 **КРИТИЧЕСКИ ВАЖНО:** При сборе коммитов ВСЕГДА проверять ВСЕ репозитории:
 
 ```bash
-for repo in $(ls /mnt/c/Users/admin/IWE/); do
-  if [ -d /mnt/c/Users/admin/IWE/$repo/.git ]; then
-    echo "=== $repo ===" && cd /mnt/c/Users/admin/IWE/$repo && git log --oneline --since="1 week ago" 2>/dev/null
+for repo in $(ls /c/Users/admin/IWE/); do
+  if [ -d /c/Users/admin/IWE/$repo/.git ]; then
+    echo "=== $repo ===" && cd /c/Users/admin/IWE/$repo && git log --oneline --since="1 week ago" 2>/dev/null
   fi
 done
 ```
 
 ## Work-Product Gate (правило РП-шлюза)
 
-> **Полное описание:** `/mnt/c/Users/admin/IWE/CLAUDE.md` секция 2.
+> **Полное описание:** `/c/Users/admin/IWE/CLAUDE.md` секция 2.
 
 **БЛОКИРУЮЩЕЕ ПРАВИЛО.** Выполняется ДО ЛЮБОГО действия по задаче.
 

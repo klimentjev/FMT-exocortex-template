@@ -113,19 +113,19 @@ fi
 # --- 3. Re-substitute placeholders ---
 echo "[3/6] Re-substituting placeholders..."
 
-# After merge, new lines from upstream may contain /mnt/c/Users/admin/IWE etc.
+# After merge, new lines from upstream may contain /c/Users/admin/IWE etc.
 # Detect values from the current environment
-PLACEHOLDER_COUNT=$(grep -r '/mnt/c/Users/admin/IWE' "$EXOCORTEX_DIR" --include="*.md" --include="*.sh" --include="*.json" --include="*.yaml" --include="*.yml" --include="*.plist" -l 2>/dev/null | wc -l | tr -d ' ')
+PLACEHOLDER_COUNT=$(grep -r '/c/Users/admin/IWE' "$EXOCORTEX_DIR" --include="*.md" --include="*.sh" --include="*.json" --include="*.yaml" --include="*.yml" --include="*.plist" -l 2>/dev/null | wc -l | tr -d ' ')
 
 if [ "$PLACEHOLDER_COUNT" -gt 0 ]; then
-    echo "  Found $PLACEHOLDER_COUNT files with unsubstituted /mnt/c/Users/admin/IWE"
+    echo "  Found $PLACEHOLDER_COUNT files with unsubstituted /c/Users/admin/IWE"
     if $DRY_RUN; then
-        echo "  [DRY RUN] Would re-substitute /mnt/c/Users/admin/IWE → $WORKSPACE_DIR in $PLACEHOLDER_COUNT files"
+        echo "  [DRY RUN] Would re-substitute /c/Users/admin/IWE → $WORKSPACE_DIR in $PLACEHOLDER_COUNT files"
     else
         find "$EXOCORTEX_DIR" -type f \( -name "*.md" -o -name "*.json" -o -name "*.sh" -o -name "*.plist" -o -name "*.yaml" -o -name "*.yml" \) | while read file; do
-            sed_inplace "s|/mnt/c/Users/admin/IWE|$WORKSPACE_DIR|g" "$file"
+            sed_inplace "s|/c/Users/admin/IWE|$WORKSPACE_DIR|g" "$file"
         done
-        echo "  Re-substituted /mnt/c/Users/admin/IWE → $WORKSPACE_DIR"
+        echo "  Re-substituted /c/Users/admin/IWE → $WORKSPACE_DIR"
 
         # Commit the re-substitution
         if ! git -C "$EXOCORTEX_DIR" diff --quiet; then

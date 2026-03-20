@@ -4,7 +4,7 @@
 
 schedules:
   strategist:
-    script: "/mnt/c/Users/admin/IWE/DS-exocortex/roles/strategist/scripts/strategist.sh"
+    script: "/c/Users/admin/IWE/DS-exocortex/roles/strategist/scripts/strategist.sh"
     scenarios:
       morning:
         type: daily
@@ -20,7 +20,7 @@ schedules:
         hour: 0
 
   extractor:
-    script: "/mnt/c/Users/admin/IWE/DS-exocortex/roles/extractor/scripts/extractor.sh"
+    script: "/c/Users/admin/IWE/DS-exocortex/roles/extractor/scripts/extractor.sh"
     scenarios:
       inbox-check:
         type: interval

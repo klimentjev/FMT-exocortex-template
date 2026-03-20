@@ -110,9 +110,9 @@
 #### 1. Сбор данных
 
 ```bash
-for repo in $(ls /mnt/c/Users/admin/IWE/); do
-  if [ -d /mnt/c/Users/admin/IWE/$repo/.git ]; then
-    commits=$(git -C /mnt/c/Users/admin/IWE/$repo log --since="today 00:00" --oneline --no-merges 2>/dev/null)
+for repo in $(ls /c/Users/admin/IWE/); do
+  if [ -d /c/Users/admin/IWE/$repo/.git ]; then
+    commits=$(git -C /c/Users/admin/IWE/$repo log --since="today 00:00" --oneline --no-merges 2>/dev/null)
     [ -n "$commits" ] && echo "=== $repo ===" && echo "$commits"
   fi
 done

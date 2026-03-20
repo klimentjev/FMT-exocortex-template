@@ -14,8 +14,8 @@
 ## Конфигурация
 
 > Перед обработкой прочитай:
-> 1. `/mnt/c/Users/admin/IWE/DS-exocortex/roles/extractor/config/routing.md` — таблицы маршрутизации (Pack'и, типы, директории)
-> 2. `/mnt/c/Users/admin/IWE/DS-exocortex/roles/extractor/config/feedback-log.md` — лог отклонённых кандидатов (не предлагай аналогичные)
+> 1. `/c/Users/admin/IWE/DS-exocortex/roles/extractor/config/routing.md` — таблицы маршрутизации (Pack'и, типы, директории)
+> 2. `/c/Users/admin/IWE/DS-exocortex/roles/extractor/config/feedback-log.md` — лог отклонённых кандидатов (не предлагай аналогичные)
 
 ## Алгоритм
 
