@@ -44,7 +44,7 @@
 
 | Тип знания | Куда | Когда | Через KE? |
 |------------|------|-------|-----------|
-| Правило для всех репо (1-3 строки) | `/c/Users/admin/IWE/CLAUDE.md` | Сразу | Нет |
+| Правило для всех репо (1-3 строки) | `/mnt/c/Users/admin/IWE/CLAUDE.md` | Сразу | Нет |
 | Правило для одного репо (1-3 строки) | `<repo>/CLAUDE.md` | Сразу | Нет |
 | Доменное (архитектура, паттерны) | Соответствующий Pack | Close | Да (KE) |
 | Различение, метод, FM, WP | Соответствующий Pack | Close | Да (KE) |
@@ -139,7 +139,7 @@
 
 **Если все три → предложить:** *«Skill candidate: [название] — [что делает]. Оформить как `.claude/skills/[name]/SKILL.md`?»*
 
-**Куда:** FMT-exocortex-template/.claude/skills/ (первоисточник) → sync → рабочий {{WORKSPACE_DIR}}/.claude/skills/
+**Куда:** FMT-exocortex-template/.claude/skills/ (первоисточник) → sync → рабочий /mnt/c/Users/admin/IWE/.claude/skills/
 
 ## 3. Pre-action Gates
 

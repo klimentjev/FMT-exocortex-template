@@ -14,8 +14,8 @@
 ## Конфигурация
 
 > Перед обработкой прочитай:
-> 1. `/c/Users/admin/IWE/DS-exocortex/roles/extractor/config/routing.md` — таблицы маршрутизации
-> 2. `/c/Users/admin/IWE/DS-exocortex/roles/extractor/config/feedback-log.md` — лог отклонённых кандидатов
+> 1. `/mnt/c/Users/admin/IWE/FMT-exocortex-template/roles/extractor/config/routing.md` — таблицы маршрутизации
+> 2. `/mnt/c/Users/admin/IWE/FMT-exocortex-template/roles/extractor/config/feedback-log.md` — лог отклонённых кандидатов
 
 ## Алгоритм
 
@@ -49,7 +49,7 @@
 1. **Прочитай** целевую директорию Pack'а — найди существующие файлы для назначения ID.
 2. **Назначь ID:** `{PREFIX}.{TYPE}.{NNN}` (max существующий + 1).
 3. **Назначь имя файла:** `{PREFIX}.{TYPE}.{NNN}-{slug}.md`.
-4. **Привяжи к родительскому понятию SPF** (если доступен `Principles/SPF/ontology.md`).
+4. **Привяжи к родительскому понятию SPF** (если доступен `SPF/ontology.md`).
 5. **Создай содержимое** по шаблону для данного типа (шаблоны — в `prompts/session-close.md`, шаг 4d).
 
 ### Шаг 5b: Если сессия в downstream — проверь downstream ontology

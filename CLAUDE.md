@@ -77,7 +77,7 @@ Level 3: DS (третьи принципы)        ← производные о
 
 | Тип знания | Куда | Когда | Через KE? |
 |------------|------|-------|-----------|
-| Правило для всех репо (1-3 строки) | `/c/Users/admin/IWE/CLAUDE.md` | Сразу | Нет |
+| Правило для всех репо (1-3 строки) | `/mnt/c/Users/admin/IWE/CLAUDE.md` | Сразу | Нет |
 | Правило для одного репо (1-3 строки) | `<repo>/CLAUDE.md` | Сразу | Нет |
 | Доменное (архитектура, паттерны) | Соответствующий Pack | Close | Да (KE) |
 | Различение, метод, FM, WP | Соответствующий Pack | Close | Да (KE) |
@@ -135,7 +135,7 @@ Level 3: DS (третьи принципы)        ← производные о
 Политика: ≤11 файлов. Справочники ≤100. Протоколы ≤150. MEMORY.md ≤100 строк (done-РП удаляются при Day Close). Кросс-системное → memory/. Системное → repo/CLAUDE.md.
 Backup на Day Close: `day-close.sh` (backup + reindex + linear sync)
 
-> **Рабочая директория:** Все сессии Claude Code открывать из `/c/Users/admin/IWE/` (корень workspace). НЕ из sub-директорий (`DS-strategy/`, `DS-IT-systems/` и т.д.) — иначе `memory/` не резолвится. `/c/Users/admin/IWE/memory/` — симлинк на auto-memory Claude Code.
+> **Рабочая директория:** Все сессии Claude Code открывать из `/mnt/c/Users/admin/IWE/` (корень workspace). НЕ из sub-директорий (`DS-strategy/`, `DS-IT-systems/` и т.д.) — иначе `memory/` не резолвится. `/mnt/c/Users/admin/IWE/memory/` — симлинк на auto-memory Claude Code.
 
 ---
 
@@ -211,7 +211,7 @@ Backup на Day Close: `day-close.sh` (backup + reindex + linear sync)
 > **strategy_day:** День стратегирования — из `day-rhythm-config.yaml`. В этот день: session-prep вместо day-plan, DayPlan не создаётся (план в WeekPlan). Хардкод запрещён — только из конфига.
 > **Ru-first (SPF §5 п.13):** Русский — основной язык шаблонов/протоколов/документов. EN только для: YAML-ключей, аббревиатур из онтологии, имён собственных. Англицизмы с русским эквивалентом → перевести. Устоявшиеся заимствования (ревью, бэклог, дедлайн) допускаются.
 > **FAQ:** Двухуровневый. Доменный («что/зачем») → `DP.IWE.002 §11` (Pack, source-of-truth для бота). Практический («как сделать») → `LEARNING-PATH §11`. При новом вопросе → определи тип → запиши в нужное место → `selective-reindex`.
-> **Скилл ≠ Роль ≠ Протокол.** Скилл (`.claude/skills/`) = точечное действие с входом/выходом. Роль = контекст на всю сессию (CLAUDE.md репо). Протокол = ритуал стадии ОРЗ (protocol-*.md). Метод (Pack) → скилл (FMT) → рабочий экземпляр (/c/Users/admin/IWE/.claude/skills/). Skill Discovery: `protocol-work.md §2b`.
+> **Скилл ≠ Роль ≠ Протокол.** Скилл (`.claude/skills/`) = точечное действие с входом/выходом. Роль = контекст на всю сессию (CLAUDE.md репо). Протокол = ритуал стадии ОРЗ (protocol-*.md). Метод (Pack) → скилл (FMT) → рабочий экземпляр (/mnt/c/Users/admin/IWE/.claude/skills/). Skill Discovery: `protocol-work.md §2b`.
 > **Развитие ≠ Образование.** Платформа IWE — про развитие (себя, команды, сообщества), НЕ про образование. Не использовать: «школа», «вуз», «студент», «преподаватель», «учёба». «Обучение» допустимо ТОЛЬКО в контексте ролей Ученика (R16), Просветителя и ступеней Ученика. В остальных случаях → «развитие». Замены: студент → участник/пользователь, преподаватель → наставник.
 > **settings.json ≠ settings.local.json.** `.claude/settings.json` = проектный (hooks, общие правила) — попадает в git и шаблон. `.claude/settings.local.json` = персональный (permissions, MCP) — в `.gitignore`, не попадает в шаблон. При клонировании пользователь получает hooks из коробки, но настраивает permissions под себя.
 > **Day Open (VS Code) ≠ DayPlan (git).** VS Code = compact dashboard (20-30 строк): метрики, план, блокеры, ссылка на git. DayPlan = полный отчёт (80+ строк): все секции (контекст, видео, контент, мир, QA подробно). Принцип: VS Code для быстрого старта, git для деталей. Детали: `protocol-open.md § Day Open → Различение`.
@@ -260,7 +260,7 @@ Backup на Day Close: `day-close.sh` (backup + reindex + linear sync)
 ### Именование
 
 - `DS-strategy` (не `DS-strategy` как в шаблоне) — личный governance-хаб
-- `{{WORKSPACE_DIR}}/` — рабочая директория (шаблон: `{{WORKSPACE_DIR}}`)
+- `/mnt/c/Users/admin/IWE/` — рабочая директория (шаблон: `/mnt/c/Users/admin/IWE`)
 
 ### Read-only репо
 

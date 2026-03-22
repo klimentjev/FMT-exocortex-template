@@ -14,8 +14,8 @@
 | Протокол Open (WP Gate, Ритуал) | `memory/protocol-open.md` |
 | Протокол Close (чеклист, шаблон) | `memory/protocol-close.md` |
 | Нулевые принципы + иерархия | `ZP/README.md` |
-| Кодирование сущностей | `Principles/SPF/spec/SPF.SPEC.001-entity-coding.md` |
-| Масштабируемость Pack | `Principles/SPF/spec/SPF.SPEC.003-pack-scalability.md` |
+| Кодирование сущностей | `SPF/spec/SPF.SPEC.001-entity-coding.md` |
+| Масштабируемость Pack | `SPF/spec/SPF.SPEC.003-pack-scalability.md` |
 
 ## Репозитории
 
@@ -25,7 +25,7 @@
 | SystemsSchool_bot (READ-ONLY) | `DS-IT-systems/SystemsSchool_bot/` |
 | Монорепо ИИ-систем (7 шт.) | `DS-IT-systems/DS-ai-systems/` |
 | — Стратег (Grade 3) | `DS-IT-systems/DS-strategist/` |
-| — Шаблонизатор (Grade 0) | `DS-exocortex/setup.sh` (user), `DS-IT-systems/DS-ai-systems/setup/` (author sync) |
+| — Шаблонизатор (Grade 0) | `FMT-exocortex-template/setup.sh` (user), `DS-IT-systems/DS-ai-systems/setup/` (author sync) |
 | — Наладчик (Grade 2) | `DS-IT-systems/DS-ai-systems/fixer/` |
 | — Статистик (Grade 1) | `DS-IT-systems/DS-ai-systems/pulse/` |
 | — Оценщик (Grade 2) | `DS-IT-systems/DS-ai-systems/evaluator/` |

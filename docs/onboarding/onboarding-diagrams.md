@@ -216,4 +216,4 @@ graph LR
 
 ---
 
-*Создан: 2026-03-17 | WP-120 | [DS-exocortex](https://github.com/TserenTserenov/DS-exocortex)*
+*Создан: 2026-03-17 | WP-120 | [FMT-exocortex-template](https://github.com/TserenTserenov/FMT-exocortex-template)*
