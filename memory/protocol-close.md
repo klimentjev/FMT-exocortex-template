@@ -20,7 +20,7 @@
 | **Цель** | Не потерять | Навести порядок | Ротация и стратегия |
 | **Что пишем** | Итоги + «Осталось» | Итоги дня + «На завтра» | Метрики + carry-over |
 | **Governance** | Только MEMORY.md | Batch: WeekPlan, DayPlan, WP-REGISTRY, Linear, backup | Ротация уроков, свежая таблица MEMORY |
-| **Верификация** | Агент сам (6 пунктов) | Haiku R23 (полный чеклист) | В составе Week Review |
+| **Верификация** | Haiku R23 (context isolation) | Haiku R23 (полный чеклист) | В составе Week Review |
 
 ## Exit Protocol (ОБЯЗАТЕЛЬНО при завершении каждой роли)
 
@@ -35,10 +35,11 @@
 
 ---
 
-### Алгоритм Quick Close (6 шагов)
+### Алгоритм Quick Close (7 шагов)
 
 0. **Pull** → `cd DS-strategy && git pull --rebase`
 1. **Commit + Push** — все изменения зафиксированы
+<!-- YOUR CUSTOM CHECKS HERE -->
 2. **KE (Knowledge Extraction)** → прочитай и выполни `DS-IT-systems/DS-ai-systems/extractor/prompts/session-close.md`:
    - Собрать отложенные captures + проверить пропущенные
    - Классифицировать → маршрутизировать → формализовать → валидировать
@@ -53,24 +54,40 @@
      - **problem-framing:** полная проверка + пометка «требует приёмки человеком»
    - Если РП done → verdict обязателен. Если in_progress → skip
    - Verdict НЕ блокирует Close — записывается в отчёт для решения человека
+3b. **Code Verification** (автотриггер — S56):
+   - Проверить `git diff --name-only` по затронутым репо
+   - Если среди изменённых файлов есть **код** (`.py`, `.ts`, `.sh`, `.sql`, `.yaml`, `.json`) → запустить `/verify code` (sub-agent Верификатор с context isolation)
+   - Если только `.md` файлы → пропустить (верификация кода не нужна)
+   - Если в сессии был **АрхГейт** и после него менялся код → запустить `/verify archgate` вместо `/verify code`
+   - Verdict → в секцию «Что проверить» отчёта
 4. **MEMORY.md** — обновить статус РП (одна строка: `in_progress` / `done`)
+4b. **DayPlan** — обновить строку РП в `DS-strategy/current/DayPlan YYYY-MM-DD.md`: done → зачеркнуть, partial → обновить статус. Day Close = safety net, но DayPlan должен быть актуален между сессиями.
 5. **WP Context File:**
    - in_progress → обновить секцию «Осталось» в `DS-strategy/inbox/WP-{N}-{slug}.md`
    - done → пометить (архивация — на Day Close)
    - Незавершённое → context file. Идея → `<repo>/MAPSTRATEGIC.md`. Зерно → `DS-strategy/drafts/draft-list.md`
 6. **Отчёт** (5-7 строк) + закоммитить DS-strategy
 
-### Чеклист Quick Close (агент проверяет сам)
+### Чеклист Quick Close
 
 - [ ] Всё закоммичено и запушено
+<!-- YOUR CUSTOM CHECKS HERE -->
 - [ ] KE выполнен, captures применены
 - [ ] MEMORY.md: статус РП обновлён
+- [ ] DayPlan: строка РП обновлена (done → зачёркнуто)
 - [ ] WP Context: «Осталось» записано (или done помечен)
 - [ ] Repo CLAUDE.md проверен (если feat-коммиты)
 - [ ] Отчёт сформирован
 
-> **Без верификации Haiku** — 6 фактических пунктов, context isolation не нужна.
-> **Исключения:** сессия ≤15 мин, сессия-вопрос без изменений.
+### 7. Верификация Quick Close (Haiku R23)
+
+> Запустить sub-agent **Haiku** в роли **R23 Верификатор** (context isolation — VR.SOTA.002).
+> Передать: (1) чеклист Quick Close, (2) отчёт, (3) список изменённых файлов (`git diff --name-only` по затронутым репо).
+> По ❌ — исправить до показа пользователю.
+
+**Исключения** (верификация не запускается):
+- Сессия ≤15 мин
+- Сессия-вопрос без изменений файлов
 
 ### Шаблон отчёта Quick Close
 
@@ -128,9 +145,11 @@ done
 
 **2c.** Обновить `DS-strategy/docs/WP-REGISTRY.md`: статусы + даты.
 
-**2d.** Обновить `DS-strategy/inbox/open-sessions.log`: удалить строки закрытых сессий.
+**2d.** Обновить `DS-agent-workspace/scheduler/open-sessions.log`: удалить строки закрытых сессий.
 
 **2e.** Governance-синхронизация: новые репо/сервисы за день? → REPOSITORY-REGISTRY, navigation.md, MAP.002↔PROCESSES.md.
+
+<!-- YOUR CUSTOM CHECKS HERE -->
 
 #### 3. Архивация
 
@@ -148,19 +167,20 @@ done
 
 Скрипт выполняет:
 - **Linear sync:** `linear-sync.sh` (синхронизация статусов)
-- **knowledge-mcp reindex:** `selective-reindex.sh` для изменённых Pack/DS
+- **Downstream sync:** `update.sh` (reindex + pack-project + template — заменяет отдельный selective-reindex)
 - **Backup:** `memory/ + CLAUDE.md → DS-strategy/exocortex/`
 
 #### 5. Мультипликатор IWE (расчёт)
 
 > **Мультипликатор = Бюджет закрыт / WakaTime.** Показывает, насколько агент-экзоскелет усиливает работу.
+> Пример: WakaTime 10ч 14мин, бюджет закрыт ~21.4h → мультипликатор 2.09x.
 
 **Алгоритм:**
 
 1. **WakaTime** — физическое время за день. Источник: WakaTime API или `wakatime --today`.
 2. **Бюджет закрыт** — сумма бюджетных оценок по всем РП, над которыми работали сегодня, взвешенная по прогрессу:
    - done → 100% бюджета РП
-   - partial → % выполнения × бюджет РП
+   - partial → % выполнения × бюджет РП (оценить по объёму сделанного)
    - not started → 0
    - Источник: таблица «План на сегодня» из DayPlan (колонка «Бюджет»)
 3. **Мультипликатор** = Бюджет закрыт / WakaTime. Формат: `N.Nx`
@@ -179,7 +199,6 @@ done
 **г) Не забыто?** Стратег проверяет:
 - Незакоммиченные изменения (`git status` по всем репо)
 <!-- YOUR CUSTOM CHECKS HERE -->
-- Governance-синхронизация: новые репо или сервисы за день? → REPOSITORY-REGISTRY, navigation.md, MAP.002
 - Незаписанные мысли? (спросить пользователя)
 - Обещания кому-то? (спросить пользователя)
 
@@ -252,12 +271,13 @@ done
 - [ ] DayPlan обновлён (статусы ВСЕХ строк: РП + ad-hoc)
 - [ ] open-sessions.log: строки закрытых сессий удалены
 - [ ] Captures за день применены (все Quick Close → KE пройден)
-- [ ] **Knowledge-mcp:** коммиты в Pack/DS → `selective-reindex.sh` выполнен
+- [ ] **Синхронизация downstream:** коммиты в Pack/DS → `update.sh` выполнен (reindex + pack-project + template)
 - [ ] **Linear sync:** статусы соответствуют git
 - [ ] **Repo CLAUDE.md:** feat-коммиты → новые правила?
 - [ ] **WP context:** done → `mv inbox/ → archive/wp-contexts/`
 - [ ] **Draft-list:** Pack обогащён → черновик предложен?
 - [ ] **Видео:** обработанные помечены (если video.enabled)
+<!-- YOUR CUSTOM CHECKS HERE -->
 - [ ] **Governance:** REPOSITORY-REGISTRY, navigation.md, MAP.002
 - [ ] **Backup:** `day-close.sh` выполнен (backup + reindex + linear)
 - [ ] **Верификация compliance:** /verify запускался сегодня?
@@ -293,7 +313,7 @@ done
 #### 3. Аудит memory-файлов
 
 - ≤11 файлов? Лишние → объединить или удалить
-- Лимиты: справочники ≤100, протоколы ≤150, MEMORY.md ≤100 строк
+- Лимиты: справочники ≤100, протоколы ≤150, реестры ≤200 строк
 - Устаревшие записи → обновить или удалить
 
 ---
