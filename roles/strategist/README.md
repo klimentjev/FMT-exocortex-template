@@ -13,7 +13,7 @@
 FMT-exocortex-template/              DS-strategy/ (отдельный репо)
   roles/strategist/                     current/
     prompts/                              WeekPlan W{N}.md
-      add-wp.md                           WeekReport W{N}.md
+      add-wp.md                           ~~WeekReport W{N}.md~~ (deprecated → секция «Итоги W{N}» в WeekPlan)
       check-plan.md                       DayPlan YYYY-MM-DD.md
       evening.md                        docs/
     scripts/                              Strategy.md
@@ -62,8 +62,8 @@ FMT-exocortex-template/              DS-strategy/ (отдельный репо)
 
 | Время (UTC) | День | Сценарий | Plist |
 |-------------|------|----------|-------|
-| 2:00 | Понедельник | `session-prep` (headless) | `com.strategist.morning` |
-| 2:00 | Вт-Вс | `day-plan` | `com.strategist.morning` |
+| {{TIMEZONE_HOUR}}:00 | Понедельник | `session-prep` (headless) | `com.strategist.morning` |
+| {{TIMEZONE_HOUR}}:00 | Вт-Вс | `day-plan` | `com.strategist.morning` |
 | 00:00 | Понедельник | `week-review` | `com.strategist.weekreview` |
 
 > На Linux: настройте cron вручную (`crontab -e`). Без автоматизации Стратег запускается вручную.

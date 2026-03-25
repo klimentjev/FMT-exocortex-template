@@ -8,14 +8,15 @@
 
 ## 1. Pack-репо по домену
 
+> Добавь свои Pack'и в эту таблицу. Пример:
+
 | Домен | Pack | Префикс | Путь |
 |-------|------|---------|------|
-| Aufhebung, снятие, эпистемическое противоречие, три момента | PACK-aufheben | `AUF` | `/mnt/c/Users/admin/IWE/PACK/PACK-aufheben/` |
-| Библиография, источники, первоисточники | PACK-bibliography | `SRC` | `/mnt/c/Users/admin/IWE/PACK/PACK-bibliography/sources/` |
-| Методика преподавания философии, образование, ЦС, МРМ, ОМРМ, школа ФиЯ | PACK-education | `EDU` | `/mnt/c/Users/admin/IWE/PACK/PACK-education/` |
-| История философии, Гегель, Платон, диалектика | PACK-history-of-philosophy | `HFP` | `/mnt/c/Users/admin/IWE/PACK/PACK-history-of-philosophy/` |
-| Логика, формальная логика, паранепротиворечивая логика, предикация | PACK-logic | `LOG` | `/mnt/c/Users/admin/IWE/PACK/PACK-logic/` |
-| Философия познания, индивидуальные условия мышления | PACK-philosophy-of-cognition | `COG` | `/mnt/c/Users/admin/IWE/PACK/PACK-philosophy-of-cognition/` |
+| _Твой домен (напр. Machine Learning)_ | _PACK-my-domain_ | _MD_ | _/mnt/c/Users/admin/IWE/PACK-my-domain/pack/my-domain/_ |
+
+<!-- Удали пример выше и добавь свои Pack'и. Формат:
+| Домен (ключевые слова) | Имя Pack-репо | Короткий префикс (2-3 буквы) | Путь к pack/ директории |
+-->
 
 ## 2. Директории по типу знания
 
