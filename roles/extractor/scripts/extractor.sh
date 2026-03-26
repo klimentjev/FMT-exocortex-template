@@ -16,7 +16,7 @@ REPO_DIR="$(dirname "$SCRIPT_DIR")"
 WORKSPACE="/mnt/c/Users/admin/IWE"
 PROMPTS_DIR="$REPO_DIR/prompts"
 LOG_DIR="/home/wklim/logs/extractor"
-CLAUDE_PATH="{{CLAUDE_PATH}}"
+CLAUDE_PATH="/mnt/c/Users/admin/AppData/Roaming/npm/claude"
 ENV_FILE="/home/wklim/.config/aist/env"
 
 # AI CLI: переопределение через переменные окружения (см. strategist.sh)

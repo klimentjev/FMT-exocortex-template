@@ -4,12 +4,12 @@
 
 ## Контекст
 
-- **Заметки:** /mnt/c/Users/admin/IWE/DS-strategy/inbox/[fleeting-notes.md](https://github.com/{{GITHUB_USER}}/DS-strategy/blob/main/inbox/fleeting-notes.md)
+- **Заметки:** /mnt/c/Users/admin/IWE/DS-strategy/inbox/[fleeting-notes.md](https://github.com/klimentjev/DS-strategy/blob/main/inbox/fleeting-notes.md)
 - **НЭП:** /mnt/c/Users/admin/IWE/DS-strategy/docs/Dissatisfactions.md
 - **Стратегия:** /mnt/c/Users/admin/IWE/DS-strategy/docs/Strategy.md
 - **План недели:** /mnt/c/Users/admin/IWE/DS-strategy/current/WeekPlan W*.md
 - **Inbox Экстрактора:** /mnt/c/Users/admin/IWE/DS-strategy/inbox/captures.md
-- **MEMORY:** ~/.claude/projects/{{CLAUDE_PROJECT_SLUG}}/memory/MEMORY.md
+- **MEMORY:** ~/.claude/projects/-mnt-c-Users-admin-IWE/memory/MEMORY.md
 
 ## Предусловие
 
