@@ -6,10 +6,10 @@
 
 - **HUB (личные планы):** /mnt/c/Users/admin/IWE/DS-strategy/current/
 - **Документы стратегии:** /mnt/c/Users/admin/IWE/DS-strategy/docs/ (ВСЕ файлы: Strategy.md, Dissatisfactions.md, Session Agenda.md)
-- **Inbox:** /mnt/c/Users/admin/IWE/DS-strategy/inbox/ ([fleeting-notes.md](https://github.com/klimentjev/DS-strategy/blob/main/inbox/fleeting-notes.md) + свежие файлы за неделю)
+- **Inbox:** /mnt/c/Users/admin/IWE/DS-strategy/inbox/ ([fleeting-notes.md](https://github.com/{{GITHUB_USER}}/DS-strategy/blob/main/inbox/fleeting-notes.md) + свежие файлы за неделю)
 - **SPOKE (планы репо):** /mnt/c/Users/admin/IWE/*/WORKPLAN.md
 - **Стратегические карты:** /mnt/c/Users/admin/IWE/*/MAPSTRATEGIC.md (если есть в репо)
-- **MEMORY:** ~/.claude/projects/-mnt-c-Users-admin-IWE/memory/MEMORY.md
+- **MEMORY:** ~/.claude/projects/{{CLAUDE_PROJECT_SLUG}}/memory/MEMORY.md
 
 ## Именование файлов в current/
 

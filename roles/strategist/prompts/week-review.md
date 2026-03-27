@@ -42,7 +42,7 @@ git -C /mnt/c/Users/admin/IWE/<repo> log --since="last monday 00:00" --until="to
 
 ### 3b. Контент-план на следующую неделю
 
-> **Источники:** Content ideas из рубежей работы (`DS-strategy/drafts/draft-list.md`), результаты прошлой недели, backlog из [Стратегии маркетинга §7](../../DS-ecosystem-development/B.Aisystant-Ecosystem/B1.Society/B1.1.Meaning/1.1.2.%20Marketing/Стратегия%20маркетинга%201.1.md).
+> **Источники:** Content ideas из рубежей работы (`DS-strategy/drafts/draft-list.md`), результаты прошлой недели, backlog из Стратегии маркетинга §7 (DS-ecosystem-development).
 
 1. Собери Content ideas, накопленные за неделю (из draft-list.md, captures, Close-отчётов)
 2. Сопоставь с backlog публикаций из Стратегии маркетинга §7
@@ -156,7 +156,7 @@ content_plan: null
 3. Добавь строку:
 
 ```markdown
-**Пост итогов W{N-1}:** [название](https://github.com/klimentjev/DS-Knowledge-Index/blob/main/docs/{YYYY}/{YYYY-MM-DD}-week-review-w{N-1}.md) — status: ready → авто-публикация Пн 07:14
+**Пост итогов W{N-1}:** [название](https://github.com/{{GITHUB_USER}}/DS-Knowledge-Index/blob/main/docs/{YYYY}/{YYYY-MM-DD}-week-review-w{N-1}.md) — status: ready → авто-публикация Пн 07:14
 ```
 
 4. Закоммить вместе с остальными изменениями
