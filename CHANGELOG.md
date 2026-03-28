@@ -5,6 +5,29 @@ All notable changes to FMT-exocortex-template will be documented in this file.
 Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 Versioning: [Semantic Versioning](https://semver.org/).
 
+## [0.16.8] — 2026-03-28
+
+### Added
+- **day-open/SKILL.md** — механизм `mandatory_daily_wps`: стратег читает из `day-rhythm-config.yaml` обязательные РП для каждого дня. Нет в WeekPlan → «Требует внимания»
+- **day-open/SKILL.md** — механизм `review_yesterday_close`: опциональное чтение Close прошлого дня при Day Open (carry-over, незакрытые вопросы)
+- **day-rhythm-config.yaml** — секции `mandatory_daily_wps` и `day_close` (закомментированные примеры)
+
+## [0.16.7] — 2026-03-27
+
+### Fixed
+- **hooks/close-gate-reminder.sh** — v3: hook теперь инжектирует БЛОКИРУЮЩУЮ инструкцию вызвать `/run-protocol` вместо напоминания «Read protocol-close.md». Устраняет пропуск шагов при ручном исполнении Close (АрхГейт 63/70)
+
+## [0.16.6] — 2026-03-27
+
+### Changed
+- **docs/onboarding** — актуализация onboarding-документов: IWE = ОС (не среда/платформа), 4 компонента (Ядро мышления, Культура работы, Модель мастерства, Сообщество), теории (ШСМ) + культура работы (14 элементов), экзотело вместо экзоскелета, инструменты = средства доставки
+- **docs/DATA-POLICY** — убраны несуществующие standard/personal, добавлена свобода данных (§6.1), два слоя доставки, актуальная структура (memory/, extensions/, params.yaml)
+
+## [0.16.5] — 2026-03-27
+
+### Changed
+- **docs** — синхронизация документации: README сценарии → ссылки на SC.001-SC.015 (USE-CASES.md), FAQ подписки унифицированы («при необходимости»), IWE-HELP роли уточнены (3 в шаблоне / 21 на платформе), CLAUDE.md §2 примечание про первую неделю, SETUP-GUIDE §1.3b пояснение про MCP и Pack-сущности
+
 ## [0.16.4] — 2026-03-27
 
 ### Changed
