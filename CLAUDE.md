@@ -32,7 +32,7 @@
 2. **Push:** «заливай» / «запуши» → commit + push без доп. вопросов. Push ДО отчёта Закрытия.
 3. **Close:** Триггер Закрытия → протокол Закрытия → выполнить.
 4. **Чеклист-верификация (Haiku R23):** Quick Close и Day Close — sub-agent Haiku R23 (context isolation). Исключения: сессия ≤15 мин или без изменений файлов.
-5. **Pull-before-Commit / Без Obsidian:** см. §9.
+5. **Pull-on-Touch:** `git pull --rebase` при первом изменении в репо за сессию (не перед каждым коммитом). Без Obsidian: см. §10.
 
 ### Протокол Работы (полный → `memory/protocol-work.md`)
 
@@ -127,7 +127,7 @@
 
 ### Блокирующие (авторские)
 
-- **Pull-before-Commit (DS-strategy):** `git pull --rebase` → модификация → `commit` → `push`.
+- **Pull-before-Commit:** перенесён в §2 п.5 (платформенное правило для ВСЕХ репо).
 - **Без Obsidian (DS-strategy):** Просмотр через VS Code.
 
 ### Именование
