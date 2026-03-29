@@ -88,7 +88,7 @@ Scout report. Не проревьюен → «Требует внимания».
 <!-- EXTENSION POINT: загрузить extensions/day-open.after.md если существует -->
 
 ### 7. Запись
-**DayPlan:** `{{GOVERNANCE_REPO}}/current/DayPlan YYYY-MM-DD.md` по шаблону ниже. Предыдущий → `archive/day-plans/`. Коммит.
+**DayPlan:** `{{GOVERNANCE_REPO}}/current/DayPlan YYYY-MM-DD.md` по шаблону ниже. Перед записью перенести все старые `DayPlan *.md` из `current/` в `archive/day-plans/`, оставить только сегодняшний. Коммит.
 **Compact:** вывести в VS Code по шаблону ниже.
 
 ---

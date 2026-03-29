@@ -110,7 +110,7 @@ DS-strategy/
 #### 8. Сохрани черновик (ОБЯЗАТЕЛЬНО)
 
 1. Перемести предыдущий `WeekPlan W*.md` из `current/` в `archive/week-plans/`
-2. Перемести предыдущий `DayPlan *.md` из `current/` в `archive/day-plans/` (если есть)
+2. Перемести все старые `DayPlan *.md` из `current/` в `archive/day-plans/` (оставь только текущий день, если он уже есть)
 3. ~~WeekReport~~ — отдельный файл больше не создаётся (deprecated). Итоги — секция в WeekPlan.
 4. Перемести предыдущий `SchedulerReport *.md` из `current/` в `archive/scheduler-reports/` (если есть и не текущий)
 5. **Архивация WP context files (safety net — Close уже архивирует done-файлы):**
