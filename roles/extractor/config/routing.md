@@ -8,16 +8,15 @@
 
 ## 1. Pack-репо по домену
 
-> Активные Pack'и этого IWE.
+> Добавь свои Pack'и в эту таблицу. Пример:
 
 | Домен | Pack | Префикс | Путь |
 |-------|------|---------|------|
-| Aufhebung, снятие, эпистемическое противоречие, три момента снятия | PACK-aufheben | AUF | /mnt/c/Users/admin/IWE/PACK/PACK-aufheben/ |
-| Библиография, источники, SRC-карточки, литература | PACK-bibliography | SRC | /mnt/c/Users/admin/IWE/PACK/PACK-bibliography/ |
-| Образование, методика преподавания философии, разумное познание в обучении | PACK-education | EDU | /mnt/c/Users/admin/IWE/PACK/PACK-education/ |
-| История философии, диалектика в истории философии, Парменид, Софист | PACK-history-of-philosophy | HFP | /mnt/c/Users/admin/IWE/PACK/PACK-history-of-philosophy/ |
-| Логика, противоречия, релевантная логика, паранепротиворечивая логика, предикация | PACK-logic | LOG | /mnt/c/Users/admin/IWE/PACK/PACK-logic/ |
-| Философия познания, субъект познания, разумное мышление, условия помышления | PACK-philosophy-of-cognition | COG | /mnt/c/Users/admin/IWE/PACK/PACK-philosophy-of-cognition/ |
+| _Твой домен (напр. Machine Learning)_ | _PACK-my-domain_ | _MD_ | _/mnt/c/Users/admin/IWE/PACK-my-domain/pack/my-domain/_ |
+
+<!-- Удали пример выше и добавь свои Pack'и. Формат:
+| Домен (ключевые слова) | Имя Pack-репо | Короткий префикс (2-3 буквы) | Путь к pack/ директории |
+-->
 
 ## 2. Директории по типу знания
 
@@ -69,10 +68,13 @@
 
 ### DS-репо по системам
 
+> Добавь свои DS-репо в эту таблицу. Пример:
+
 | Система | DS-репо | Путь к docs/ |
 |---------|--------|-------------|
-| Личный governance / стратегия / школа / `newlook` | DS-strategy | /mnt/c/Users/admin/IWE/DS-strategy/docs/ |
-| Экзокортекс / роли / протоколы / автоматизация | DS-exocortex | /mnt/c/Users/admin/IWE/DS-exocortex/docs/ |
+| _Мой бот_ | _your-org/my-bot_ | _/mnt/c/Users/admin/IWE/your-org/my-bot/docs/_ |
+
+<!-- Удали пример и добавь свои DS-репо -->
 
 ### Директории в DS docs/
 
@@ -108,4 +110,4 @@ DS-кандидаты **не требуют** frontmatter с trust/epistemic_sta
 
 ---
 
-*Последнее обновление: 2026-03-30*
+*Последнее обновление: {{сегодняшняя дата}}*
