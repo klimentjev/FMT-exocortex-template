@@ -30,8 +30,11 @@ portable_date_offset() {
 }
 
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
-WORKSPACE="$HOME/IWE"
-GOVERNANCE_DIR="${GOVERNANCE_DIR:-$WORKSPACE/DS-my-strategy}"
+# shellcheck disable=SC1091
+source "$SCRIPT_DIR/../../../scripts/lib/exocortex-env.sh"
+
+WORKSPACE="$(resolve_workspace_dir)"
+GOVERNANCE_DIR="${GOVERNANCE_DIR:-$WORKSPACE/DS-strategy}"
 LOG_DIR="$HOME/logs/synchronizer"
 DATE=$(date +%Y-%m-%d)
 LOG_FILE="$LOG_DIR/dt-collect-$DATE.log"
@@ -41,11 +44,9 @@ DRY_RUN=false
 
 mkdir -p "$LOG_DIR"
 
-# Load env
-ENV_FILE="$HOME/.config/aist/env"
-if [ -f "$ENV_FILE" ]; then
-    set -a; source "$ENV_FILE"; set +a
-fi
+# Load optional env
+load_aist_env_if_present
+load_wakatime_api_key_if_present
 
 log() {
     echo "[$(date '+%Y-%m-%d %H:%M:%S')] [dt-collect] $1" | tee -a "$LOG_FILE"
@@ -290,7 +291,8 @@ print(json.dumps(result))
 # ============================================================
 
 collect_wp() {
-    local MEMORY_FILE="$HOME/.claude/projects/-Users-$(whoami)-IWE/memory/MEMORY.md"
+    local MEMORY_FILE
+    MEMORY_FILE="$(resolve_claude_memory_dir)/MEMORY.md"
 
     python3 -c "
 import json, os, re

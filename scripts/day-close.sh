@@ -15,9 +15,13 @@
 set -euo pipefail
 
 # === КОНФИГУРАЦИЯ (настроить при установке) ===
-WORKSPACE_DIR="${WORKSPACE_DIR:-$HOME/IWE}"
+SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
+# shellcheck disable=SC1091
+source "$SCRIPT_DIR/lib/exocortex-env.sh"
+
+WORKSPACE_DIR="$(resolve_workspace_dir)"
 DS_STRATEGY="$WORKSPACE_DIR/DS-strategy"
-MEMORY_SRC="$HOME/.claude/projects/-Users-$(whoami)-IWE/memory"
+MEMORY_SRC="$(resolve_claude_memory_dir)"
 EXOCORTEX_DST="$DS_STRATEGY/exocortex"
 SELECTIVE_REINDEX="$WORKSPACE_DIR/DS-MCP/knowledge-mcp/scripts/selective-reindex.sh"
 # TODO: укажите путь к скрипту синхронизации, если используете

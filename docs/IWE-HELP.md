@@ -155,7 +155,7 @@ bash update.sh --check  # проверить без применения
 
 **Стратег не формирует план** — проверь `launchctl list | grep strategist` (macOS). Если нет — `bash roles/strategist/install.sh`.
 
-**MEMORY.md не загружается** — проверь путь: `~/.claude/projects/-Users-<username>-IWE/memory/MEMORY.md`. Имя директории = путь к workspace через дефисы.
+**MEMORY.md не загружается** — проверь путь: `~/.claude/projects/<workspace-path-with-slashes-replaced-by-dashes>/memory/MEMORY.md`. Для этого workspace: `/mnt/c/Users/admin/IWE` → `-mnt-c-Users-admin-IWE`.
 
 **DS-strategy не создан** — вручную: `mkdir -p ~/IWE/DS-strategy/{current,inbox,docs,archive} && cd ~/IWE/DS-strategy && git init`.
 

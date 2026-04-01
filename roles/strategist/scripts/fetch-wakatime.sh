@@ -7,6 +7,10 @@
 
 set -e
 
+SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
+# shellcheck disable=SC1091
+source "$SCRIPT_DIR/../../../scripts/lib/exocortex-env.sh"
+
 # Cross-platform date offset: portable_date_offset <days_back> <format>
 # Works on macOS and GNU/Linux
 portable_date_offset() {
@@ -15,13 +19,10 @@ portable_date_offset() {
     date -v-${days}d +"$fmt" 2>/dev/null || date -d "$days days ago" +"$fmt" 2>/dev/null
 }
 
-ENV_FILE="$HOME/.config/aist/env"
-if [ -f "$ENV_FILE" ]; then
-    set -a; source "$ENV_FILE"; set +a
-fi
+load_wakatime_api_key_if_present
 
-if [ -z "$WAKATIME_API_KEY" ]; then
-    echo "WAKATIME_API_KEY not set"
+if [ -z "${WAKATIME_API_KEY:-}" ]; then
+    echo "WAKATIME_API_KEY not set (checked ~/.config/aist/env and ~/.wakatime.cfg)"
     exit 0  # graceful — don't break strategist if no key
 fi
 
