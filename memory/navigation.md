@@ -21,6 +21,7 @@
 
 | Репо | Путь |
 |------|------|
+| **DS-strategy (governance)** | `DS-strategy/` — **отдельный git-репозиторий**; корень IWE его **не индексирует** (см. корневой `.gitignore`). Клон: `git clone https://github.com/klimentjev/DS-strategy.git DS-strategy` из каталога IWE. |
 <!-- Добавьте свои DS-репо. Пример: -->
 <!-- | Мой бот (READ-ONLY) | `your-org/your-bot/` | -->
 <!-- | Монорепо ИИ-систем | `your-org/ai-systems/` | -->
