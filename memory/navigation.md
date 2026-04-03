@@ -9,9 +9,6 @@
 | Различения (жёсткие пары) | `memory/hard-distinctions.md` |
 | FPF (навигация, принципы) | `memory/fpf-reference.md` |
 | Правила по типам репо | `memory/repo-type-rules.md` |
-| Шаблон системного паспорта | `memory/system-passport-template.md` |
-| Лестница уровней описания системы | `memory/system-description-levels-template.md` |
-| Экстракт уровней описания системы | `memory/system-description-levels-extract.md` |
 | Чеклисты | `memory/checklists.md` |
 | SOTA-практики (18 шт.) | `memory/sota-reference.md` |
 | Протокол Open (WP Gate, Ритуал) | `memory/protocol-open.md` |
@@ -24,14 +21,10 @@
 
 | Репо | Путь |
 |------|------|
-| LMS Aisystant (READ-ONLY) | `DS-IT-systems/aisystant/` |
-| SystemsSchool_bot (READ-ONLY) | `DS-IT-systems/SystemsSchool_bot/` |
-| Монорепо ИИ-систем (7 шт.) | `DS-IT-systems/DS-ai-systems/` |
-| — Стратег (Grade 3) | `DS-IT-systems/DS-strategist/` |
-| — Шаблонизатор (Grade 0) | `FMT-exocortex-template/setup.sh` (user), `DS-IT-systems/DS-ai-systems/setup/` (author sync) |
-| — Наладчик (Grade 2) | `DS-IT-systems/DS-ai-systems/fixer/` |
-| — Статистик (Grade 1) | `DS-IT-systems/DS-ai-systems/pulse/` |
-| — Оценщик (Grade 2) | `DS-IT-systems/DS-ai-systems/evaluator/` |
+<!-- Добавьте свои DS-репо. Пример: -->
+<!-- | Мой бот (READ-ONLY) | `your-org/your-bot/` | -->
+<!-- | Монорепо ИИ-систем | `your-org/ai-systems/` | -->
+| Шаблонизатор | `FMT-exocortex-template/setup.sh` |
 | Личная онтология | `DS-strategy/ontology.md` |
 | Программа обучения | `DS-principles-curriculum/` |
 
@@ -39,7 +32,6 @@
 
 | Pack | Путь |
 |------|------|
-| PACK-education | Методика обучения |
 | PACK-personal | Личностное развитие |
 | PACK-verification | Верификация и приёмка (трансдоменный) |
 | PACK-autonomous-agents | Автономные агенты (BC, различения, методы) |
@@ -62,8 +54,9 @@
 | knowledge-mcp (ingest) | `DS-MCP/knowledge-mcp/scripts/ingest.ts` |
 | guides-mcp (исходники) | `DS-MCP/guides-mcp/src/index.ts` |
 | fsm-mcp (исходники) | `DS-MCP/fsm-mcp/src/index.ts` |
-| Activity Hub | `DS-IT-systems/activity-hub/` |
-| Автономные агенты (DS) | `DS-autonomous-agents/` |
+<!-- | Activity Hub | `your-org/activity-hub/` | -->
+| Автономные агенты (код) | `DS-autonomous-agents/` |
+| Данные агентов (workspace) | `DS-agent-workspace/` |
 
 ## Стратегия
 

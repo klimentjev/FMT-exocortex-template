@@ -37,16 +37,23 @@
 
 ### Алгоритм Quick Close (7 шагов)
 
-0. **Pull** → `cd DS-strategy && git pull --rebase`
+> **Исполнение:** всегда через `/run-protocol close` (пошаговый чеклист, предотвращает пропуск шагов).
+> **Принцип порядка:** «горячий контекст» — механические статусы сразу после commit (пока файлы свежие), содержательные шаги (KE, верификация) — в середине.
+
+0. **Pull** → `git pull --rebase` в репо с изменениями (если не делался ранее в сессии — см. CLAUDE.md §2 Pull-on-Touch)
 1. **Commit + Push** — все изменения зафиксированы
-<!-- YOUR CUSTOM CHECKS HERE -->
-2. **KE (Knowledge Extraction)** → прочитай и выполни `DS-exocortex/roles/extractor/prompts/session-close.md`:
+<!-- EXTENSION POINT: загрузить extensions/protocol-close.checks.md если существует -->
+2. **Статусы** (механические, пока файлы «горячие»):
+   - **MEMORY.md** — обновить статус РП (одна строка: `in_progress` / `done`)
+   - **DayPlan** — обновить строку **своего РП** в `DS-strategy/current/DayPlan YYYY-MM-DD.md`. **Scope:** Quick Close обновляет только РП текущей сессии. Полная актуализация всех строк — на Day Close (шаг 2b). **Правило зачёркивания:** зачеркнуть строку даже если РП остаётся in_progress (в WeekPlan он не зачёркивается, пока не done). DayPlan отражает «что сделано сегодня», WeekPlan — «что закрыто на неделе».
+   - **WP-REGISTRY** (при done) — `DS-strategy/docs/WP-REGISTRY.md`: зачеркнуть строку, статус → `~~✅~~ | ~~done~~`. Пропуск = рассинхрон MEMORY vs REGISTRY.
+3. **KE (Knowledge Extraction)** → прочитай и выполни `DS-IT-systems/DS-ai-systems/extractor/prompts/session-close.md`:
    - Собрать отложенные captures + проверить пропущенные
    - Классифицировать → маршрутизировать → формализовать → валидировать
    - Показать Extraction Report → получить одобрение
    - Применить одобренные (accept → Pack/CLAUDE.md/memory)
    - Немедленные captures (CLAUDE.md, repo CLAUDE.md) — применить сразу
-3. **Verification Gate** (VR.M.003 — приёмка WP):
+4. **Verification Gate** (VR.M.003 — приёмка WP):
    - Прочитать WP context file → извлечь критерии готовности
    - Проверить по verification_class:
      - **trivial/closed-loop:** автоматический pass (не задерживать Close)
@@ -54,14 +61,12 @@
      - **problem-framing:** полная проверка + пометка «требует приёмки человеком»
    - Если РП done → verdict обязателен. Если in_progress → skip
    - Verdict НЕ блокирует Close — записывается в отчёт для решения человека
-3b. **Code Verification** (автотриггер — S56):
+4b. **Code Verification** (автотриггер — S56, если `params.yaml → auto_verify_code: true`):
    - Проверить `git diff --name-only` по затронутым репо
    - Если среди изменённых файлов есть **код** (`.py`, `.ts`, `.sh`, `.sql`, `.yaml`, `.json`) → запустить `/verify code` (sub-agent Верификатор с context isolation)
    - Если только `.md` файлы → пропустить (верификация кода не нужна)
    - Если в сессии был **АрхГейт** и после него менялся код → запустить `/verify archgate` вместо `/verify code`
    - Verdict → в секцию «Что проверить» отчёта
-4. **MEMORY.md** — обновить статус РП (одна строка: `in_progress` / `done`)
-4b. **DayPlan** — обновить строку РП в `DS-strategy/current/DayPlan YYYY-MM-DD.md`: done → зачеркнуть, partial → обновить статус. Day Close = safety net, но DayPlan должен быть актуален между сессиями.
 5. **WP Context File:**
    - in_progress → обновить секцию «Осталось» в `DS-strategy/inbox/WP-{N}-{slug}.md`
    - done → пометить (архивация — на Day Close)
@@ -71,16 +76,17 @@
 ### Чеклист Quick Close
 
 - [ ] Всё закоммичено и запушено
-<!-- YOUR CUSTOM CHECKS HERE -->
+<!-- EXTENSION POINT: загрузить extensions/protocol-close.checks.md если существует -->
+- [ ] **Статусы:** MEMORY.md + DayPlan + WP-REGISTRY обновлены (сразу после commit)
 - [ ] KE выполнен, captures применены
-- [ ] MEMORY.md: статус РП обновлён
-- [ ] DayPlan: строка РП обновлена (done → зачёркнуто)
+- [ ] Verification Gate пройден (WP + code)
 - [ ] WP Context: «Осталось» записано (или done помечен)
 - [ ] Repo CLAUDE.md проверен (если feat-коммиты)
 - [ ] Отчёт сформирован
 
 ### 7. Верификация Quick Close (Haiku R23)
 
+> **Условный шаг:** если `params.yaml → verify_quick_close: false` → пропустить.
 > Запустить sub-agent **Haiku** в роли **R23 Верификатор** (context isolation — VR.SOTA.002).
 > Передать: (1) чеклист Quick Close, (2) отчёт, (3) список изменённых файлов (`git diff --name-only` по затронутым репо).
 > По ❌ — исправить до показа пользователю.
@@ -105,7 +111,7 @@
 **Captures:** [N → Pack, N → DS docs/, N → IWE root]. «0» только если ничего не записано.
 **Что проверить:** [что требует внимания человека]
 **Git:** закоммичено + запушено ✅
-<!-- YOUR CUSTOM CHECKS HERE -->
+<!-- EXTENSION POINT: загрузить extensions/protocol-close.after.md если существует -->
 **Осталось:** ничего / [что — Agent→Agent handoff для следующей сессии]
 ```
 
@@ -124,12 +130,14 @@
 
 ### Алгоритм Day Close (12 шагов)
 
+> **Исполнение:** всегда через `/run-protocol day-close` (пошаговый чеклист). Day Close длиннее Quick Close — риск пропуска шагов выше.
+
 #### 1. Сбор данных
 
 ```bash
-for repo in $(ls /mnt/c/Users/admin/IWE/); do
-  if [ -d /mnt/c/Users/admin/IWE/$repo/.git ]; then
-    commits=$(git -C /mnt/c/Users/admin/IWE/$repo log --since="today 00:00" --oneline --no-merges 2>/dev/null)
+for repo in $(ls {{WORKSPACE_DIR}}/); do
+  if [ -d {{WORKSPACE_DIR}}/$repo/.git ]; then
+    commits=$(git -C {{WORKSPACE_DIR}}/$repo log --since="today 00:00" --oneline --no-merges 2>/dev/null)
     [ -n "$commits" ] && echo "=== $repo ===" && echo "$commits"
   fi
 done
@@ -145,11 +153,12 @@ done
 
 **2c.** Обновить `DS-strategy/docs/WP-REGISTRY.md`: статусы + даты.
 
-**2d.** Обновить `DS-agent-workspace/scheduler/open-sessions.log`: удалить строки закрытых сессий.
+**2d.** Обновить `DS-strategy/inbox/open-sessions.log`: удалить строки закрытых сессий.
 
 **2e.** Governance-синхронизация: новые репо/сервисы за день? → REPOSITORY-REGISTRY, navigation.md, MAP.002↔PROCESSES.md.
 
-<!-- YOUR CUSTOM CHECKS HERE -->
+<!-- EXTENSION POINT: загрузить extensions/day-close.checks.md если существует -->
+
 
 #### 3. Архивация
 
@@ -158,11 +167,21 @@ done
 
 > **Правило:** MEMORY.md хранит ТОЛЬКО активные РП (in_progress + pending). Done = удалить.
 
+#### 3b. Lesson Hygiene (гигиена уроков)
+
+> **Симметрия:** Open пишет уроки → Close чистит. Предотвращает раздувание MEMORY.md.
+
+- Просмотреть секцию «Уроки» в MEMORY.md
+- Урок применялся сегодня? → оставить
+- Урок не применялся >1 нед и есть в тематическом файле (`lessons_*.md`)? → удалить из MEMORY.md
+- Новый урок за день? → записать в MEMORY.md (краткая строка) + тематический файл (подробно)
+- Цель: ≤8 уроков в MEMORY.md
+
 #### 4. Автоматические шаги (скрипт `day-close.sh`)
 
 ```bash
 # Запуск одной командой:
-/mnt/c/Users/admin/IWE/DS-IT-systems/DS-ai-systems/synchronizer/scripts/day-close.sh
+{{WORKSPACE_DIR}}/DS-IT-systems/DS-ai-systems/synchronizer/scripts/day-close.sh
 ```
 
 Скрипт выполняет:
@@ -172,19 +191,31 @@ done
 
 #### 5. Мультипликатор IWE (расчёт)
 
+> **Условный шаг:** если `params.yaml → multiplier_enabled: false` → пропустить.
 > **Мультипликатор = Бюджет закрыт / WakaTime.** Показывает, насколько агент-экзоскелет усиливает работу.
 > Пример: WakaTime 10ч 14мин, бюджет закрыт ~21.4h → мультипликатор 2.09x.
 
-**Алгоритм:**
+**Алгоритм (день):**
 
 1. **WakaTime** — физическое время за день. Источник: WakaTime API или `wakatime --today`.
-2. **Бюджет закрыт** — сумма бюджетных оценок по всем РП, над которыми работали сегодня, взвешенная по прогрессу:
-   - done → 100% бюджета РП
-   - partial → % выполнения × бюджет РП (оценить по объёму сделанного)
-   - not started → 0
+2. **Бюджет закрыт** — сумма бюджетных оценок по ВСЕМ РП, над которыми работали сегодня:
+   - done → полный бюджет РП (или пропорционально фазам для зонтичных)
+   - partial (работали, но не закрыли) → % выполнения × бюджет
+   - not started → 0h
+   - Мелкие РП (бюджет «—» / merged / поглощён) → 0.25h (15 мин), не 0
    - Источник: таблица «План на сегодня» из DayPlan (колонка «Бюджет»)
-3. **Мультипликатор** = Бюджет закрыт / WakaTime. Формат: `N.Nx`
-4. **Бюджет недели** = Бюджет_W{N} - WakaTime_total_week
+3. **Мультипликатор дня** = Бюджет закрыт / WakaTime. Формат: `N.Nx`
+
+**Алгоритм (неделя, при Week Close):**
+
+4. **WakaTime недели** — сумма физического времени за все 7 дней.
+5. **Бюджет закрыт за неделю** — сумма бюджетов ВСЕХ РП, над которыми работали за неделю:
+   - done → полный бюджет (диапазон → среднее: 3-4h → 3.5h)
+   - partial (работали, но не закрыли) → % выполнения × бюджет
+   - Зонтичные → пропорционально фазам
+   - Мелкие (бюджет «—» / merged / поглощён) → 0.25h (15 мин), не 0
+6. **Мультипликатор недели** = Бюджет закрыт за неделю / WakaTime недели. Формат: `N.Nx`
+7. **Средний мультипликатор** = мультипликатор недели (единый расчёт, НЕ среднее дневных)
 
 #### 6. Черновик итогов (показать пользователю)
 
@@ -198,7 +229,7 @@ done
 
 **г) Не забыто?** Стратег проверяет:
 - Незакоммиченные изменения (`git status` по всем репо)
-<!-- YOUR CUSTOM CHECKS HERE -->
+<!-- EXTENSION POINT: загрузить extensions/day-close.checks.md если существует -->
 - Незаписанные мысли? (спросить пользователя)
 - Обещания кому-то? (спросить пользователя)
 
@@ -219,7 +250,7 @@ done
 
 #### 8. Запись итогов
 
-Дописать секцию «Итоги дня» в `DayPlan YYYY-MM-DD.md`:
+**8a.** Дописать секцию «Итоги дня» в `DayPlan YYYY-MM-DD.md`:
 
 ```markdown
 ---
@@ -238,10 +269,10 @@ done
 |---------|----------|
 | **WakaTime (физическое время)** | Xч Yмин |
 | **Бюджет закрыт (оценки РП)** | ~Nh |
-| **Мультипликатор** | **N.Nx** |
-| **Бюджет недели W{N}** | осталось Zh из Bh |
+| **Мультипликатор дня** | **N.Nx** |
 
 > Формула: Бюджет закрыт / WakaTime. Показывает усиление от агента-экзоскелета.
+> Недельный мультипликатор считается при Week Close: Σ бюджетов done-РП за неделю / WakaTime за неделю.
 
 **Что нового узнал:** ...
 
@@ -249,9 +280,41 @@ done
 
 **Не забыто:** всё чисто / [что осталось]
 
-**Завтра начать с:** ...
+**Завтра начать с:** [ВСЕ pending РП из таблицы «План на сегодня» — каждый с кратким «что осталось». Не сокращать до топ-2: ночной Стратег читает именно это поле и берёт ровно то, что здесь написано]
 
 *Закрыто: YYYY-MM-DD HH:MM*
+```
+
+**8b.** Дописать сводку итогов дня в `WeekPlan W{N} YYYY-MM-DD.md` (в конец файла, перед закрывающими секциями).
+
+**Правила:**
+- **Формат:** обёрнуть в `<details><summary><b>Итоги {день недели} {дата}</b></summary>...</details>`
+- **Порядок:** свежие итоги — СВЕРХУ, ранние — СНИЗУ (обратная хронология). Новая сводка вставляется ПЕРЕД предыдущими итогами.
+- **Содержание:** таблица коммитов по репо, закрытые РП, продвинутые РП, мультипликатор. Предложения (Note-Review) за этот день — внутри того же `<details>`.
+
+```markdown
+<details>
+<summary><b>Итоги {день недели} {дата}</b></summary>
+
+**Коммиты:** N коммитов в M репо
+
+| Репо | Коммиты | Что сделано |
+|------|---------|-------------|
+| ... | ... | ... |
+
+**РП закрыты (N):**
+- ✅ #N — описание
+
+**РП продвинуты (N):**
+- 🔄 #N — описание
+
+**Мультипликатор:** N.Nx (N коммитов, N РП done + N продвинуты)
+
+## Предложения (Note-Review, YYYY-MM-DD)
+
+- [ ] ...
+
+</details>
 ```
 
 #### 9. Закоммитить DS-strategy
@@ -272,17 +335,19 @@ done
 - [ ] open-sessions.log: строки закрытых сессий удалены
 - [ ] Captures за день применены (все Quick Close → KE пройден)
 - [ ] **Синхронизация downstream:** коммиты в Pack/DS → `update.sh` выполнен (reindex + pack-project + template)
-- [ ] **Linear sync:** статусы соответствуют git
+- [ ] **Linear sync:** статусы соответствуют git. **Пост-sync чек:** сравнить кол-во active РП в REGISTRY (незачёркнутые `🔄`+`⏳`) с кол-вом active issues в Linear (не Done/Canceled). Расхождение → ❌ и исправить до продолжения. Скрипт может упасть молча (exit 1 без вывода) — проверять результат, а не факт запуска.
 - [ ] **Repo CLAUDE.md:** feat-коммиты → новые правила?
 - [ ] **WP context:** done → `mv inbox/ → archive/wp-contexts/`
+- [ ] **Lesson Hygiene:** уроки MEMORY.md ≤8, неактуальные → тематические файлы
 - [ ] **Draft-list:** Pack обогащён → черновик предложен?
 - [ ] **Видео:** обработанные помечены (если video.enabled)
-<!-- YOUR CUSTOM CHECKS HERE -->
+<!-- EXTENSION POINT: загрузить extensions/day-close.checks.md если существует -->
 - [ ] **Governance:** REPOSITORY-REGISTRY, navigation.md, MAP.002
 - [ ] **Backup:** `day-close.sh` выполнен (backup + reindex + linear)
 - [ ] **Верификация compliance:** /verify запускался сегодня?
 - [ ] **WakaTime + Мультипликатор:** часы, бюджет, остаток недели
 - [ ] Итоги дня записаны в DayPlan
+- [ ] Сводка итогов записана в WeekPlan (`<details>`, обратная хронология)
 - [ ] Новое репо → MAPSTRATEGIC.md + Strategy.md
 
 Все ✅ → «День закрыт.» Иначе — указать, что осталось.
@@ -297,7 +362,13 @@ done
 
 ### Дополнительные шаги Week Close (поверх Week Review)
 
+> **Исполнение:** через `/run-protocol week-close`. Week Review (`week-review.md`) + шаги ниже.
+
+<!-- EXTENSION POINT: загрузить extensions/week-close.before.md если существует -->
+
 #### 1. Ротация уроков в MEMORY.md
+
+> **Условный шаг:** если `params.yaml → lesson_rotation: false` → пропустить.
 
 Для каждого урока в секции «Уроки»:
 - Применялся за последние 2 недели? → оставить
@@ -310,11 +381,33 @@ done
 - Перенести in_progress и pending в таблицу новой недели W{N+1}
 - Источник: новый WeekPlan (создаётся в session-prep)
 
-#### 3. Аудит memory-файлов
+#### 3. Ревью операционных правил (DP.M.008 #14)
+
+Запустить `/iwe-rules-review` → отчёт → согласование → обновление DP.M.008 + реализаций.
+
+#### 3b. Staging-канал (промоция в шаблон)
+
+Открыть `DS-ecosystem-development/C.IT-Platform/C2.IT-Platform/C2.3.Operations/IWE-staging.md`:
+- Есть строки со статусом `validated`? → выполнить чеклист промоции (убрать авторские константы → FMT-exocortex-template → commit `feat: promote S-NN`)
+- Нет `validated` → просмотреть `testing`: критерий выполнен? → сменить статус на `validated` (промоция на следующей неделе)
+- Добавить новые кандидаты если появились за неделю
+
+#### 4. Аудит memory-файлов
 
 - ≤11 файлов? Лишние → объединить или удалить
 - Лимиты: справочники ≤100, протоколы ≤150, реестры ≤200 строк
 - Устаревшие записи → обновить или удалить
+
+#### 4b. Аудит MEMORY.md (quarterly, раз в 4 недели)
+
+> **Условный шаг:** если `params.yaml → memory_audit_frequency: monthly` → проверять раз в 4 недели. `weekly` → каждую неделю. По умолчанию: `monthly`.
+
+- Есть ли файлы памяти, которые можно объединить или удалить?
+- Есть ли `superseded_by` без удаления исходного файла?
+- Лимит раздела «Файлы памяти» в MEMORY.md: ≤10 строк
+- Записи с `valid_from` старше 3 месяцев без подтверждения актуальности → пометить или удалить
+
+<!-- EXTENSION POINT: загрузить extensions/week-close.after.md если существует -->
 
 ---
 
@@ -329,7 +422,7 @@ done
 | Quick Close | R6 Кодировщик | protocol-close.md § Сессия |
 | Day Close | R1 Стратег | protocol-close.md § День |
 | Week Close | R1 Стратег | protocol-close.md § Неделя + week-review.md |
-| Session-Close Extraction | R2 Экстрактор | DS-exocortex/roles/extractor/prompts/session-close.md |
+| Session-Close Extraction | R2 Экстрактор | extractor/prompts/session-close.md |
 | On-Demand Extraction | R2 Экстрактор | extractor/prompts/on-demand.md |
 | Bulk Extraction | R2 Экстрактор | extractor/prompts/bulk-extraction.md |
 | Cross-Repo Sync | R2 Экстрактор | extractor/prompts/cross-repo-sync.md |
