@@ -1,7 +1,7 @@
 ---
 wp: 7
 title: Base — локальный репозиторий с FPF/SPF/ZP
-status: pending
+status: done
 created: 2026-04-03
 source: Session Open — архитектурное решение (ArchGate passed)
 verification_class: closed-loop
