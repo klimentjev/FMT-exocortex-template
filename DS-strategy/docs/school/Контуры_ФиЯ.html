@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Контуры ФиЯ - Школа ФИЛОСОФ&Я</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 40px 20px;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #1f4e78 0%, #2c5aa0 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+        
+        .header h1 {
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+        
+        .header p {
+            font-size: 16px;
+            opacity: 0.9;
+        }
+        
+        .content {
+            padding: 40px;
+        }
+        
+        .table-wrapper {
+            overflow-x: auto;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        
+        th {
+            background: #1f4e78;
+            color: white;
+            padding: 16px;
+            text-align: left;
+            font-weight: 600;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            border: none;
+        }
+        
+        td {
+            padding: 16px;
+            border-bottom: 1px solid #e0e0e0;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+        
+        tr:last-child td {
+            border-bottom: none;
+        }
+        
+        tr:nth-child(odd) {
+            background: #f9f9f9;
+        }
+        
+        tr:nth-child(even) {
+            background: #ffffff;
+        }
+        
+        tr:hover {
+            background: #f0f4ff;
+        }
+        
+        .kontour-name {
+            font-weight: 600;
+            color: #1f4e78;
+        }
+        
+        .abbr {
+            background: #e7e6e6;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-weight: 600;
+            color: #333;
+        }
+        
+        .goal {
+            color: #764ba2;
+            font-weight: 500;
+        }
+        
+        .process {
+            color: #666;
+            font-size: 13px;
+        }
+        
+        .kontour-row:nth-child(1) .abbr { background: #c5d3f0; color: #1f4e78; }
+        .kontour-row:nth-child(2) .abbr { background: #d4f0e6; color: #0a6f51; }
+        .kontour-row:nth-child(3) .abbr { background: #ffe6cc; color: #b35806; }
+        .kontour-row:nth-child(4) .abbr { background: #f0ccff; color: #6b2d8f; }
+        .kontour-row:nth-child(5) .abbr { background: #ffe6e6; color: #b30000; }
+        .kontour-row:nth-child(6) .abbr { background: #e6f2ff; color: #0052cc; }
+        
+        .legend {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 40px;
+            padding-top: 40px;
+            border-top: 2px solid #e0e0e0;
+        }
+        
+        .legend-item h3 {
+            color: #1f4e78;
+            margin-bottom: 8px;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .legend-item p {
+            color: #666;
+            font-size: 13px;
+            line-height: 1.6;
+        }
+        
+        .footer {
+            background: #f5f5f5;
+            padding: 20px 40px;
+            text-align: center;
+            color: #666;
+            font-size: 12px;
+            border-top: 1px solid #e0e0e0;
+        }
+        
+        @media (max-width: 1024px) {
+            th, td {
+                padding: 12px;
+                font-size: 13px;
+            }
+            
+            .header h1 {
+                font-size: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🎓 Контурная структура ФиЯ</h1>
+            <p>Школа ФИЛОСОФ&Я - Система взаимосвязанных контуров</p>
+        </div>
+        
+        <div class="content">
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Контур</th>
+                            <th>Аббр.</th>
+                            <th>Вопрос</th>
+                            <th>Цель</th>
+                            <th>Входы</th>
+                            <th>Выходы</th>
+                            <th>Процессы</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="kontour-row">
+                            <td class="kontour-name">Дизайн Образцов Методов Мышления</td>
+                            <td><span class="abbr">ДОММ</span></td>
+                            <td>Что думать?</td>
+                            <td class="goal">Производить и поддерживать образцы методов мышления (рассудочного и разумного) в явной форме</td>
+                            <td>Источники доменного знания (философия, логика, математика); сырой материал из практики (ошибки студентов)</td>
+                            <td>ОММ в явной форме; иерархия методов (базовые → промежуточные → сложные); материалы для разных аудиторий</td>
+                            <td class="process">ДОММ.Design — разработка методов; ДОММ.Validate — проверка; ДОММ.Distribute — упаковка для передачи</td>
+                        </tr>
+                        
+                        <tr class="kontour-row">
+                            <td class="kontour-name">Окружение</td>
+                            <td><span class="abbr">EM</span></td>
+                            <td>Где думать?</td>
+                            <td class="goal">Создать и поддерживать пространственно-организационные условия для усилия субъекта</td>
+                            <td>Логика методов из ДОММ; образ идеального субъекта; ресурсы (люди, технологии)</td>
+                            <td>Педагогическое пространство; расписание и ритм; социальные роли; инструменты и материалы</td>
+                            <td class="process">EM.Space — пространство; EM.Time — циклы; EM.Social — роли; EM.Tools — инструменты</td>
+                        </tr>
+                        
+                        <tr class="kontour-row">
+                            <td class="kontour-name">Мотивационное Поле</td>
+                            <td><span class="abbr">MO</span></td>
+                            <td>Зачем думать?</td>
+                            <td class="goal">Создать систему взаимосвязанных поводов и смыслов для неотменяемого усилия мышления</td>
+                            <td>Ценности ФиЯ; актуальные проблемы и вызовы; профили студентов</td>
+                            <td>Сценарии включения; задания и проекты; вебинары, дискуссии, события</td>
+                            <td class="process">MO.Values — смыслы; MO.Problems — задачи; MO.Narratives — истории; MO.Events — встречи</td>
+                        </tr>
+                        
+                        <tr class="kontour-row">
+                            <td class="kontour-name">Управление Реализацией</td>
+                            <td><span class="abbr">УР</span></td>
+                            <td>Как это работает?</td>
+                            <td class="goal">Отслеживать реальное разворачивание ЦФТ, диагностировать дисгармонии и управлять эволюцией системы</td>
+                            <td>Наблюдения из EM (активность, конфликты); индикаторы ЦФТ; сигналы от внешних систем</td>
+                            <td>Решения об изменениях; рубежи рефлексии; отчёты о состоянии ФиЯ</td>
+                            <td class="process">УР.Detect — сбор; УР.Diagnose — диагностика; УР.Decide — решение; УР.Communicate — сообщение</td>
+                        </tr>
+                        
+                        <tr class="kontour-row">
+                            <td class="kontour-name">Внешние Контракты</td>
+                            <td><span class="abbr">EC</span></td>
+                            <td>Зачем ФиЯ нужна другим?</td>
+                            <td class="goal">Определить и поддерживать контракты между ФиЯ и внешними системами (вузы, работодатели, общество)</td>
+                            <td>Требования внешних систем; образ выпускника ФиЯ</td>
+                            <td>Контракты с ВУЗами; рекомендации работодателям; социальный вклад</td>
+                            <td class="process">Установление договорённостей; мониторинг требований; отчётность</td>
+                        </tr>
+                        
+                        <tr class="kontour-row">
+                            <td class="kontour-name">Производство и Адаптация</td>
+                            <td><span class="abbr">ПиА</span></td>
+                            <td>Как ФиЯ эволюционирует?</td>
+                            <td class="goal">Адаптировать систему к новому знанию, трендам и запросам; обеспечить непрерывную эволюцию контуров</td>
+                            <td>Научные новшества; тренды в образовании; запросы УР на изменения</td>
+                            <td>Новые учебные материалы; пилоты методов; улучшения в среде</td>
+                            <td class="process">Разработка контентов; пилотирование методов; интеграция инноваций</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <div class="legend">
+                <div class="legend-item">
+                    <h3>🎯 Ядро системы</h3>
+                    <p>ДОММ, EM, MO — три основных контура, производящие условия для ЦФТ</p>
+                </div>
+                <div class="legend-item">
+                    <h3>⚙️ Управление</h3>
+                    <p>УР контролирует систему, собирает сигналы и управляет эволюцией</p>
+                </div>
+                <div class="legend-item">
+                    <h3>🌍 Интеграция</h3>
+                    <p>EC связывает ФиЯ с внешним миром (вузы, работодатели, общество)</p>
+                </div>
+                <div class="legend-item">
+                    <h3>🔄 Адаптация</h3>
+                    <p>ПиА обеспечивает непрерывную эволюцию системы и внедрение инноваций</p>
+                </div>
+                <div class="legend-item">
+                    <h3>🧠 ЦФТ</h3>
+                    <p>Целевая феноменологическая трансформация — фазовый переход сознания субъекта</p>
+                </div>
+                <div class="legend-item">
+                    <h3>📚 ОММ</h3>
+                    <p>Образец Метода Мышления (ОММРс — рассудочный, ОММРз — разумный)</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p>Школа ФИЛОСОФ&Я | Контурная структура | Источник: EP.SCHOOL-PROCESSES-V3.md</p>
+        </div>
+    </div>
+</body>
+</html>

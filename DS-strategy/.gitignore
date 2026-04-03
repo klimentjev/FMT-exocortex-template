@@ -1,0 +1,20 @@
+# Большие бинарные файлы и полные тексты источников
+library/**/*.pdf
+library/**/*.txt
+library/**/*.zip
+
+# Node.js
+inbox/node_modules/
+inbox/package-lock.json
+library/**/node_modules/
+
+# Временные файлы
+*.tmp
+*.log
+
+# Inbox: локальные источники с кириллическими именами (карточки в library/*/SRC.*)
+inbox/Еже ИФ текст лекций (2025).pdf
+inbox/Еже ИФ текст лекций (2025).doc
+inbox/Новейшая эпоха ИФ4.txt
+inbox/Прокл - Первоосновы теологии - 1993.pdf
+inbox/Р•Р¶Рµ-Р»РµРєС†РёРё.txt

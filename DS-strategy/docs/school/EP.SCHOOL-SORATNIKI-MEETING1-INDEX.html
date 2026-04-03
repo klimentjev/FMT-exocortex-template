@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Встреча 1 соратников — Индекс</title>
+  <style>
+    :root {
+      --bg: #f4f6fb;
+      --surface: #ffffff;
+      --surface2: #eef1f8;
+      --border: #d5daea;
+      --accent: #3b62d9;
+      --accent2: #7c4ddb;
+      --text: #1a1f36;
+      --muted: #6b748f;
+      --green: #16a34a;
+      --yellow: #d97706;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      font-size: 15px;
+      line-height: 1.7;
+      padding: 2rem 1rem 4rem;
+    }
+    .container { max-width: 980px; margin: 0 auto; }
+
+    /* ── Page header ── */
+    .page-header {
+      border-left: 4px solid var(--accent);
+      padding: 1.2rem 1.5rem;
+      background: var(--surface);
+      border-radius: 0 12px 12px 0;
+      margin-bottom: 2.5rem;
+    }
+    .page-header h1 { font-size: 1.55rem; font-weight: 700; color: var(--text); margin-bottom: 0.75rem; }
+    .meta { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+    .meta-item {
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 0.22rem 0.65rem;
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+    .meta-item strong { color: var(--accent); }
+
+    /* ── Section ── */
+    section { margin-bottom: 2.5rem; }
+    h2 {
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 1rem;
+      padding-bottom: 0.4rem;
+      border-bottom: 1px solid var(--border);
+    }
+    h3 {
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--accent2);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin: 1.4rem 0 0.65rem;
+    }
+
+    /* ── Participants grid ── */
+    .p-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(275px, 1fr));
+      gap: 0.7rem;
+    }
+    .p-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 0.9rem 1rem;
+      box-shadow: 0 1px 4px rgba(0,0,0,.06);
+      transition: border-color .2s, box-shadow .2s;
+    }
+    .p-card:hover { border-color: var(--accent); box-shadow: 0 3px 10px rgba(59,98,217,.12); }
+    .p-name { font-weight: 700; color: var(--text); font-size: 0.92rem; margin-bottom: 0.25rem; }
+    .p-bg   { color: var(--muted); font-size: 0.78rem; line-height: 1.45; margin-bottom: 0.45rem; }
+    .p-tags { display: flex; flex-wrap: wrap; gap: 0.25rem; }
+    .tag {
+      background: rgba(59,98,217,.09);
+      border: 1px solid rgba(59,98,217,.22);
+      color: var(--accent);
+      font-size: 0.7rem;
+      padding: 0.12rem 0.45rem;
+      border-radius: 20px;
+      font-weight: 500;
+    }
+
+    /* ── Elements grid ── */
+    .el-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0.7rem;
+      margin-bottom: 0.5rem;
+    }
+    .el-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1rem;
+      text-align: center;
+      box-shadow: 0 1px 4px rgba(0,0,0,.06);
+    }
+    .el-num  { font-size: 1.7rem; font-weight: 800; color: var(--accent); opacity: .45; line-height: 1; margin-bottom: .25rem; }
+    .el-title { font-weight: 700; color: var(--text); font-size: 0.88rem; margin-bottom: .25rem; }
+    .el-desc  { color: var(--muted); font-size: 0.77rem; line-height: 1.4; }
+    .el-badge {
+      display: inline-block; margin-top: .35rem;
+      background: rgba(217,119,6,.1); border: 1px solid rgba(217,119,6,.3);
+      color: var(--yellow); font-size: 0.67rem; padding: .08rem .38rem; border-radius: 20px;
+    }
+
+    /* ── Tables ── */
+    .tw { overflow-x: auto; border-radius: 10px; border: 1px solid var(--border); margin-bottom: .5rem; }
+    table { width: 100%; border-collapse: collapse; font-size: 0.86rem; }
+    thead tr { background: var(--surface2); }
+    thead th {
+      padding: .6rem .95rem; text-align: left;
+      font-size: 0.72rem; font-weight: 600; text-transform: uppercase;
+      letter-spacing: .05em; color: var(--muted);
+    }
+    tbody tr { border-top: 1px solid var(--border); transition: background .15s; }
+    tbody tr:hover { background: var(--surface2); }
+    td { padding: .6rem .95rem; vertical-align: top; }
+    td.bold { font-weight: 600; color: var(--text); }
+    td.role { color: var(--accent); font-size: 0.82rem; }
+    td.note { color: var(--accent2); font-size: 0.77rem; }
+    td.warn { color: var(--yellow); font-size: 0.77rem; }
+    td.small { color: var(--muted); font-size: 0.82rem; }
+
+    /* ── Contour badges ── */
+    .cb {
+      display: inline-block; font-size: .68rem; font-weight: 600;
+      padding: .08rem .4rem; border-radius: 4px;
+      margin: .08rem .08rem .08rem 0; white-space: nowrap;
+    }
+    .cb-a { background: rgba(22,163,74,.1); border: 1px solid rgba(22,163,74,.3); color: var(--green); }
+    .cb-l { background: rgba(124,77,219,.1); border: 1px solid rgba(124,77,219,.3); color: var(--accent2); }
+    .cb-ad { background: rgba(217,119,6,.1); border: 1px solid rgba(217,119,6,.3); color: var(--yellow); }
+
+    /* ── Process number ── */
+    .pnum {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 1.6rem; height: 1.6rem; border-radius: 50%;
+      background: rgba(124,77,219,.1); border: 1px solid rgba(124,77,219,.3);
+      color: var(--accent2); font-size: .72rem; font-weight: 700;
+    }
+
+    /* ── Decisions ── */
+    .decisions { list-style: none; display: flex; flex-direction: column; gap: .55rem; }
+    .decisions li {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 8px; padding: .7rem 1rem .7rem 3rem;
+      position: relative; font-size: .86rem;
+    }
+    .decisions li .n {
+      position: absolute; left: .8rem; top: .7rem;
+      background: var(--accent); color: #fff;
+      width: 1.35rem; height: 1.35rem; border-radius: 50%;
+      font-size: .68rem; font-weight: 700;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .decisions li strong { color: var(--text); }
+
+    /* ── Mentions ── */
+    .mentions { list-style: none; display: flex; flex-direction: column; gap: .45rem; }
+    .mentions li {
+      padding: .55rem .85rem .55rem 1rem;
+      border-left: 3px solid var(--accent2);
+      background: var(--surface); border-radius: 0 8px 8px 0;
+      font-size: .86rem;
+    }
+    .mentions li strong { color: var(--text); }
+
+    /* ── Footer ── */
+    .page-footer {
+      margin-top: 3rem; text-align: center;
+      color: var(--muted); font-size: .75rem;
+      border-top: 1px solid var(--border); padding-top: 1rem;
+    }
+
+    @media (max-width: 600px) {
+      .el-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+
+  <!-- ── Header ── -->
+  <header class="page-header">
+    <h1>Встреча 1 соратников — Индекс</h1>
+    <div class="meta">
+      <span class="meta-item"><strong>Источник:</strong> inbox/Встреча 1 соратников.txt</span>
+      <span class="meta-item"><strong>Дата:</strong> ~март 2026</span>
+      <span class="meta-item"><strong>Формат:</strong> онлайн-встреча (видеоконференция)</span>
+      <span class="meta-item"><strong>Ведущий:</strong> Владимир Климентьев</span>
+    </div>
+  </header>
+
+  <!-- ── Участники ── -->
+  <section>
+    <h2>Участники и роли</h2>
+    <div class="p-grid">
+
+      <div class="p-card">
+        <div class="p-name">Владимир Климентьев</div>
+        <div class="p-bg">Инициатор проекта с 2003 г.; домен philosophiya.ru; ученик А.Н. Муравьёва</div>
+        <div class="p-tags"><span class="tag">Организатор</span><span class="tag">Преподаватель</span><span class="tag">Методист</span></div>
+      </div>
+
+      <div class="p-card">
+        <div class="p-name">Антон Шпак</div>
+        <div class="p-bg">Давно на курсе</div>
+        <div class="p-tags"><span class="tag">База вопросов (Obsidian)</span><span class="tag">Систематизация</span></div>
+      </div>
+
+      <div class="p-card">
+        <div class="p-name">Александр Фалес</div>
+        <div class="p-bg">~1 год на курсе</div>
+        <div class="p-tags"><span class="tag">Модератор чата</span><span class="tag">Поддержка новичков</span><span class="tag">Статьи</span></div>
+      </div>
+
+      <div class="p-card">
+        <div class="p-name">Маргарита Тяжева</div>
+        <div class="p-bg">Философ-практик; ученица О. Бренифье 5+ лет; корпоративный бэкграунд; свой философский клуб</div>
+        <div class="p-tags"><span class="tag">Нетворкинг</span><span class="tag">Оффлайн-события</span><span class="tag">Организация аудитории</span></div>
+      </div>
+
+      <div class="p-card">
+        <div class="p-name">Екатерина Сметанина</div>
+        <div class="p-bg">~4 года на проекте; была у А.Н. Муравьёва в ун-те Герцена</div>
+        <div class="p-tags"><span class="tag">Копирайтер</span><span class="tag">Тестировщик игр</span><span class="tag">Антисофист</span></div>
+      </div>
+
+      <div class="p-card">
+        <div class="p-name">Ирина Баскакова</div>
+        <div class="p-bg">Психотерапевт; прошла модульный курс; супервизирует начинающих психологов</div>
+        <div class="p-tags"><span class="tag">Философия + психология</span><span class="tag">Тестировщик игр</span></div>
+      </div>
+
+      <div class="p-card">
+        <div class="p-name">Лариса Бурлакова</div>
+        <div class="p-bg">Психолог (4 г.); оконч. философский факультет; педагог</div>
+        <div class="p-tags"><span class="tag">Методист</span><span class="tag">Тайм-коды вебинаров</span><span class="tag">Хрестоматия</span><span class="tag">Игры для подростков</span></div>
+      </div>
+
+      <div class="p-card">
+        <div class="p-name">Алексей Рыбаков</div>
+        <div class="p-bg">Физик/химик; 3 года; модульный + эпохальный курс; «Сады Академы» по утрам</div>
+        <div class="p-tags"><span class="tag">Становление мышления</span><span class="tag">Интеллектуальная среда + ИИ</span></div>
+      </div>
+
+      <div class="p-card">
+        <div class="p-name">Алексей Яшко</div>
+        <div class="p-bg">3 года; модульный (несколько кругов) + основной</div>
+        <div class="p-tags"><span class="tag">База знаний</span><span class="tag">Систематизация</span><span class="tag">Выжимки</span></div>
+      </div>
+
+      <div class="p-card">
+        <div class="p-name">Варвара Рогожникова</div>
+        <div class="p-bg">На курсе НИФ с 2020 г.; ученица А.Н. Муравьёва; преподаватель философии 15+ лет; свой философский клуб</div>
+        <div class="p-tags"><span class="tag">Редактор</span><span class="tag">Методист</span></div>
+      </div>
+
+      <div class="p-card">
+        <div class="p-name">Пётр Бочкарёв</div>
+        <div class="p-bg">На курсе «Философ&amp;Я» 10+ лет; куратор 2 года</div>
+        <div class="p-tags"><span class="tag">Куратор</span></div>
+      </div>
+
+      <div class="p-card">
+        <div class="p-name">Денис Шулепов</div>
+        <div class="p-bg">Куратор проекта несколько лет</div>
+        <div class="p-tags"><span class="tag">Куратор</span></div>
+      </div>
+
+      <div class="p-card">
+        <div class="p-name">Евгений Романов</div>
+        <div class="p-bg">8 лет на проекте; основной курс (застрял на Спинозе)</div>
+        <div class="p-tags"><span class="tag">Куратор</span></div>
+      </div>
+
+      <div class="p-card">
+        <div class="p-name">Леонид Леонидович Перескоков</div>
+        <div class="p-bg">~5 лет; много свободного времени; Total Commander для навигации</div>
+        <div class="p-tags"><span class="tag">Хрестоматия</span><span class="tag">Банк вопросов ×5–10</span><span class="tag">Навигация</span></div>
+      </div>
+
+      <div class="p-card">
+        <div class="p-name">Елена</div>
+        <div class="p-bg">С осени 2025; пришла через преподавателя</div>
+        <div class="p-tags"><span class="tag">Работа с вебинарами</span><span class="tag">Методист</span><span class="tag">Подростки/студенты</span></div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ── Структура проекта ── -->
+  <section>
+    <h2>Структура проекта</h2>
+
+    <h3>3 элемента</h3>
+    <div class="el-grid">
+      <div class="el-card">
+        <div class="el-num">1</div>
+        <div class="el-title">Субъект</div>
+        <div class="el-desc">Человек, стремящийся к разумному мышлению</div>
+      </div>
+      <div class="el-card">
+        <div class="el-num">2</div>
+        <div class="el-title">Методичка</div>
+        <div class="el-desc">Переработанный способ освоения метода разумного мышления</div>
+        <span class="el-badge">главная цель</span>
+      </div>
+      <div class="el-card">
+        <div class="el-num">3</div>
+        <div class="el-title">Среда</div>
+        <div class="el-desc">Самоподдерживающаяся среда развития для субъектов мышления</div>
+      </div>
+    </div>
+
+    <h3>3 контура</h3>
+    <div class="tw">
+      <table>
+        <thead>
+          <tr><th>Контур</th><th>Назначение</th><th>Роли</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="bold"><span class="cb cb-a">Академия</span></td>
+            <td class="small">Передача метода разумного мышления, учебный процесс</td>
+            <td class="role">Ученик, куратор, преподаватель</td>
+          </tr>
+          <tr>
+            <td class="bold"><span class="cb cb-l">Лаборатория</span></td>
+            <td class="small">Сохранение и развитие знания</td>
+            <td class="role">Редактор, методист, тестировщик</td>
+          </tr>
+          <tr>
+            <td class="bold"><span class="cb cb-ad">Администрация</span></td>
+            <td class="small">Операционное обеспечение и привлечение</td>
+            <td class="role">Менеджер по участникам, менеджер по партнёрствам</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>4 процесса</h3>
+    <div class="tw">
+      <table>
+        <thead>
+          <tr><th>#</th><th>Процесс</th><th>Контур</th><th>Цель</th><th>Роли</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="pnum">П1</span></td>
+            <td class="bold">Учебный процесс <span style="font-weight:400;color:var(--muted);font-size:.8rem"> (жизненный цикл ученика)</span></td>
+            <td><span class="cb cb-a">Академия</span></td>
+            <td class="small">Ученик осваивает метод разумного мышления</td>
+            <td class="role">Администратор учебного процесса, Куратор</td>
+          </tr>
+          <tr>
+            <td><span class="pnum">П2</span></td>
+            <td class="bold">Контентный конвейер <span style="font-weight:400;color:var(--muted);font-size:.8rem"> (вебинар → артефакт)</span></td>
+            <td><span class="cb cb-l">Лаборатория</span><span class="cb cb-ad">Администрация</span></td>
+            <td class="small">Знание сохраняется и становится доступным</td>
+            <td class="role">Редактор, Методист</td>
+          </tr>
+          <tr>
+            <td><span class="pnum">П3</span></td>
+            <td class="bold">Привлечение участников</td>
+            <td><span class="cb cb-ad">Администрация</span></td>
+            <td class="small">Новые ученики приходят в Академию</td>
+            <td class="role">Менеджер по работе с участниками, Менеджер по партнёрствам</td>
+          </tr>
+          <tr>
+            <td><span class="pnum">П4</span></td>
+            <td class="bold">Разработка и тестирование продуктов</td>
+            <td><span class="cb cb-l">Лаборатория</span><span class="cb cb-a">Академия</span></td>
+            <td class="small">Новые форматы выходят в свет (АнтиСофист и др.)</td>
+            <td class="role">Тестировщик, Методист</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>Рабочие группы и продукты</h3>
+    <div class="tw">
+      <table>
+        <thead>
+          <tr><th>Рабочая группа</th><th>Контур</th><th>Рабочий продукт</th><th>Примечание</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="bold">Редакторы</td>
+            <td><span class="cb cb-l">Лаборатория</span></td>
+            <td class="small">Аннотированная база вебинаров по античности (тайм-коды, описания)</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td class="bold">Методисты</td>
+            <td><span class="cb cb-l">Лаборатория</span><span class="cb cb-a">Академия</span></td>
+            <td class="small">Методичка по античности (шпаргалка куратора)</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td class="bold">Кураторы</td>
+            <td><span class="cb cb-a">Академия</span></td>
+            <td class="small">Проверенные задания, сопровождение учеников</td>
+            <td class="note">Старший куратор = Администратор учебного процесса</td>
+          </tr>
+          <tr>
+            <td class="bold">B2B-менеджер</td>
+            <td><span class="cb cb-ad">Администрация</span></td>
+            <td class="small">База партнёров: частные вузы, корпоративные заказчики, конференции</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td class="bold">Тестировщики продукта</td>
+            <td><span class="cb cb-l">Лаборатория</span></td>
+            <td class="small">Зафиксированные сбои механики; готовая к релизу игра АнтиСофист</td>
+            <td class="warn">Дедлайн: апрель 2026</td>
+          </tr>
+          <tr>
+            <td class="bold">Комьюнити-менеджер / Ведущий чата</td>
+            <td><span class="cb cb-ad">Администрация</span></td>
+            <td class="small">Контентный поток (посты, публикации); активная жизнь чата</td>
+            <td></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ── Решения ── -->
+  <section>
+    <h2>Ключевые решения</h2>
+    <ol class="decisions">
+      <li><span class="n">1</span><strong>Бартер:</strong> участники вкладывают ≥4 ч/неделю → В.К. открывает доступ к основному курсу + преподавательская поддержка</li>
+      <li><span class="n">2</span><strong>Самоорганизация групп:</strong> В.К. обозначает результат, группы организуются сами (без прямых заданий)</li>
+      <li><span class="n">3</span><strong>Ритм:</strong> рабочие группы — еженедельно (≥30 мин); общее собрание — раз в месяц</li>
+      <li><span class="n">4</span><strong>Рубежи:</strong> 1 июля — процессы запущены; конец года — итоговое ревью</li>
+      <li><span class="n">5</span><strong>Пилотная тема:</strong> Милецкая школа (аннотирование + методичка)</li>
+      <li><span class="n">6</span><strong>Миграция платформы:</strong> Telegram → сайт getcourse (мессенджер + уроки в одном месте); срок ~до 1 апреля</li>
+    </ol>
+  </section>
+
+  <!-- ── Контекст ── -->
+  <section>
+    <h2>Контекстные упоминания</h2>
+    <ul class="mentions">
+      <li><strong>Евгений Семёнович Линьков</strong> — основатель подхода, преподавал в ЛГУ в 70-х; умер 3 года назад</li>
+      <li><strong>Андрей Николаевич Муравьёв</strong> — ученик Линькова; В.К. учился у Муравьёва с 1996 г.</li>
+    </ul>
+  </section>
+
+  <footer class="page-footer">
+    Создан: 2026-03-20 &nbsp;·&nbsp; Источник: inbox/Встреча 1 соратников.txt
+  </footer>
+
+</div>
+</body>
+</html>

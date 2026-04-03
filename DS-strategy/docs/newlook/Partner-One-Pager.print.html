@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Partner One-Pager</title>
+  <style>
+    @page {
+      size: A4;
+      margin: 0;
+    }
+
+    :root {
+      --bg: #f6f1ea;
+      --ink: #1b1a18;
+      --muted: #5a554f;
+      --accent: #7a4b2a;
+      --accent-soft: #ead8ca;
+      --card: rgba(255, 255, 255, 0.72);
+      --rule: rgba(122, 75, 42, 0.22);
+    }
+
+    * {
+      box-sizing: border-box;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Segoe UI", Arial, sans-serif;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at top right, rgba(122, 75, 42, 0.12), transparent 28%),
+        linear-gradient(180deg, #fbf8f4 0%, var(--bg) 100%);
+    }
+
+    .page {
+      width: 210mm;
+      min-height: 297mm;
+      padding: 14mm 14mm 12mm;
+      display: flex;
+      flex-direction: column;
+      gap: 8mm;
+    }
+
+    .hero {
+      background: linear-gradient(135deg, rgba(255,255,255,0.9), rgba(255,255,255,0.72));
+      border: 1px solid var(--rule);
+      border-radius: 16px;
+      padding: 8mm 9mm 7mm;
+      box-shadow: 0 10px 30px rgba(68, 46, 28, 0.06);
+    }
+
+    .eyebrow {
+      margin: 0 0 3mm;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      font-size: 10px;
+      font-weight: 700;
+      color: var(--accent);
+    }
+
+    h1 {
+      margin: 0 0 3mm;
+      font-size: 26px;
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+    }
+
+    .subtitle {
+      margin: 0;
+      font-size: 14px;
+      line-height: 1.45;
+      color: var(--muted);
+      max-width: 155mm;
+    }
+
+    .formula {
+      margin-top: 5mm;
+      padding: 4mm 4.5mm;
+      background: var(--accent-soft);
+      border-radius: 12px;
+      font-size: 13px;
+      line-height: 1.45;
+      font-weight: 600;
+      color: #40271a;
+    }
+
+    .columns {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5mm;
+      align-items: start;
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--rule);
+      border-radius: 14px;
+      padding: 4.5mm 5mm;
+      box-shadow: 0 6px 18px rgba(68, 46, 28, 0.04);
+      break-inside: avoid;
+    }
+
+    h2 {
+      margin: 0 0 2.5mm;
+      font-size: 14px;
+      line-height: 1.2;
+      color: var(--accent);
+    }
+
+    p {
+      margin: 0 0 2.2mm;
+      font-size: 11.2px;
+      line-height: 1.42;
+    }
+
+    ul {
+      margin: 0;
+      padding-left: 4.2mm;
+    }
+
+    li {
+      margin: 0 0 1.4mm;
+      font-size: 10.8px;
+      line-height: 1.35;
+    }
+
+    .trail {
+      margin: 2mm 0 0;
+      padding: 3mm 3.4mm;
+      border-left: 3px solid var(--accent);
+      background: rgba(122, 75, 42, 0.06);
+      border-radius: 0 10px 10px 0;
+      font-weight: 600;
+      color: #3e281b;
+      font-size: 11px;
+    }
+
+    .footer {
+      margin-top: auto;
+      display: flex;
+      justify-content: space-between;
+      gap: 6mm;
+      align-items: center;
+      padding-top: 3mm;
+      border-top: 1px solid var(--rule);
+      font-size: 10px;
+      color: var(--muted);
+    }
+
+    .footer strong {
+      color: var(--ink);
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <section class="hero">
+      <p class="eyebrow">Partner One-Pager</p>
+      <h1>Новый взгляд</h1>
+      <p class="subtitle">Премиальный продукт глубокой перенастройки мышления для взрослых людей с высокой ценой ошибки. Не клуб по интересам и не образовательный досуг, а траектория изменения.</p>
+      <div class="formula">Входной интенсив создает первичный сдвиг, клуб удерживает и углубляет изменение, экономика держится на удержании.</div>
+    </section>
+
+    <section class="columns">
+      <div class="card">
+        <h2>Что это</h2>
+        <p>Продукт помогает человеку увидеть пределы своей текущей картины мира, точнее различать, как он реально думает и выбирает, и перенести новые различения в решения, разговоры и жизнь.</p>
+        <ul>
+          <li>Не философский клуб</li>
+          <li>Не образовательная программа</li>
+          <li>Не интеллектуальный досуг</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h2>Для кого</h2>
+        <ul>
+          <li>Взрослый человек с опытом, ответственностью и влиянием</li>
+          <li>Высокая цена ошибки</li>
+          <li>Уперся в предел своей текущей картины мира</li>
+          <li>Готов платить не за контент, а за реальное внутреннее смещение</li>
+        </ul>
+        <p class="trail">Не наш клиент: философия как досуг, мягкое сообщество, быстрые советы вместо собственной работы.</p>
+      </div>
+
+      <div class="card">
+        <h2>Как устроена модель</h2>
+        <p><strong>Траектория:</strong> доверие -> входной интенсив -> первичный сдвиг -> клуб -> удержание -> рекомендации.</p>
+        <ul>
+          <li>Один повторяемый входной интенсив для новых участников</li>
+          <li>Клуб как основной контур удержания и углубления</li>
+          <li>Отдельные клубные интенсивы только для действующих участников клуба</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h2>Что нужно доказать в 2026</h2>
+        <ul>
+          <li>Есть премиальный спрос на такой тип продукта</li>
+          <li>Ручной отбор приводит своих людей</li>
+          <li>Входной интенсив дает реальный сдвиг</li>
+          <li>Клуб воспринимается как естественное продолжение</li>
+          <li>Клуб удерживает людей минимум первые 90 дней</li>
+          <li>Появляются рекомендации от первых участников</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h2>Экономика</h2>
+        <p><strong>Логика:</strong> доверительный набор -> премиальный интенсив -> переход в клуб -> низкий отток -> рекомендации.</p>
+        <ul>
+          <li>Входной интенсив: <strong>100 000 руб</strong></li>
+          <li>Клуб: <strong>30 000 руб / месяц</strong></li>
+          <li>Первый поток: <strong>8 участников</strong></li>
+          <li>Переход в клуб: ориентир <strong>25%</strong></li>
+          <li>Отток клуба: ориентир <strong>10% / месяц</strong></li>
+          <li>Инвестиции партнера: <strong>100 000 руб / месяц</strong> до конца 2026</li>
+          <li>Выплаты партнеру: <strong>50%</strong> от прибыли до совокупных <strong>3 000 000 руб</strong>, далее <strong>20%</strong></li>
+        </ul>
+        <p class="trail">Эти цифры предмет обсуждения и согласования.</p>
+      </div>
+
+      <div class="card">
+        <h2>Роль партнера</h2>
+        <ul>
+          <li>Дать ресурс на ранней фазе</li>
+          <li>Поддержать операционную устойчивость запуска</li>
+          <li>Участвовать в разборе сигналов, развилок и решений</li>
+          <li>Помочь удержать фокус на точности модели, а не на преждевременном масштабировании</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h2>Главные риски</h2>
+        <ul>
+          <li>Продукт считывается как философский клуб</li>
+          <li>В первый набор попадают не те люди</li>
+          <li>Интенсив сильный, а клуб слабый</li>
+          <li>Ценность держится только на фигуре автора</li>
+          <li>Масштабирование начинается раньше, чем доказан retention</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h2>Итог</h2>
+        <p><strong>2026 год</strong> - это не год масштабирования, а год доказательства рабочей цепочки:</p>
+        <p class="trail">спрос -> сдвиг -> удержание -> рекомендации</p>
+        <p>Только после этого можно переходить к следующему этапу роста.</p>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <span><strong>Документ:</strong> Partner-One-Pager</span>
+      <span><strong>Источник:</strong> Partner Memo + Partner Addition</span>
+    </footer>
+  </main>
+</body>
+</html>

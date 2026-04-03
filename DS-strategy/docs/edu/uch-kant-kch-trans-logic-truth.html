@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Учебные вопросы: трансцендентальная логика и истина (КЧР)</title>
+  <style>
+    :root {
+      --text: #1a1a1a;
+      --muted: #5c5c5c;
+      --border: #d8d4cc;
+      --quote-bg: #f6f4ef;
+      --accent: #3d4f5f;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      padding: 1.5rem clamp(1rem, 4vw, 2.5rem) 3rem;
+      font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+      font-size: 1.05rem;
+      line-height: 1.6;
+      color: var(--text);
+      background: #faf9f7;
+    }
+    article {
+      max-width: 46rem;
+      margin: 0 auto;
+      background: #fff;
+      padding: clamp(1.25rem, 3vw, 2.5rem);
+      border-radius: 8px;
+      box-shadow: 0 1px 3px rgba(0,0,0,.06);
+    }
+    h1 {
+      font-size: clamp(1.35rem, 2.5vw, 1.75rem);
+      font-weight: 650;
+      line-height: 1.25;
+      margin: 0 0 1rem;
+      color: var(--accent);
+    }
+    .meta {
+      font-size: 0.95rem;
+      color: var(--muted);
+      margin: 0.35rem 0;
+    }
+    .meta strong { color: var(--text); }
+    hr.sep {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 1.75rem 0;
+    }
+    h2 {
+      font-size: 1.2rem;
+      margin: 1.75rem 0 0.75rem;
+      color: var(--accent);
+      font-weight: 650;
+    }
+    h3 {
+      font-size: 1.05rem;
+      margin: 1.25rem 0 0.5rem;
+      font-weight: 650;
+    }
+    p { margin: 0.65rem 0; }
+    ul, ol { margin: 0.5rem 0; padding-left: 1.35rem; }
+    li { margin: 0.35rem 0; }
+    blockquote {
+      margin: 0.75rem 0;
+      padding: 0.85rem 1rem 0.85rem 1.1rem;
+      border-left: 4px solid var(--accent);
+      background: var(--quote-bg);
+      font-style: normal;
+    }
+    blockquote p { margin: 0; }
+    .source-note {
+      font-size: 0.9rem;
+      color: var(--muted);
+      margin: 0.25rem 0 0.5rem;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.92rem;
+      margin: 0.75rem 0;
+    }
+    th, td {
+      border: 1px solid var(--border);
+      padding: 0.5rem 0.65rem;
+      vertical-align: top;
+    }
+    th { background: #f0ebe3; text-align: left; }
+    code, .path {
+      font-family: ui-monospace, "Cascadia Code", Consolas, monospace;
+      font-size: 0.88em;
+      background: #f0eeea;
+      padding: 0.12em 0.35em;
+      border-radius: 4px;
+    }
+    a { color: #2563eb; text-decoration-thickness: 1px; }
+    a:hover { text-decoration: underline; }
+    pre.scheme {
+      margin: 0.75rem 0;
+      padding: 1rem 1.1rem;
+      background: #f4f2ed;
+      border-radius: 6px;
+      overflow-x: auto;
+      font-size: 0.82rem;
+      line-height: 1.45;
+      border: 1px solid var(--border);
+    }
+    .terms {
+      background: #f8f6f2;
+      padding: 0.75rem 1rem;
+      border-radius: 6px;
+      border: 1px solid var(--border);
+      font-size: 0.95rem;
+      margin-top: 1rem;
+    }
+  </style>
+</head>
+<body>
+<article>
+  <h1>Учебные вопросы: трансцендентальная логика и истина (КЧР)</h1>
+
+  <p class="meta"><strong>Источник:</strong> Кант И. <em>Критика чистого разума</em> (Философские технологии, 2020)</p>
+  <p class="meta"><strong>Первоисточник (файл):</strong> <code>DS-strategy/library/kant/Immanuil_Kant_-_Kritika_chistogo_razuma_Filosofskie_tekhnologii_-_2020.pdf</code></p>
+  <p class="meta"><strong>Локальный URI:</strong> <a href="file:///C:/Users/admin/IWE/DS-strategy/library/kant/Immanuil_Kant_-_Kritika_chistogo_razuma_Filosofskie_tekhnologii_-_2020.pdf">открыть PDF</a></p>
+  <p class="meta"><strong>Раздел:</strong> Трансцендентальная доктрина элементов → ч. II. Трансцендентальная логика → Введение; далее — фрагмент о суждении и истине в том же введении.</p>
+  <p class="meta"><strong>Ориентиры по изданию B:</strong> введение к трансцендентальной логике <strong>B 75–88</strong>; блок об истине и критериях <strong>B 82–87</strong>; определение «трансцендентального» — введение ко всей Критике <strong>B 25</strong> (параллель A 11–12).</p>
+  <p class="meta"><strong>Номера страниц в цитатах ниже</strong> — по файлу PDF (<strong>нумерация как в просмотрщике PDF</strong>, совпадает с выводом <code>library/kant/dump-pages.mjs</code>); не путать с номером в колонтитуле книги, если он отличается.</p>
+  <p class="meta"><strong>Дата:</strong> 2026-03-27</p>
+
+  <div class="terms">
+    <strong>Термины (чтобы не путать экзамен):</strong> в переводе Лосского чаще <strong>рассудок</strong> = <em>Verstand</em> (способность правил, категории, суждение); <strong>разум</strong> = <em>Vernunft</em> (идеи, диалектика). Слово <strong>понимание</strong> в учебниках иногда совпадает с <em>Verstand</em> — в ответах ниже для ясности опираемся на пару <strong>рассудок / разум</strong>.
+  </div>
+
+  <hr class="sep">
+
+  <h2>1) Что такое, по Канту, логика вообще?</h2>
+  <p><strong>Краткий ответ:</strong> на <strong>первом</strong> делении (рядом с трансцендентальной эстетикой) <strong>логика</strong> — это наука о <strong>правилах рассудка вообще</strong> (<em>Verstand</em>), не о правилах чувственности. Уже <strong>внутри</strong> логики Кант вводит <strong>общую</strong> и <strong>особую</strong> логику, <strong>чистую</strong> и <strong>прикладную</strong>; когда в вопросе сказано «логика вообще» в контексте КЧР, обычно имеют в виду <strong>общую чистую</strong> логику как отличительный фон для <strong>трансцендентальной</strong> логики.</p>
+
+  <p class="source-note"><strong>Из первоисточника (первое деление) — PDF с. 70:</strong></p>
+  <blockquote><p>Мы отличаем <strong>эстетику</strong>, т.е. науку о правилах чувственности вообще, от <strong>логики</strong>, т.е. науки о правилах <strong>рассудка</strong> вообще.</p></blockquote>
+
+  <p><strong>Общая логика</strong> (двоякое деление — общее / частное применение рассудка) — <em>PDF с. 70:</em></p>
+  <blockquote><p>Логику в свою очередь можно рассматривать двояко: как логику <strong>или общего</strong>, или <strong>частного</strong> применения рассудка. Первая содержит <strong>безусловно необходимые</strong> правила мышления, без которых <strong>невозможно</strong> никакое применение рассудка…</p></blockquote>
+
+  <p><strong>Общая, но чистая</strong> логика как <strong>канон</strong> (не органон) — <em>PDF с. 70:</em></p>
+  <blockquote><p>…<strong>общая</strong>, но <strong>чистая</strong> логика имеет дело <strong>исключительно с априорными принципами</strong> и представляет собой <strong>канон рассудка</strong> и разума, однако <strong>только в отношении того, что формально</strong> в их применении…</p></blockquote>
+
+  <p><strong>Супервизия (что часто путают):</strong></p>
+  <ul>
+    <li><strong>Рассудок ≠ «мышление вообще» без разбора.</strong> На верхнем уровне введения к ч. II логика привязана именно к <strong>рассудку</strong>; <strong>разум</strong> входит в поле зрения <strong>трансцендентальной</strong> логики <strong>постольку</strong>, поскольку и его законы рассматриваются <strong>a priori в отношении к предметам</strong> (см. цитату в § 3).</li>
+    <li><strong>Канон против органона.</strong> Общая чистая логика — <strong>канон</strong> (критерий <strong>формальной</strong> правильности, по сути <strong>негативный</strong> по отношению к расширению знания), а не <strong>органон</strong> всеобщей истины: она <strong>не порождает</strong> содержательного знания о мире (см. развитие этой мысли у Канта в том же введении, B 79–80).</li>
+    <li><strong>Особая логика</strong> — не «математика целиком», а логика <strong>особого</strong> применения рассудка к <strong>определённому</strong> роду предметов; у Канта рядом всплывает и мысль о построении понятий в <strong>чистом созерцании</strong> (математика) — это <strong>другой</strong> тип априорности, чем у общей логики.</li>
+  </ul>
+
+  <p><strong>Итог списком (общая чистая логика):</strong></p>
+  <ul>
+    <li>абстрагирует от <strong>всякого содержания</strong> познания и от <strong>происхождения</strong> представлений;</li>
+    <li>задаёт <strong>всеобщие</strong> правила согласованности понятий, суждений, умозаключений;</li>
+    <li>не решает, <strong>истинно ли</strong> суждение о <strong>предмете</strong> — максимум даёт <strong>логический</strong> (формальный) <strong>негативный</strong> ориентир: явное противоречие общим законам мышления указывает на ложность (см. § 6).</li>
+  </ul>
+
+  <hr class="sep">
+
+  <h2>2) На каком основании и для чего Кант формулирует афоризм «Мысли без содержания пусты, созерцания без понятий слепы»?</h2>
+  <p class="source-note"><strong>Формулировка (из текста Канта) — PDF с. 69</strong> (абзац продолжается на с. 70):</p>
+  <blockquote><p>Без чувственности ни один предмет не был бы нам <strong>дан</strong>, а без рассудка ни один нельзя было бы <strong>мыслить</strong>. <strong>Мысли без содержания пусты, созерцания без понятий слепы.</strong></p></blockquote>
+
+  <p><strong>Основание (строже привязать к месту в тексте):</strong> афоризм стоит на стыке <strong>трансцендентальной эстетики</strong> и <strong>трансцендентальной логики</strong>: с одной стороны, <strong>источник</strong> материала в познании — <strong>чувственность</strong> (предметы <strong>даются</strong> в созерцании); с другой — <strong>мысль</strong> о предметах идёт через <strong>рассудок</strong> (понятия, суждение). Речь идёт о <strong>связке</strong>, без которой <strong>нет знания предметов вообще</strong> (<em>Erkenntnis</em>), а не о том, что «можно пожить только ощущениями» в бытовом смысле.</p>
+
+  <table>
+    <thead>
+      <tr><th>Звено</th><th>Что теряется без другого</th><th>Кантовский смысл</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><strong>Мысли / понятия</strong></td><td>«Пусты» (<em>leer</em>)</td><td>Нет <strong>интуитивного</strong> содержания — нет того, <strong>к чему</strong> в суждении относится мысль как к <strong>предмету</strong>, данному для нас</td></tr>
+      <tr><td><strong>Созерцание</strong> (<em>Anschauung</em>)</td><td>«Слепо» (<em>blind</em>)</td><td>Многообразие <strong>не определено по правилам</strong> рассудка — не становится <strong>познанием для нас</strong> в составе <strong>единого</strong> опыта</td></tr>
+    </tbody>
+  </table>
+
+  <p><strong>Для чего (функция афоризма в аргументе Критики):</strong></p>
+  <ol>
+    <li><strong>Принцип двух стволов познания:</strong> ни чистый рационализм «одних понятий», ни чистый эмпиризм «одних ощущений» не выводят <strong>объективное</strong> знание в кантовском смысле.</li>
+    <li><strong>Мост между разделами:</strong> после учения о <strong>формах чувственности</strong> показывается, зачем нужна <strong>аналитика понятий</strong> и далее <strong>схематизм</strong>: категории без связи с возможным созерцанием остаются <strong>пустыми</strong> для познания.</li>
+    <li><strong>Ограничение претензий:</strong> то, что <strong>не может</strong> быть связано с условиями возможного <strong>опыта</strong>, не получает статуса знания о предметах в том же смысле, что эмпирическая физика.</li>
+  </ol>
+
+  <p><strong>Супервизия:</strong> в формулировке «<strong>мысли</strong>» соответствуют нем. <em>Gedanken</em>, «<strong>созерцания</strong>» — <em>Anschauungen</em>. Это <strong>не</strong> оправдание сведения всего к психологии: речь о <strong>трансцендентальных</strong> условиях <strong>судопроизводства</strong> опыта, а не о том, «что человек чувствует сегодня».</p>
+
+  <hr class="sep">
+
+  <h2>3) Что отличает предлагаемую Кантом трансцендентальную логику от обычной/формальной логики?</h2>
+  <table>
+    <thead>
+      <tr><th></th><th>Общая (формальная) логика</th><th>Трансцендентальная логика</th></tr>
+    </thead>
+    <tbody>
+      <tr><th>Что изучает</th><td><strong>Форму мышления вообще</strong> — отношения знаний <strong>друг к другу</strong>, без вопроса, <strong>относятся ли</strong> они к объекту и <strong>каким</strong> объектам</td><td>Законы <strong>рассудка и разума</strong> <strong>постольку</strong>, поскольку они <strong>a priori относятся к предметам</strong> — происхождение, объём и <strong>объективная значимость</strong> априорного знания</td></tr>
+      <tr><th>Содержание</th><td>Сознательно <strong>отбрасывается</strong></td><td>Берётся <strong>не всякое</strong>, а <strong>особое</strong> содержание: <strong>чистые</strong> априорные способы познания (в т.ч. те, что участвуют в <strong>возможности опыта</strong>)</td></tr>
+      <tr><th>Статус</th><td><strong>Канон</strong> формальной корректности (и <strong>не</strong> органон всеобщего расширения знания)</td><td><strong>Не</strong> замена общей логики, а <strong>другой</strong> уровень: условия <strong>отношения мысли к объекту</strong></td></tr>
+      <tr><th>Итог для критики</th><td>Не показывает <strong>законность</strong> претензии на знание о мире</td><td>Показывает, <strong>какие</strong> чистые понятия и принципы <strong>участвуют</strong> в том, что для нас <strong>есть</strong> объект опыта — и где начинается <strong>иллюзия</strong></td></tr>
+    </tbody>
+  </table>
+
+  <p><strong>Итог одной фразой:</strong> общая логика учит <strong>мыслить без противоречия</strong>; трансцендентальная логика спрашивает, <strong>при каких априорных условиях</strong> мысль <strong>имеет право</strong> претендовать на <strong>отношение к объекту</strong> в опыте.</p>
+
+  <p class="source-note"><strong>Из первоисточника — PDF с. 71</strong> (первые два отрывка) <strong>и с. 71–72</strong> (определение трансцендентальной логики):</p>
+  <blockquote><p>Общая логика отвлекается, как мы показали, от <strong>всякого содержания</strong> познания, т.е. от <strong>всякого отношения</strong> его к объекту, и рассматривает только <strong>логическую форму</strong> в отношении знаний друг к другу, т.е. <strong>форму мышления вообще</strong>…</p></blockquote>
+  <blockquote><p>…должна существовать логика, абстрагирующаяся <strong>не от всякого содержания</strong> познания… Она должна была бы исследовать <strong>происхождение</strong> наших знаний о предметах…</p></blockquote>
+  <blockquote><p>Такая наука, <strong>определяющая происхождение, объём и объективную значимость</strong> подобных знаний, должна называться <strong>трансцендентальной логикой</strong>, потому что она имеет дело только с законами рассудка и разума, но <strong>лишь постольку, поскольку она a priori относится к предметам</strong>…</p></blockquote>
+
+  <p><strong>Супервизия:</strong> формулировка «обычная логика» безлична. У Канта важны ещё <strong>прикладная</strong> общая логика (с психологическими и пр. примесями) и <strong>особые</strong> логики — их <strong>нельзя</strong> отождествлять с трансцендентальной без потери точности.</p>
+
+  <hr class="sep">
+
+  <h2>4) Что такое трансцендентальное знание?</h2>
+  <p><strong>Каноническое определение слова «трансцендентальный»</strong> (введение ко всей Критике, <strong>B 25</strong>; в PDF файла — <strong>с. 44</strong>). В печатном тексте ФТ формулировка близка по смыслу; в файле дословно: «всякое <strong>познание</strong>… сколько <strong>видами</strong> нашего познания предметов… должно быть возможным <strong>a priori</strong>» — при зачёте лучше читать с книги.</p>
+  <blockquote><p>Я называю <strong>трансцендентальным</strong> всякое знание, которое занято <strong>не столько предметами</strong>, сколько <strong>нашими способами познания предметов вообще</strong>, постольку, поскольку это возможно <strong>a priori</strong>.</p></blockquote>
+
+  <p><strong>Сжатый разбор:</strong></p>
+  <ul>
+    <li>Предмет интереса — <strong>не вещи сами по себе</strong>, а <strong>способы</strong> (формы, правила, способности), благодаря которым <strong>возможно</strong> для нас <strong>a priori</strong> то или иное <strong>отношение к предметам</strong>.</li>
+    <li>Такое знание <strong>обуславливает</strong> возможность <strong>опыта</strong> и науки опыта, но само по себе — <strong>философское</strong> исследование <strong>условий</strong>, а не очередной отчёт об опыте.</li>
+  </ul>
+
+  <p><strong>Не путать:</strong></p>
+  <table>
+    <thead><tr><th>Термин</th><th>Смысл у Канта</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Трансцендентальный</strong> (<em>transzendental</em>)</td><td>О <strong>возможности</strong> опыта и априорных <strong>условиях</strong> познания</td></tr>
+      <tr><td><strong>Трансцендентный</strong> (<em>transzendent</em>)</td><td>То, что <strong>выходит за границы</strong> возможного опыта; претензия разума к <strong>сверхчувственному</strong>, подвергаемая <strong>критике</strong> в диалектике</td></tr>
+    </tbody>
+  </table>
+
+  <p><strong>Примеры полей трансцендентального знания в КЧР:</strong> формы чувственности (пространство, время); <strong>чистый рассудок</strong> (категории, принципы аналитики); критика <strong>диалектических</strong> претензий разума.</p>
+
+  <p><strong>Супервизия:</strong> определение B 25 относится ко <strong>всей</strong> критике; в <strong>узком</strong> смысле «трансцендентальная логика» — <strong>часть</strong> этой программы, сфокусированная на <strong>рассудке/разуме</strong> и априорном <strong>содержании</strong>, связанном с <strong>объектами</strong>.</p>
+
+  <hr class="sep">
+
+  <h2>5) Что выступает предметом трансцендентальной логики как науки?</h2>
+  <p><strong>Предмет (два уточнения Канта):</strong></p>
+  <ol>
+    <li><strong>Изоляция рассудка</strong> (по аналогии с изоляцией чувственности в эстетике): берётся та часть мышления, чей источник — <strong>в рассудке</strong> и для которой у нас есть <strong>a priori понятия</strong> (категории).</li>
+    <li><strong>Не «вещи вне нас» как догмат даёт</strong>, а <strong>анализ априорного знания рассудка</strong>: как из <strong>чистых</strong> элементов складывается <strong>законное</strong> мышление <strong>объектов</strong> для опыта — и где чистый разум <strong>обманывается</strong>.</li>
+  </ol>
+
+  <p><strong>Деление науки (введение к трансцендентальной логике):</strong></p>
+  <ol>
+    <li><strong>Трансцендентальная аналитика</strong> — изложение <strong>начал</strong> чистого рассудочного знания и <strong>принципов</strong>, без которых <strong>нельзя мыслить ни один предмет</strong>; в этом смысле она у Канта — <strong>логика истины</strong> <strong>в пределах законного</strong> использования рассудка по отношению к <strong>возможному</strong> опыту.</li>
+    <li><strong>Трансцендентальная диалектика</strong> — <strong>критика</strong> <strong>иллюзии</strong>, возникающей, когда разум претендует на знание <strong>без</strong> соответствующей интуиции и <strong>вне</strong> границ опыта.</li>
+  </ol>
+
+  <p class="source-note"><strong>Из первоисточника — PDF с. 75</strong> (деление на аналитику и диалектику) <strong>и с. 76</strong> (определение аналитики):</p>
+  <blockquote><p>В трансцендентальной логике мы <strong>обособляем рассудок</strong> (как в трансцендентальной эстетике — чувственность) и <strong>выделяем из области наших знаний</strong> только <strong>ту часть мышления</strong>, которая имеет свой источник <strong>только в рассудке</strong>… <strong>часть трансцендентальной логики</strong>, излагающая <strong>начала чистого рассудочного знания</strong>, и <strong>принципы</strong>, без которых <strong>нельзя мыслить ни один предмет</strong>, есть <strong>трансцендентальная аналитика</strong> и вместе с тем <strong>логика истины</strong>… <strong>вторая часть</strong> трансцендентальной логики должна быть <strong>критикой</strong> этой диалектической видимости…</p></blockquote>
+  <blockquote><p>Эта аналитика есть <strong>расчленение всего нашего априорного знания</strong> на <strong>начала чистого рассудочного знания</strong>.</p></blockquote>
+
+  <p><strong>Супервизия:</strong> «предмет = априорные условия» — верно, но <strong>полнее</strong>: предмет — <strong>рассудок в чистом использовании</strong> (категории, синтез, принципы) <strong>и</strong> <strong>разум</strong> в той мере, в какой он вводит <strong>идеи</strong> и порождает <strong>трансцендентальную иллюзию</strong>, подлежащую разбору в диалектике. Не смешивать <strong>логику истины</strong> аналитики с <strong>положительным</strong> учением о сверхопытном.</p>
+
+  <hr class="sep">
+
+  <h2>6) Что есть истина, по Канту: (а) в её формальном/номинальном определении; (б) в её реальном значении?</h2>
+
+  <h3>(а) Номинальное определение</h3>
+  <p class="source-note"><strong>Цитата — PDF с. 72</strong> (вопрос начинается в конце с. 72) <strong>и с. 73</strong> (номинальное определение; в файле: «<strong>Номинальная дефиниция</strong> истины»):</p>
+  <blockquote><p><strong>Что есть истина?</strong> Вот знаменитый старый вопрос… <strong>Номинальное определение истины</strong>, согласно которому оно есть <strong>соответствие знания с его предметом</strong>, здесь <strong>допускается</strong> и <strong>предполагается заранее</strong>.</p></blockquote>
+  <p>Кант <strong>не отвергает</strong> это определение как <strong>имя</strong> истины; спор идёт о <strong>всеобщем и достоверном критерии</strong> (<em>allgemeines und sicheres Kennzeichen</em>) для <strong>всякого</strong> знания — и о том, <strong>что вообще может</strong> считаться критерием в <strong>логике</strong> против <strong>трансцендентальной</strong> рефлексии.</p>
+
+  <h3>(б) Реальное значение: три уровня (так экзамен обычно и проверяет)</h3>
+  <p><strong>1) Всеобщий «материальный» критерий содержания — невозможен</strong> — <em>PDF с. 73:</em></p>
+  <blockquote><p>Если истина — в <strong>соответствии знания с его предметом</strong>, то самим этим <strong>следует отличать</strong> этот предмет от других предметов; в самом деле, знание заключает в себе <strong>ложь</strong>, если оно <strong>не находится в соответствии</strong> с тем предметом, к которому оно относится… Но <strong>между тем всеобщим критерием истины</strong> был бы лишь такой критерий, который был бы <strong>справедлив в отношении всех знаний</strong>… отсюда ясно, что <strong>совершенно невозможно</strong> и <strong>нелепо</strong> спрашивать о <strong>признаке истинности</strong> этого <strong>содержания</strong> знаний и что <strong>достаточный и в то же время всеобщий признак истины не может быть дан</strong>.</p></blockquote>
+  <p>Идея: предметы <strong>различны</strong>; <strong>одного</strong> признака <strong>содержания</strong>, общего для математики, морали, естествознания и т.д., <strong>нет</strong>.</p>
+
+  <p><strong>2) Логический (общий) критерий — только негативный</strong> — <em>тот же ход мысли, PDF с. 73–74</em> (противоречие общим правилам → ложь; формальная согласованность не гарантирует соответствия предмету; <em>conditio sine qua non</em>).</p>
+  <p>Согласие с <strong>общими законами рассудка и разума</strong> (отсутствие противоречия) необходимо: <strong>противоречие</strong> = ложь. Но <strong>обратное неверно</strong>: <strong>согласие с формой мышления</strong> <strong>ещё не</strong> делает суждение <strong>истинным о предмете</strong>. Это <strong>conditio sine qua non</strong>, не <strong>достаточное</strong> условие истины по отношению к объекту.</p>
+
+  <p><strong>3) Для знания об объектах чувственного опыта — «трансцендентальная» правда суждения</strong></p>
+  <p>В том же ходу мысли Кант различает <strong>логическую</strong> истину суждения (согласие с законами <strong>общей</strong> логики) и <strong>трансцендентальную</strong> истину суждения о <strong>предметах</strong> чувственной интуиции: она связана с <strong>условиями</strong>, под которыми суждение <strong>вообще может</strong> относиться к <strong>данному</strong> многообразию как к <strong>объекту</strong>. Без связки <strong>интуиции</strong> и <strong>категориального</strong> синтеза <strong>объект для нас не состоится</strong> — и разговор об истине <strong>в смысле соответствия предмету</strong> для такого знания пуст.</p>
+
+  <p><strong>Схема:</strong></p>
+  <pre class="scheme">Номинальное определение     →  истина = соответствие знания предмету (имя не оспаривается)
+            ↓
+Всеобщий критерий по содержанию →  невозможен (объекты разнородны)
+            ↓
+Общая логика                →  негативный формальный критерий (противоречие → ложь)
+            ↓
+Критика чистого разума      →  для опыта: условия трансцендентальной истины суждений
+                               о объектах (формы чувственности + законный синтез рассудка)</pre>
+
+  <p><strong>Супервизия:</strong> не сжимать всё к формуле «истина = соответствие» — у Канта в этом месте <strong>главное</strong> про <strong>критерии</strong> и <strong>границы</strong> претензии на знание. Для <strong>аналитических</strong> суждений роль <strong>трансцендентальной</strong> истины <strong>иного</strong> рода, чем для <strong>синтетических a posteriori</strong> — при детальном ответе это стоит <strong>оговорить</strong> одной фразой.</p>
+
+  <hr class="sep">
+
+  <h2>Сводка: цитата → страница PDF (файл ФТ 2020)</h2>
+  <table>
+    <thead><tr><th>Тема</th><th>PDF (файл)</th></tr></thead>
+    <tbody>
+      <tr><td>Определение «трансцендентальный» (B 25)</td><td><strong>с. 44</strong></td></tr>
+      <tr><td>Афоризм «мысли пусты / созерцания слепы»</td><td><strong>с. 69</strong> (продолжение на <strong>с. 70</strong>)</td></tr>
+      <tr><td>Эстетика vs логика; общая/чистая логика; канон</td><td><strong>с. 70</strong></td></tr>
+      <tr><td>Общая vs трансцендентальная логика</td><td><strong>с. 71–72</strong></td></tr>
+      <tr><td>Истина: вопрос, номинальное определение, невозможность всеобщего материального критерия, логический критерий</td><td><strong>с. 72–74</strong></td></tr>
+      <tr><td>Деление трансцендентальной логики (аналитика / диалектика)</td><td><strong>с. 75</strong></td></tr>
+      <tr><td>«Эта аналитика есть расчленение…»</td><td><strong>с. 76</strong></td></tr>
+    </tbody>
+  </table>
+
+  <hr class="sep">
+
+  <h2>Заметка для занятий</h2>
+  <p>Номера <strong>B</strong> — по полям тома. <strong>Страницы в таблице выше</strong> — по нумерации <strong>листов файла PDF</strong> (как в Acrobat, Edge, встроенном просмотрщике <strong>Cursor</strong> или в выводе <code>dump-pages.mjs</code>). HTML-версию этого конспекта удобно открыть в Cursor (например, через контекстное меню файла → Open with… → браузер / Simple Browser) или двойным щелчком в системе. Длинные цитаты <strong>склеены из смежных абзацев</strong>; для зачёта отметьте в книге <strong>начало и конец</strong> каждого отрывка. Блок <strong>«Супервизия»</strong> — то, что чаще всего спрашивают на уточняющих вопросах: <strong>канон/органон</strong>, <strong>рассудок/разум</strong>, <strong>трансцендентальное/трансцендентное</strong>, <strong>логическая vs трансцендентальная истина</strong>.</p>
+</article>
+</body>
+</html>
