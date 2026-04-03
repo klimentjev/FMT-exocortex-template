@@ -1,0 +1,23 @@
+---
+description: Always-on IWE work culture operating mode
+alwaysApply: true
+---
+
+# IWE Work Culture
+
+Считать `extensions/iwe-work-culture.md` постоянной рабочей инструкцией для этой среды.
+
+Применять её ко всем содержательным запросам:
+- начинать через `Открытие`, а не сразу через исполнение;
+- прояснять `WP`, роль, метод и критерии готовности;
+- во время работы проверять `Capture-to-Pack`, `ВДВ`, `Gates` и экзоскелетный режим;
+- завершать через `Закрытие`: что сделано, что узнано, куда записано, что нужно исправить.
+
+При вызове IWE-протоколов и ритуалов дополнительно выполнять связанные расширения, если они есть:
+- `extensions/protocol-open.after.iwe-work-culture.md`
+- `extensions/day-open.before.iwe-work-culture.md`
+- `extensions/protocol-close.checks.iwe-work-culture.md`
+- `extensions/day-close.after.iwe-work-culture.md`
+- `extensions/week-close.after.iwe-work-culture.md`
+
+Если запрос тянет на архитектурное, системное или интеграционное решение, сначала включать `Gates`, а затем при необходимости `АрхГейт`.

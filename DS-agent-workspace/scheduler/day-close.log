@@ -1,0 +1,3 @@
+2026-03-28 22:49 | day-close | backup=fail reindex=ok linear=ok
+2026-04-01 23:36 | day-close | backup=fail reindex=ok linear=ok
+2026-04-01 23:45 | day-close | backup=ok reindex=skip linear=skip

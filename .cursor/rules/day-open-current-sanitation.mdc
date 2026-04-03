@@ -1,0 +1,10 @@
+---
+description: Day Open — обязательная санитация DS-strategy/current перед новым планом
+globs:
+  - DS-strategy/current/*.md
+---
+
+При триггерах «начать день», «Day Open», «открытие дня», создании или переносе `DayPlan` / `WeekPlan` в `DS-strategy`:
+
+1. Прочитать и выполнить **`extensions/day-open.after.md`** (блокирующая санитация `current/`: все `DayPlan` с датой до сегодня → `archive/day-plans/`, прошлые `WeekPlan` → `archive/week-plans/`).
+2. Не завершать протокол Day Open, пока в `DS-strategy/current/` не остались только актуальный дневной план на сегодня и один WeekPlan текущей недели.
