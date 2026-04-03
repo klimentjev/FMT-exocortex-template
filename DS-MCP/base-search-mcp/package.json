@@ -1,0 +1,118 @@
+{
+  "name": "base-search-mcp",
+  "version": "1.0.0",
+  "description": "MCP server for searching FPF/SPF/ZP in local Base repository",
+  "author": "IWE",
+  "type": "stdio",
+  "tools": [
+    {
+      "name": "search_fpf",
+      "description": "Search FPF-Spec.md by keyword or pattern code (e.g., 'A.7', 'Role Method Work', 'bounded context')",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "query": {
+            "type": "string",
+            "description": "Search query: keyword, pattern name, or FPF code (A.7, B.5, Part G, etc)"
+          },
+          "section": {
+            "type": "string",
+            "enum": ["A", "B", "C", "D", "E", "F", "G"],
+            "description": "Limit search to specific Part (optional)"
+          },
+          "limit": {
+            "type": "integer",
+            "description": "Max results to return (default 3)",
+            "default": 3
+          }
+        },
+        "required": ["query"]
+      }
+    },
+    {
+      "name": "search_spf",
+      "description": "Search SPF process documentation and pack-template",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "query": {
+            "type": "string",
+            "description": "Search: 'pack-template', 'process', 'bounded-context', 'failure-modes', etc"
+          },
+          "section": {
+            "type": "string",
+            "enum": ["pack-template", "process", "spec", "docs"],
+            "description": "Limit to section"
+          },
+          "limit": {
+            "type": "integer",
+            "default": 3
+          }
+        },
+        "required": ["query"]
+      }
+    },
+    {
+      "name": "get_fpf_pattern",
+      "description": "Get full definition of specific FPF pattern by code",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string",
+            "description": "FPF code: A.7, B.5, A.1.1, Part G, etc"
+          }
+        },
+        "required": ["code"]
+      }
+    },
+    {
+      "name": "get_spf_template",
+      "description": "Get SPF pack-template section",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "section": {
+            "type": "string",
+            "enum": ["00-manifest", "01-contract", "02-entities", "03-methods", "04-products", "05-failures", "06-sota", "07-map"],
+            "description": "Which pack section template"
+          }
+        },
+        "required": ["section"]
+      }
+    },
+    {
+      "name": "list_fpf_parts",
+      "description": "List all FPF Parts with descriptions",
+      "inputSchema": {
+        "type": "object",
+        "properties": {}
+      }
+    },
+    {
+      "name": "get_sync_status",
+      "description": "Check FPF sync status and version",
+      "inputSchema": {
+        "type": "object",
+        "properties": {}
+      }
+    }
+  ],
+  "resources": [
+    {
+      "uri": "base://fpf/latest",
+      "name": "FPF Latest",
+      "description": "Current FPF-Spec.md file"
+    },
+    {
+      "uri": "base://fpf-version",
+      "name": "FPF Version Info",
+      "description": "FPF-VERSION.txt and SYNC-LOG.md"
+    },
+    {
+      "uri": "base://spf/pack-template",
+      "name": "SPF Pack Template",
+      "description": "Pack structure templates"
+    }
+  ]
+}
