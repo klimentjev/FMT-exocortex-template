@@ -16,6 +16,12 @@
 
 ---
 
+## Capture (2026-04-05)
+
+**Day Close:** итоги в `DS-strategy/current/DayPlan 2026-04-05.md` и блок «Итоги воскресенья» в `WeekPlan W14 2026-03-30.md`. День: Day Open (`a50c2a4`), сессии про путь `DS-strategy/current/`, экстрактор (очередь captures пуста), закрытие дня. **РП 6:** незакоммиченные черновики `INTERPRETATION-…`, `QUOTES-…` — partial; критерий фазы 1 доклада не закрыт. **ФКЧ / Ш5 / newlook:** без новых шагов в git. **W14:** conjunctive-критерий недели не выполнен — **Week Close W15-open** и новый WeekPlan логичны с **06.04**. **Техконтур:** `DS-exocortex/` untracked; дубликат конфига `DS-strategy/governance/day-rhythm-config.yaml` — нужна явная позиция.
+
+---
+
 ## Capture (2026-04-04)
 
 **Day Close:** итоги в `DS-strategy/current/DayPlan 2026-04-04.md` и блок «Итоги субботы» в `WeekPlan W14 2026-03-30.md`. День сфокусирован на докладе (конференция) + Zoom; **РП 6** partial: цитата/абзац в черновике доклада, план `talk-preparation-plan-april4-17.md`, переработка `article-writing-schedule.md`. **Каркас Zoom** в репо не зафиксирован — при необходимости добавить файл. **ФКЧ:** дедлайн сайта 04.04 не взят в работу; перенос и дата — записать в следующем плановом шаге.
