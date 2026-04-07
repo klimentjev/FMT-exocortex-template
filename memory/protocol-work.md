@@ -146,7 +146,7 @@
 
 **Если все три → предложить:** *«Skill candidate: [название] — [что делает]. Оформить как `.claude/skills/[name]/SKILL.md`?»*
 
-**Куда:** FMT-exocortex-template/.claude/skills/ (первоисточник) → sync → рабочий /c/Users/admin/IWE/.claude/skills/
+**Куда:** первоисточник на GitHub — `FMT-exocortex-template/.claude/skills/`; локальные скрипты setup/update — `DS-exocortex/`; рабочая копия — `/c/Users/admin/IWE/.claude/skills/`
 
 ## 2d. Review критических документов (Q-bundles + двухуровневый review)
 

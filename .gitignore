@@ -1,3 +1,6 @@
 # Вложенный репозиторий: единственный source of truth для governance — git внутри каталога.
 # Коммиты и push: только из `DS-strategy/` (remote: github.com/klimentjev/DS-strategy).
 DS-strategy/
+
+# Локальные секреты экзокортекса (не коммитить)
+.exocortex.env

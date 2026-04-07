@@ -9,11 +9,11 @@
 | Зона | Путь | Для чего |
 |------|------|----------|
 | Текущий план недели | `DS-strategy/current/WeekPlan W*.md` | РП, задачи, статусы |
-| Оперативная память | `FMT-exocortex-template/memory/MEMORY.md` | Блокирующие правила, таблица РП |
+| Оперативная память | `memory/MEMORY.md` (корень IWE) | Блокирующие правила, таблица РП |
 | Входящие материалы | `DS-strategy/inbox/` | Загружаемые тексты, черновики, заметки |
 | Стратегия | `DS-strategy/docs/Strategy.md` | Куда двигаемся |
 | Доменные знания | `PACK-*/` | Source of truth по темам |
-| Навигация по всем репо | `FMT-exocortex-template/memory/navigation.md` | Карта файлов и репо |
+| Навигация по всем репо | `memory/navigation.md` (корень IWE) | Карта файлов и репо |
 
 ---
 
@@ -54,8 +54,8 @@
 | Чеклисты | `memory/checklists.md` |
 | Правила типов репо | `memory/repo-type-rules.md` |
 | Роли агентов (каталог) | `DS-strategy/docs/DP.AGENT.001-section-3.2-catalog-roles.md` |
-| Что такое IWE + FAQ | `FMT-exocortex-template/docs/IWE-HELP.md` |
-| Полная установка | `FMT-exocortex-template/docs/SETUP-GUIDE.md` |
+| Что такое IWE + FAQ | Репозиторий шаблона на GitHub: `TserenTserenov/FMT-exocortex-template` → `docs/IWE-HELP.md` |
+| Полная установка | `DS-exocortex/setup.sh`; справка upstream: `FMT-exocortex-template/docs/SETUP-GUIDE.md` на GitHub |
 
 **Поиск по базе знаний Pack (через меня):**
 Скажи «найди документы про ...» → использую `knowledge-mcp search`.

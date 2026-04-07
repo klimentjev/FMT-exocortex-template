@@ -25,6 +25,13 @@ bash update.sh
 
 > Если папка называется `DS-exocortex`, скрипт берёт её как exocortex (есть CLAUDE.md и memory/).
 
+**Вариант: корень IWE (`c:\Users\admin\IWE`) с `DS-exocortex` внутри** — скрипты лежат в `DS-exocortex/`, обновляют родительский каталог (там `CLAUDE.md` и `memory/`):
+
+```bash
+cd /mnt/c/Users/admin/IWE/DS-exocortex
+bash update.sh
+```
+
 ---
 
 ## 2. FPF (First Principles Framework)
@@ -75,7 +82,7 @@ git pull --rebase
 
 ## Порядок при полном обновлении
 
-1. DS-exocortex: `bash update.sh` (включает CLAUDE.md + memory + MCP).
+1. Экзокортекс: отдельный репо `DS-exocortex` в корне → `bash update.sh` **или** IWE+вложенный `DS-exocortex` → `cd DS-exocortex && bash update.sh` (CLAUDE.md + memory + MCP).
 2. FPF: `cd ~/Github/Principles/FPF && git pull`.
 3. SPF: `cd ~/Github/Principles/SPF && git pull`.
 4. DS-strategy: `cd ~/Github/DS-strategy && git pull --rebase`.

@@ -177,7 +177,7 @@ done
 
 ```bash
 # Запуск одной коман��ой:
-/c/Users/admin/IWE/FMT-exocortex-template/roles/synchronizer/scripts/day-close.sh
+/c/Users/admin/IWE/DS-exocortex/roles/synchronizer/scripts/day-close.sh
 ```
 
 Скрипт выполняет:
