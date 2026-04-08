@@ -44,7 +44,7 @@
 
 | Тип знания | Куда | Когда | Через KE? |
 |------------|------|-------|-----------|
-| Правило для всех репо (1-3 строки) | `/c/Users/admin/IWE/CLAUDE.md` | Сразу | Нет |
+| Правило для всех репо (1-3 строки) | `/c/Users/admin/IWE/CLAUDE.md` | Сразу | Нет |
 | Правило для одного репо (1-3 строки) | `<repo>/CLAUDE.md` | Сразу | Нет |
 | Доменное (архитектура, паттерны) | Соответствующий Pack | Close | Да (KE) |
 | Различение, метод, FM, WP | Соответствующий Pack | Close | Да (KE) |
@@ -146,7 +146,7 @@
 
 **Если все три → предложить:** *«Skill candidate: [название] — [что делает]. Оформить как `.claude/skills/[name]/SKILL.md`?»*
 
-**Куда:** первоисточник на GitHub — `FMT-exocortex-template/.claude/skills/`; локальные скрипты setup/update — `DS-exocortex/`; рабочая копия — `/c/Users/admin/IWE/.claude/skills/`
+**Куда:** FMT-exocortex-template/.claude/skills/ (первоисточник) → sync → рабочий /c/Users/admin/IWE/.claude/skills/
 
 ## 2d. Review критических документов (Q-bundles + двухуровневый review)
 

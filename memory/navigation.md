@@ -1,6 +1,6 @@
 # Навигация по репозиториям (Слой 3)
 
-> Claude читает этот файл при поиске конкретного файла/репо. Для поиска знаний → `mcp__claude_ai_knowledge-mcp__search`.
+> Claude читает этот файл при поиске конкретного файла/репо. Для поиска знаний → `knowledge_search` (через Gateway iwe-knowledge).
 
 ## Ключевые файлы
 
@@ -24,7 +24,7 @@
 <!-- Добавьте свои DS-репо. Пример: -->
 <!-- | Мой бот (READ-ONLY) | `your-org/your-bot/` | -->
 <!-- | Монорепо ИИ-систем | `your-org/ai-systems/` | -->
-| Установка / обновление IWE (скрипты) | `DS-exocortex/setup.sh`, `DS-exocortex/update.sh` |
+| Шаблонизатор | `FMT-exocortex-template/setup.sh` |
 | Личная онтология | `DS-strategy/ontology.md` |
 | Программа обучения | `DS-principles-curriculum/` |
 
