@@ -338,13 +338,13 @@ if [ -f "$ENV_FILE" ]; then
 
             if grep -q '{{[A-Z_]*}}' "$filepath" 2>/dev/null; then
                 sed_inplace \
-                    -e "s|klimentjev|${ENV_GITHUB_USER:-}|g" \
-                    -e "s|/c/Users/admin/IWE|${ENV_WORKSPACE_DIR:-}|g" \
-                    -e "s|/c/Users/admin/AppData/Roaming/npm/claude|${ENV_CLAUDE_PATH:-}|g" \
-                    -e "s|-c-Users-admin-IWE|${ENV_CLAUDE_PROJECT_SLUG:-}|g" \
-                    -e "s|4|${ENV_TIMEZONE_HOUR:-}|g" \
-                    -e "s|4:00 UTC|${ENV_TIMEZONE_DESC:-}|g" \
-                    -e "s|/c/Users/admin|${ENV_HOME_DIR:-$HOME}|g" \
+                    -e "s|{{GITHUB_USER}}|${ENV_GITHUB_USER:-}|g" \
+                    -e "s|{{WORKSPACE_DIR}}|${ENV_WORKSPACE_DIR:-}|g" \
+                    -e "s|{{CLAUDE_PATH}}|${ENV_CLAUDE_PATH:-}|g" \
+                    -e "s|{{CLAUDE_PROJECT_SLUG}}|${ENV_CLAUDE_PROJECT_SLUG:-}|g" \
+                    -e "s|{{TIMEZONE_HOUR}}|${ENV_TIMEZONE_HOUR:-}|g" \
+                    -e "s|{{TIMEZONE_DESC}}|${ENV_TIMEZONE_DESC:-}|g" \
+                    -e "s|{{HOME_DIR}}|${ENV_HOME_DIR:-$HOME}|g" \
                     "$filepath"
                 PLACEHOLDER_HIT=$((PLACEHOLDER_HIT + 1))
             fi
@@ -416,8 +416,8 @@ ENVEOF
         filepath="$SCRIPT_DIR/$f"
         [ -f "$filepath" ] || continue
         sed_inplace \
-            -e "s|/c/Users/admin/IWE|$DETECTED_WORKSPACE|g" \
-            -e "s|/c/Users/admin|$HOME|g" \
+            -e "s|{{WORKSPACE_DIR}}|$DETECTED_WORKSPACE|g" \
+            -e "s|{{HOME_DIR}}|$HOME|g" \
             "$filepath" 2>/dev/null || true
     done
 fi
