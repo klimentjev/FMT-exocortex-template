@@ -18,8 +18,7 @@ version: 1.0.0
 Запустить update.sh в режиме превью:
 
 ```bash
-cd /c/Users/admin/IWE
-/FMT-exocortex-template && bash update.sh --check 2>&1
+cd /c/Users/admin/IWE/FMT-exocortex-template && bash update.sh --check 2>&1
 ```
 
 Из вывода извлечь:
@@ -78,8 +77,7 @@ ls extensions/*.md 2>/dev/null
 Если пользователь одобрил (или `--yes`):
 
 ```bash
-cd /c/Users/admin/IWE
-/FMT-exocortex-template && bash update.sh --yes 2>&1
+cd /c/Users/admin/IWE/FMT-exocortex-template && bash update.sh --yes 2>&1
 ```
 
 Из вывода извлечь результат:
