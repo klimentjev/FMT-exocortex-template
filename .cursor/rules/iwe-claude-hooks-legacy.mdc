@@ -1,0 +1,13 @@
+---
+description: Legacy Claude Code hooks folder — avoid opening in editor during routine Cursor work
+alwaysApply: true
+---
+
+# `.claude/hooks/` и Cursor
+
+Папка `.claude/hooks/` предназначена в первую очередь для **Claude Code** (события вроде UserPromptSubmit). Напоминания для агента **Cursor** заданы в `.cursor/rules/iwe-*.mdc`.
+
+Корневой **`.cursorignore`** исключает `.claude/hooks/` из индекса и типичного контекста Cursor — не подтягивай эту папку без запроса.
+
+- **Не используй** Read, Grep, Glob по `.claude/hooks/` в обычной работе (WP Gate, открытие/закрытие дня, push) — в Cursor это часто **открывает вкладки** с этими файлами.
+- Если пользователь явно просит **изменить** хук: предложи временно убрать строку `.claude/hooks/` из `.cursorignore` (или явно прикрепить файл через `@`), затем читай только нужный скрипт.
