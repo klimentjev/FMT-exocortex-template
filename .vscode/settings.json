@@ -1,0 +1,10 @@
+{
+  "files.exclude": {
+    "**/.claude/hooks": true,
+    "**/share/claude-hooks-dist": true
+  },
+  "search.exclude": {
+    "**/.claude/hooks": true,
+    "**/share/claude-hooks-dist": true
+  }
+}
