@@ -7,10 +7,8 @@
 # Версия: 2026-04-03. Fix: multiline prompt ломал jq (6-й инцидент 3 апр).
 
 INPUT=$(cat)
-# Устойчивость к многострочным промптам: literal \n в JSON value
-# невалиден для jq. Заменяем все control chars на пробелы до парсинга.
-SANITIZED=$(printf '%s' "$INPUT" | LC_ALL=C tr '\n\r\t' '   ')
-PROMPT=$(printf '%s' "$SANITIZED" | jq -r '.prompt // empty' | tr '[:upper:]' '[:lower:]')
+# Используем node вместо jq для надежного парсинга JSON
+PROMPT=$(echo "$INPUT" | node -e "try { console.log((JSON.parse(require('fs').readFileSync(0, 'utf-8')).prompt || '').toLowerCase()); } catch(e) { console.log(''); }")
 
 # Day Close → ПРИНУДИТЕЛЬНЫЙ вызов /run-protocol
 if echo "$PROMPT" | grep -qE '(итоги дня|закрываю день|закрывай день)'; then

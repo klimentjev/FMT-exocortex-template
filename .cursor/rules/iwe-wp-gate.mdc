@@ -1,0 +1,10 @@
+---
+description: Apply when starting a new task, addressing a new request, or when a question turns into actual work
+globs: *
+---
+# WP GATE Reminder
+
+⛔ WP GATE: Перед обработкой этого сообщения — проверь:
+1. Если это новая задача — пройди WP Gate: Read `memory/protocol-open.md`.
+2. Если продолжение работы над тем же РП — продолжай.
+3. Если вопрос перерастает в работу — эскалируй.

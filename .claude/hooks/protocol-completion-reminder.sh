@@ -6,9 +6,9 @@
 # Read-only: только возвращает JSON.
 
 INPUT=$(cat)
-TOOL=$(echo "$INPUT" | jq -r '.tool_name // empty')
-FILE_PATH=$(echo "$INPUT" | jq -r '.tool_input.file_path // empty')
-SKILL_NAME=$(echo "$INPUT" | jq -r '.tool_input.skill // empty')
+TOOL=$(echo "$INPUT" | node -e "try { console.log(JSON.parse(require('fs').readFileSync(0, 'utf-8')).tool_name || ''); } catch(e) {}")
+FILE_PATH=$(echo "$INPUT" | node -e "try { console.log(JSON.parse(require('fs').readFileSync(0, 'utf-8')).tool_input?.file_path || ''); } catch(e) {}")
+SKILL_NAME=$(echo "$INPUT" | node -e "try { console.log(JSON.parse(require('fs').readFileSync(0, 'utf-8')).tool_input?.skill || ''); } catch(e) {}")
 
 # Срабатываем на чтение протоколов (Read protocol-*.md)
 if [ "$TOOL" = "Read" ] && echo "$FILE_PATH" | grep -q "protocol-"; then

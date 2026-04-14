@@ -1,0 +1,10 @@
+---
+description: Apply when the user asks to close the session, push changes, or uses phrases like "закрывай", "закрываю", "заливай", "запуши", "закрывай сессию"
+globs: *
+---
+# Session Close Protocol
+
+⛔ БЛОКИРУЮЩЕЕ: Session Close выполняется ТОЛЬКО через skill `/run-protocol` с аргументом `close`.
+- ПЕРВОЕ И ЕДИНСТВЕННОЕ действие = прочитать скилл `close` (или `protocol-close.md`) и выполнить его строго по шагам.
+- НЕ выполнять шаги самостоятельно. 
+- `/run-protocol` гарантирует пошаговый TodoList + верификацию.

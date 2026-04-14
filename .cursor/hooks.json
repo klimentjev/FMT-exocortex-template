@@ -1,0 +1,15 @@
+{
+  "version": 1,
+  "hooks": {
+    "beforeSubmitPrompt": [
+      {
+        "command": "node .claude/hooks/wakatime-heartbeat.js"
+      }
+    ],
+    "preCompact": [
+      {
+        "command": "node .claude/hooks/precompact-checkpoint.js"
+      }
+    ]
+  }
+}

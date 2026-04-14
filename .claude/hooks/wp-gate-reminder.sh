@@ -6,10 +6,8 @@
 # Read-only: только возвращает JSON с additionalContext, ничего не модифицирует.
 
 INPUT=$(cat)
-# Устойчивость к многострочным промптам: literal \n в JSON value
-# невалиден для jq. Заменяем все control chars на пробелы до парсинга.
-SANITIZED=$(printf '%s' "$INPUT" | LC_ALL=C tr '\n\r\t' '   ')
-PROMPT=$(printf '%s' "$SANITIZED" | jq -r '.prompt // empty' | tr '[:upper:]' '[:lower:]')
+# Используем node вместо jq для надежного парсинга JSON
+PROMPT=$(echo "$INPUT" | node -e "try { console.log((JSON.parse(require('fs').readFileSync(0, 'utf-8')).prompt || '').toLowerCase()); } catch(e) { console.log(''); }")
 
 # Day Open → инжектить реальную дату + WP Gate
 if echo "$PROMPT" | grep -qE '(открывай день|открывай$|открой день)'; then

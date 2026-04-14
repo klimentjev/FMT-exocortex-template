@@ -4,9 +4,9 @@
 # Events: UserPromptSubmit, PostToolUse, Stop
 
 INPUT=$(cat)
-CWD=$(echo "$INPUT" | jq -r '.cwd // empty')
-EVENT=$(echo "$INPUT" | jq -r '.hook_event_name // empty')
-TOOL=$(echo "$INPUT" | jq -r '.tool_name // empty')
+CWD=$(echo "$INPUT" | node -e "try { console.log(JSON.parse(require('fs').readFileSync(0, 'utf-8')).cwd || ''); } catch(e) {}")
+EVENT=$(echo "$INPUT" | node -e "try { console.log(JSON.parse(require('fs').readFileSync(0, 'utf-8')).hook_event_name || ''); } catch(e) {}")
+TOOL=$(echo "$INPUT" | node -e "try { console.log(JSON.parse(require('fs').readFileSync(0, 'utf-8')).tool_name || ''); } catch(e) {}")
 
 # Detect project from git or folder name
 if [ -n "$CWD" ] && [ -d "$CWD" ]; then

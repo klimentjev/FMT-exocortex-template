@@ -1,0 +1,12 @@
+---
+description: Apply when the user asks to close the day, summarize the day, or uses phrases like "итоги дня", "закрываю день", "закрывай день"
+globs: *
+---
+# Day Close Protocol
+
+⛔ БЛОКИРУЮЩЕЕ: Day Close выполняется ТОЛЬКО через skill `/run-protocol` с аргументом `day-close`.
+- ПЕРВОЕ И ЕДИНСТВЕННОЕ действие = прочитать скилл `day-close` (или использовать инструмент) и выполнить его.
+- НЕ читать `protocol-close.md` вручную. 
+- НЕ выполнять шаги самостоятельно. 
+- НЕ писать итоги без `/run-protocol`.
+Причина: инциденты пропуска шагов при ручном исполнении. `/run-protocol` гарантирует пошаговый TodoList + верификацию Haiku R23.

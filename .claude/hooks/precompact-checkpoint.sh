@@ -6,7 +6,7 @@
 # Read-only для агента: возвращает напоминание через additionalContext.
 
 INPUT=$(cat)
-CWD=$(echo "$INPUT" | jq -r '.cwd // empty')
+CWD=$(echo "$INPUT" | node -e "try { console.log(JSON.parse(require('fs').readFileSync(0, 'utf-8')).cwd || ''); } catch(e) {}")
 PROJECT_DIR="${CWD:-$(pwd)}"
 CHECKPOINT_FILE="$PROJECT_DIR/.claude/checkpoint.md"
 
