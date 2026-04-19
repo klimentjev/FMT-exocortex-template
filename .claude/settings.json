@@ -14,16 +14,7 @@
       "mcp__railway__list-variables",
       "mcp__ext-linear__search_issues"
     ],
-    "additionalDirectories": [
-      "/Users/tserentserenov",
-      "/Users/tserentserenov/.claude/projects/-Users-tserentserenov-IWE/memory",
-      "/Users/tserentserenov/IWE/FMT-exocortex-template/.claude/skills/day-open",
-      "/Users/tserentserenov/IWE/.claude/skills/archgate",
-      "/Users/tserentserenov/IWE/.claude/skills",
-      "/Users/tserentserenov/IWE/FMT-exocortex-template/.claude/skills",
-      "/Users/tserentserenov/IWE/FMT-exocortex-template/.claude",
-      "/Users/tserentserenov/IWE/FMT-exocortex-template/.claude/skills/archgate"
-    ]
+    "additionalDirectories": []
   },
   "hooks": {
     "UserPromptSubmit": [
@@ -31,7 +22,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bash scripts/run-claude-hook.sh wp-gate-reminder.sh"
+            "command": ".claude/hooks/wp-gate-reminder.sh"
           }
         ]
       },
@@ -39,7 +30,27 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bash scripts/run-claude-hook.sh close-gate-reminder.sh"
+            "command": ".claude/hooks/close-gate-reminder.sh"
+          }
+        ]
+      }
+    ],
+    "PreToolUse": [
+      {
+        "matcher": "Edit|Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": ".claude/hooks/extensions-gate.sh"
+          }
+        ]
+      },
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": ".claude/hooks/protocol-artifact-validate.sh"
           }
         ]
       }
@@ -50,7 +61,17 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bash scripts/run-claude-hook.sh protocol-completion-reminder.sh"
+            "command": ".claude/hooks/protocol-completion-reminder.sh"
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": ".claude/hooks/protocol-stop-gate.sh"
           }
         ]
       }
@@ -60,7 +81,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bash scripts/run-claude-hook.sh precompact-checkpoint.sh"
+            "command": ".claude/hooks/precompact-checkpoint.sh"
           }
         ]
       }
