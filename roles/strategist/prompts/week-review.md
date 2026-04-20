@@ -7,18 +7,18 @@
 
 ## Контекст
 
-- **WeekPlan:** /c/Users/admin/IWE/DS-strategy/current/WeekPlan W*.md
+- **WeekPlan:** /c/Users/admin/IWE/DS-strategy/current/WeekPlan W*.md
 
 ## Алгоритм
 
 ### 1. Сбор данных (Стратег собирает сам)
 
 ```bash
-# Для КАЖДОГО репо в /c/Users/admin/IWE/:
-git -C /c/Users/admin/IWE/<repo> log --since="last monday 00:00" --until="today 00:00" --oneline --no-merges
+# Для КАЖДОГО репо в /c/Users/admin/IWE/:
+git -C /c/Users/admin/IWE/<repo> log --since="last monday 00:00" --until="today 00:00" --oneline --no-merges
 ```
 
-- Пройди по ВСЕМ репозиториям в `/c/Users/admin/IWE/`
+- Пройди по ВСЕМ репозиториям в `/c/Users/admin/IWE/`
 - Загрузи текущий WeekPlan из `DS-strategy/current/`
 - Сопоставь коммиты с РП из WeekPlan
 - Определи статус каждого РП: done / partial / not started
