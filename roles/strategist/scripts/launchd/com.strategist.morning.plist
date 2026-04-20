@@ -7,7 +7,7 @@
 
     <key>ProgramArguments</key>
     <array>
-        <string>/c/Users/admin/IWE/FMT-exocortex-template/roles/strategist/scripts/strategist.sh</string>
+        <string>/mnt/c/Users/admin/IWE/FMT-exocortex-template/roles/strategist/scripts/strategist.sh</string>
         <string>morning</string>
     </array>
 
@@ -20,17 +20,17 @@
     </dict>
 
     <key>StandardOutPath</key>
-    <string>/c/Users/admin/logs/strategist/launchd-morning.log</string>
+    <string>/mnt/c/Users/admin/logs/strategist/launchd-morning.log</string>
 
     <key>StandardErrorPath</key>
-    <string>/c/Users/admin/logs/strategist/launchd-morning-error.log</string>
+    <string>/mnt/c/Users/admin/logs/strategist/launchd-morning-error.log</string>
 
     <key>EnvironmentVariables</key>
     <dict>
         <key>PATH</key>
         <string>/usr/local/bin:/usr/bin:/bin:/opt/homebrew/bin</string>
         <key>HOME</key>
-        <string>/c/Users/admin</string>
+        <string>/mnt/c/Users/admin</string>
     </dict>
 
     <key>RunAtLoad</key>

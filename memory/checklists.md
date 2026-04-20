@@ -26,7 +26,7 @@ originSessionId: 9a0e726a-951e-4408-9e02-94d7eeffbf74
 
 - [ ] `grep -r "Github/<old-path>/"` по ВСЕМ репо — найти ВСЕ внутренние ссылки
 - [ ] Скрипты (.sh): hardcoded пути `$HOME/Github/...`
-- [ ] Промпты (.md): `/c/Users/admin/IWE/...` пути к config/routing
+- [ ] Промпты (.md): `/mnt/c/Users/admin/IWE/...` пути к config/routing
 - [ ] Конфиги (config.yaml): `script:` поля
 - [ ] LaunchD templates (.plist): `<string>/Users/.../</string>`
 - [ ] Загруженные plist в `~/Library/LaunchAgents/` (отдельно от шаблонов в репо!)

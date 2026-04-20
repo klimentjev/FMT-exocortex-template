@@ -14,7 +14,7 @@ REPO_DIR="$(dirname "$SCRIPT_DIR")"
 WORKSPACE="$HOME/IWE/DS-strategy"
 PROMPTS_DIR="$REPO_DIR/prompts"
 LOG_DIR="$HOME/logs/strategist"
-CLAUDE_PATH="/c/Users/admin/AppData/Roaming/npm/claude"
+CLAUDE_PATH="/mnt/c/Users/admin/AppData/Roaming/npm/claude"
 CLAUDE_TIMEOUT=1800  # 30 мин — защита от зависания Claude CLI
 
 # macOS не имеет GNU timeout — используем perl fallback

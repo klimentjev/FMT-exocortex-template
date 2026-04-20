@@ -7,7 +7,7 @@
 
     <key>ProgramArguments</key>
     <array>
-        <string>/c/Users/admin/IWE/FMT-exocortex-template/roles/synchronizer/scripts/scheduler.sh</string>
+        <string>/mnt/c/Users/admin/IWE/FMT-exocortex-template/roles/synchronizer/scripts/scheduler.sh</string>
         <string>dispatch</string>
     </array>
 
@@ -38,17 +38,17 @@
     </array>
 
     <key>StandardOutPath</key>
-    <string>/c/Users/admin/logs/synchronizer/launchd-scheduler.log</string>
+    <string>/mnt/c/Users/admin/logs/synchronizer/launchd-scheduler.log</string>
 
     <key>StandardErrorPath</key>
-    <string>/c/Users/admin/logs/synchronizer/launchd-scheduler-error.log</string>
+    <string>/mnt/c/Users/admin/logs/synchronizer/launchd-scheduler-error.log</string>
 
     <key>EnvironmentVariables</key>
     <dict>
         <key>PATH</key>
         <string>/usr/local/bin:/usr/bin:/bin:/opt/homebrew/bin</string>
         <key>HOME</key>
-        <string>/c/Users/admin</string>
+        <string>/mnt/c/Users/admin</string>
     </dict>
 
     <key>RunAtLoad</key>

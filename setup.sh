@@ -310,22 +310,22 @@ if $DRY_RUN; then
     PLACEHOLDER_FILES=$(find "$TEMPLATE_DIR" -type f \( -name "*.md" -o -name "*.json" -o -name "*.sh" -o -name "*.plist" -o -name "*.yaml" -o -name "*.yml" \) | wc -l | tr -d ' ')
     echo "  [DRY RUN] Would substitute placeholders in $PLACEHOLDER_FILES files"
     echo "    klimentjev → $GITHUB_USER"
-    echo "    /c/Users/admin/IWE → $WORKSPACE_DIR"
-    echo "    /c/Users/admin/AppData/Roaming/npm/claude → $CLAUDE_PATH"
-    echo "    -c-Users-admin-IWE → $CLAUDE_PROJECT_SLUG"
+    echo "    /mnt/c/Users/admin/IWE → $WORKSPACE_DIR"
+    echo "    /mnt/c/Users/admin/AppData/Roaming/npm/claude → $CLAUDE_PATH"
+    echo "    -mnt-c-Users-admin-IWE → $CLAUDE_PROJECT_SLUG"
     echo "    4 → $TIMEZONE_HOUR"
     echo "    4:00 UTC → $TIMEZONE_DESC"
-    echo "    /c/Users/admin → $HOME_DIR"
+    echo "    /mnt/c/Users/admin → $HOME_DIR"
 else
     find "$TEMPLATE_DIR" -type f \( -name "*.md" -o -name "*.json" -o -name "*.sh" -o -name "*.plist" -o -name "*.yaml" -o -name "*.yml" \) | while IFS= read -r file; do
         sed_inplace \
             -e "s|klimentjev|$GITHUB_USER|g" \
-            -e "s|/c/Users/admin/IWE|$WORKSPACE_DIR|g" \
-            -e "s|/c/Users/admin/AppData/Roaming/npm/claude|$CLAUDE_PATH|g" \
-            -e "s|-c-Users-admin-IWE|$CLAUDE_PROJECT_SLUG|g" \
+            -e "s|/mnt/c/Users/admin/IWE|$WORKSPACE_DIR|g" \
+            -e "s|/mnt/c/Users/admin/AppData/Roaming/npm/claude|$CLAUDE_PATH|g" \
+            -e "s|-mnt-c-Users-admin-IWE|$CLAUDE_PROJECT_SLUG|g" \
             -e "s|4|$TIMEZONE_HOUR|g" \
             -e "s|4:00 UTC|$TIMEZONE_DESC|g" \
-            -e "s|/c/Users/admin|$HOME_DIR|g" \
+            -e "s|/mnt/c/Users/admin|$HOME_DIR|g" \
             "$file"
     done
 

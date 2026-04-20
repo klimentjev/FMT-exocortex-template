@@ -21,7 +21,7 @@ Versioning: [Semantic Versioning](https://semver.org/).
 ## [0.26.2] — 2026-04-17
 
 ### Fixed
-- **roles/extractor/prompts/inbox-check.md** — шаг 1.3 «напиши в лог `No pending captures in inbox`» теперь явно запрещает создавать отдельный лог-файл в `DS-strategy/` или где-либо ещё. Сообщение выводится через stdout и попадает в `/c/Users/admin/logs/extractor/YYYY-MM-DD.log` (поток extractor.sh). Причина: у автора накопились 3 runtime-артефакта в `inbox/` (хаотичное размещение `inbox-check.log`, `extraction-reports/inbox-check.log`, `.inbox-check-log` — нарушение OwnerIntegrity: knowledge flow vs runtime).
+- **roles/extractor/prompts/inbox-check.md** — шаг 1.3 «напиши в лог `No pending captures in inbox`» теперь явно запрещает создавать отдельный лог-файл в `DS-strategy/` или где-либо ещё. Сообщение выводится через stdout и попадает в `/mnt/c/Users/admin/logs/extractor/YYYY-MM-DD.log` (поток extractor.sh). Причина: у автора накопились 3 runtime-артефакта в `inbox/` (хаотичное размещение `inbox-check.log`, `extraction-reports/inbox-check.log`, `.inbox-check-log` — нарушение OwnerIntegrity: knowledge flow vs runtime).
 
 ## [0.26.1] — 2026-04-17
 
@@ -480,7 +480,7 @@ Versioning: [Semantic Versioning](https://semver.org/).
 - **README.md:** `git clone` → `gh repo fork --clone` (согласованность с SETUP-GUIDE)
 - **strategist.sh:** `cleanup-processed-notes.py` → `.sh` (файл .py не существовал)
 - **strategist.sh:** хардкод авторского пути к notify.sh → относительный через `$SCRIPT_DIR`
-- **strategist.sh, dt-collect.sh:** `$HOME/IWE` → `/c/Users/admin/IWE` (подставляется setup.sh)
+- **strategist.sh, dt-collect.sh:** `$HOME/IWE` → `/mnt/c/Users/admin/IWE` (подставляется setup.sh)
 - **update.sh:** нумерация шагов `[1/4],[2/4]` → `[1/6],[2/6]`
 - **setup-wakatime.md:** `wakatime-cli` → `~/.wakatime/wakatime-cli` (полный путь)
 - **SETUP-GUIDE.md:** MCP-команды отделены от bash-блока (пользователи пытались запускать в терминале)
