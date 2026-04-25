@@ -1,22 +1,6 @@
 #!/bin/bash
 # dt-collect.sh — сбор данных активности для ЦД (WP-106, WP-139)
 #
-# ⚠️ AUTHOR-ONLY СКРИПТ — не для конечных пользователей IWE-шаблона.
-#
-# Этот скрипт пишет напрямую в БД Neon платформы через `NEON_URL` (секрет
-# автора шаблона). Доступа к production-БД у пользователей IWE нет и не
-# предусмотрено архитектурой.
-#
-# Правильный пользовательский путь записи активности в Память/ЦД —
-# MCP-инструмент `dt_write_digital_twin` в IWE Gateway (JWT подписки
-# идентифицирует пользователя, прямое подключение к БД не требуется).
-#
-# Системный переход `dt-collect` на event-gateway (POST /hub/events в
-# Activity Hub с service-token) запланирован фазой в миграционном
-# роадмапе WP-253 `DP.ROADMAP.001-neon-migration.md` и активируется
-# после Ф3 создания #2 journal (май-июль 2026). До этого момента скрипт
-# остаётся переходным артефактом автора.
-#
 # Архитектура: ядро (L3, шаблон) + плагины (L4, personal)
 #   Ядро: WakaTime, git, sessions, WP, health, multiplier, registry, Pack, notes, scheduler reports
 #   Плагины: collectors.d/*.sh — персональные коллекторы (Scout, QA бота, публикации и др.)
@@ -26,17 +10,15 @@
 #   # TARGET: 2_7_iwe | 2_8_ecosystem | 2_9_knowledge
 #   collect_name() { echo '{"key": "value"}' }
 #
-# Использование (только у автора шаблона):
-#   dt-collect.sh           # собрать и записать (требует NEON_URL + DT_USER_ID)
-#   dt-collect.sh --dry-run # показать JSON, не записывать (работает без env)
+# Использование:
+#   dt-collect.sh           # собрать и записать
+#   dt-collect.sh --dry-run # показать JSON, не записывать
 #
-# Триггер: scheduler.sh dispatch dt-collect — запускается только если
-# `NEON_URL` и `DT_USER_ID` присутствуют в `~/.config/aist/env` (см. guard ниже).
-#
-# Зависимости (только author-mode):
+# Триггер: scheduler.sh dispatch dt-collect (ежедневно, после code-scan)
+# Зависимости:
 #   WAKATIME_API_KEY  — в ~/.config/aist/env
-#   NEON_URL          — в ~/.config/aist/env (connection string Neon, author-only)
-#   DT_USER_ID        — в ~/.config/aist/env (Ory UUID автора, author-only)
+#   NEON_URL          — в ~/.config/aist/env (connection string)
+#   DT_USER_ID        — в ~/.config/aist/env (Ory UUID)
 
 set -euo pipefail
 
@@ -160,7 +142,7 @@ print(json.dumps(result))
 }
 
 # ============================================================
-# 2. Git Stats (все репо в {{WORKSPACE_DIR}}/)
+# 2. Git Stats (все репо в /mnt/c/Users/admin/IWE/)
 # ============================================================
 
 collect_git() {
@@ -168,7 +150,7 @@ collect_git() {
 import subprocess, json, os
 from datetime import datetime, timedelta
 
-workspace = os.path.expanduser('{{WORKSPACE_DIR}}')
+workspace = os.path.expanduser('/mnt/c/Users/admin/IWE')
 repos = []
 for name in sorted(os.listdir(workspace)):
     path = os.path.join(workspace, name)
@@ -279,7 +261,7 @@ if os.path.exists(log_path):
 
 # Also count from git log (more reliable — sessions leave commits)
 import subprocess
-workspace = os.path.expanduser('{{WORKSPACE_DIR}}')
+workspace = os.path.expanduser('/mnt/c/Users/admin/IWE')
 git_sessions_7d = 0
 for name in os.listdir(workspace):
     path = os.path.join(workspace, name)
@@ -636,7 +618,7 @@ collect_pack() {
     python3 -c "
 import json, os, re
 
-workspace = os.path.expanduser('{{WORKSPACE_DIR}}')
+workspace = os.path.expanduser('/mnt/c/Users/admin/IWE')
 pack_stats = {}
 total_md = 0
 total_entities = 0
@@ -734,9 +716,7 @@ print(json.dumps(result))
 # ============================================================
 
 collect_scheduler_reports() {
-    local AGENT_WS="${AGENT_WORKSPACE:-$WORKSPACE/DS-agent-workspace}"
-    local SCHED_SUBDIR="scheduler/scheduler-reports"
-    local REPORTS_DIR="${SCHEDULER_REPORTS_DIR:-$AGENT_WS/$SCHED_SUBDIR}"
+    local REPORTS_DIR="$WORKSPACE/DS-agent-workspace/scheduler/scheduler-reports"
 
     python3 -c "
 import json, os, re, glob

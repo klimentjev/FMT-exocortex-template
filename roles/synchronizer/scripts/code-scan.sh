@@ -13,8 +13,8 @@
 set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
-WORKSPACE="{{WORKSPACE_DIR}}"
-LOG_DIR="{{HOME_DIR}}/logs/synchronizer"
+WORKSPACE="/mnt/c/Users/admin/IWE"
+LOG_DIR="/mnt/c/Users/admin/logs/synchronizer"
 DATE=$(date +%Y-%m-%d)
 LOG_FILE="$LOG_DIR/code-scan-$DATE.log"
 
