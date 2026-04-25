@@ -425,6 +425,10 @@ else
     if [ -f "$TEMPLATE_DIR/.claude/settings.json" ]; then
         cp "$TEMPLATE_DIR/.claude/settings.json" "$WORKSPACE_DIR/.claude/settings.json"
         echo "  ✓ .claude/settings.json"
+        NORMALIZER="$TEMPLATE_DIR/scripts/strip-claude-hooks-additional-dirs.sh"
+        if [ -f "$NORMALIZER" ]; then
+            bash "$NORMALIZER" "$WORKSPACE_DIR/.claude/settings.json"
+        fi
     fi
 fi
 

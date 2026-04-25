@@ -512,6 +512,12 @@ for f in "${NEW_FILES[@]}" "${UPDATED_FILES[@]}"; do
     esac
 done
 
+# Normalize hook settings after sync to prevent editor tab popups.
+NORMALIZER="$SCRIPT_DIR/scripts/strip-claude-hooks-additional-dirs.sh"
+if [ -f "$NORMALIZER" ]; then
+    bash "$NORMALIZER" "$SCRIPT_DIR/.claude/settings.json" "$WORKSPACE_DIR/.claude/settings.json"
+fi
+
 # (Step 6b removed — repo rename no longer supported, no link migration needed)
 
 # === Step 6b2: Ensure ~/.iwe-paths exists (WP-219, DP.FM.009) ===
