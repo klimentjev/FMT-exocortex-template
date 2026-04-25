@@ -5,7 +5,7 @@ alwaysApply: true
 
 # Hook-скрипты Claude Code и агент Cursor
 
-Исполняемые хуки для **Claude Code** настроены в `.claude/settings.json` и запускаются через `scripts/run-claude-hook.sh` из **`%USERPROFILE%\.iwe\claude-hooks\`** (установка: `scripts/install-claude-hooks.ps1`, исходники-копия в `share/claude-hooks-dist/`). В репозитории папка `.claude/hooks/` не содержит тел скриптов — только служебный `README.md`.
+Исполняемые хуки для **Claude Code** настроены в `.claude/settings.json`: команда **`bash scripts/run-claude-hook.sh <имя.sh>`** — тело выполняется из **`%USERPROFILE%\.iwe\claude-hooks\`** (установка: `scripts/install-claude-hooks.ps1`, эталон в `share/claude-hooks-dist/`). Копии в `.claude/hooks/` в репо — для `update.sh` / платформы; Cursor не должен открывать их при срабатывании хуков.
 
 Напоминания для агента **в Cursor** заданы отдельными файлами с префиксом iwe- в каталоге правил редактора.
 

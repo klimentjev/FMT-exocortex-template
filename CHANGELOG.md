@@ -5,6 +5,72 @@ All notable changes to FMT-exocortex-template will be documented in this file.
 Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 Versioning: [Semantic Versioning](https://semver.org/).
 
+## [0.27.7] — 2026-04-24
+
+### Fixed
+- **`roles/extractor/scripts/extractor.sh` + `roles/extractor/prompts/inbox-check.md`** (WP-7 Ф-1) — подсчёт pending captures и дефиниция в промпте. Старая логика `grep -c '\[analyzed'` ловила substring в описаниях/цитатах captures.md (например, в тексте капчи мог быть `[analyzed` как часть описания), не только реальные маркеры-статусы. На реальном файле: 166 заголовков, substring-match ≠ реальному счёту маркеров. Формула `PENDING - PROCESSED - ANALYZED` давала ложные числа → каждые 3 часа LLM запускался «на 80 pending» и отвечал «all marked». Fix: прямой подсчёт заголовков БЕЗ любого из 4 маркеров на той же строке (`grep -E '^### ' | grep -vE '\[(analyzed|processed|duplicate|defer)\b'`). Regex `\b` (word boundary) ловит датированные маркеры типа `[analyzed 2026-04-10]`, которые `\]` пропускал. Промпт обновлён на все 4 маркера. Sync from DS-ai-systems 437048b.
+
+## [0.27.6] — 2026-04-24
+
+### Fixed
+- **`roles/synchronizer/scripts/daily-report.sh`** (WP-7 I2) — `mv SchedulerReport → archive/` падал при отсутствующем `archive/`. Под `set -euo pipefail` это прерывало скрипт с non-zero exit → `scheduler.sh` логировал `WARN: daily-report failed` каждые 3 часа. Добавлен `mkdir -p "$ARCHIVE_DIR"` в `archive_old_reports()`.
+- **`roles/strategist/scripts/strategist.sh`** (WP-7 I1) — `BOLD_BEFORE=$(grep -c ... || echo 0)` при exit 1 от grep (0 matches) давал мультистрочный `"0\n0"` → `$(( BOLD_BEFORE - BOLD_NEW_BEFORE ))` падал с `line 249: 0: syntax error`, `[ -ge ]` — с `integer expression expected`. Fix: `|| true; VAR=${VAR:-0}` (5 точек: BOLD_BEFORE, BOLD_NEW_BEFORE, BOLD_AFTER, BOLD_NEW_AFTER, NON_BOLD).
+- **Тот же антипаттерн `grep -c ... || echo N)` в 11 точках 7 файлов** (субагент-ревью после I1+I2): `setup/validate-template.sh`, `.claude/hooks/protocol-artifact-validate.sh`, `roles/synchronizer/scripts/templates/{synchronizer,extractor}.sh`, `update.sh` (3 точки: DIFF_COUNT, CONFLICT_COUNT, WS_CONFLICTS), `.github/workflows/{cloud-scheduler,validate-template}.yml`. Все использовались в `[ -gt N ]` / арифметике → потенциальные баги того же класса.
+
+Commits: 150be24 (I1+I2 sync из DS-ai-systems), 731471f (I3 sweep 11 точек).
+
+## [0.27.5] — 2026-04-24
+
+### Changed
+- **`roles/strategist/scripts/strategist.sh` переименован концептуально (не файл):** context-файл зонтичного WP-7 в авторском governance-репо переехал `archive/wp-contexts/WP-7-bot-tech-debt.md` → `inbox/WP-7-platform-tech-debt.md`. Для шаблона это не blocker (пилоты используют свой `WP-N-*.md`), но в документации `PROCESSES.md` бота обновлена ссылка. Причина: WP-7 давно стал зонтом всей платформы (не только бота) + ошибочно жил в archive/, хотя active (`umbrella: true`). Подтверждено субагентом.
+
+## [0.27.4] — 2026-04-24
+
+### Fixed
+- **`roles/synchronizer/scripts/dt-collect.sh`** помечен как author-only (header + raison d'être). Скрипт пишет напрямую в production-БД Neon платформы через `NEON_URL` / `DT_USER_ID`, и эти секреты есть только у автора шаблона. Конечным пользователям IWE не нужно создавать `~/.config/aist/env` с этими переменными.
+- **`roles/synchronizer/scripts/scheduler.sh`** добавлен guard: `dt-collect.sh` молча пропускается, если `~/.config/aist/env` не содержит `NEON_URL`+`DT_USER_ID`. У пользователей без секретов автора скрипт не запускается, ошибок не возникает, скачанный код остаётся как маркер будущей фичи.
+- **`roles/synchronizer/README.md`** новая секция «Author-only скрипты» объясняет, почему файл есть в шаблоне, но не запускается у пользователей; даёт ссылку на правильный пользовательский путь (MCP-инструмент `dt_write_digital_twin` в IWE Gateway).
+
+Триггер: пользовательский запрос (boberru@gmail.com 24 апр) — шаблон требовал NEON_URL/DT_USER_ID, что является L3-утечкой секретов автора. Системная замена psycopg2-writer → REST endpoint (`POST /hub/events`) через Activity Hub запланирована фазой P2b в `DP.ROADMAP.001-neon-migration.md` (WP-253), активация после P2 (создание #2 journal, ориентир июнь 2026).
+
+## [0.27.3] — 2026-04-24
+
+### Added
+- **`setup/validate-template.sh` check 7 + `.github/workflows/validate-template.yml` job «Check hooks cross-ref»** (systemic followup к #13). Проверяет cross-ref в обе стороны: (a) FAIL если hook упомянут в `settings.json*`, но файла нет в `.claude/hooks/`; (b) WARN если hook есть в директории, но не упомянут ни в одном settings.json (может быть direct-call, как `wakatime-heartbeat.sh`). Покрывает оба направления drift'а (settings→hooks и hooks→settings). Предотвращает повторение issue #13.
+
+### Fixed
+- **`setup/validate-template.sh` check 2** добавлен `--exclude='CHANGELOG.md'` (зеркально с CI workflow) — CHANGELOG содержит `/Users/...` в описаниях и создавал false-positive.
+
+## [0.27.2] — 2026-04-23
+
+### Fixed
+- **`.claude/hooks/extensions-gate.sh`** (closes #13) — добавлен отсутствующий hook. Ссылка на файл жила в `.claude/settings.json:44` (PreToolUse matcher `Edit|Write`) с 7 апр (коммит `af73cd3`, WP-207), но сам скрипт так и не попал в шаблон — у нового пилота первый же `Write`/`Edit` падал с ошибкой «hook file not found». Хук реализует блокирующий Extensions Gate (CLAUDE.md §9): прямое редактирование `.claude/skills/*.md` или `memory/protocol-*.md` блокируется с подсказкой использовать `extensions/*.md`. Исключения: `author_mode: true` в `params.yaml`, путь `FMT-exocortex-template`. Корневая причина: `setup/validate-template.sh` не проверяет соответствие `settings.json` hooks ↔ содержимое `.claude/hooks/` (проверяет 6 других вещей, но не cross-ref). Попутная находка: `wakatime-heartbeat.sh` есть в hooks/, но не упомянут в settings.json (тот же класс drift'а в обратную сторону). Systemic followup (отдельный WP на W18): расширить validate-template.sh проверкой cross-ref + включить в pre-commit/CI FMT, плюс определить судьбу архивированного `template-sync.sh`.
+
+## [0.27.1] — 2026-04-22
+
+### Changed
+- **Rollback S-27 «Здоровье платформы»** — секция содержала авторские сервисы (`@aist_me_bot`, `digital-twin`, `gateway-mcp`, `content-pipeline`, `knowledge-mcp`), не применимые обычному пользователю FMT. Перенесена в авторские `extensions/day-open.after.md`. Files: `memory/templates-dayplan.md`, `.claude/skills/day-open/SKILL.md`, `.claude/hooks/protocol-artifact-validate.sh` — удалена секция + step 5b «Бот QA»; SECTIONS хука урезан с 11 до 6. Источник: косяк промоции S-27 — тест «применимо пустому пользователю?» (см. авторский `memory/feedback_post_promote_sync.md`).
+- **L3 leak cleanup (параметризация через env-vars):** `.claude/hooks/protocol-artifact-validate.sh`, `scripts/day-close.sh`, `roles/strategist/scripts/cleanup-processed-notes.py`, `roles/synchronizer/scripts/dt-collect.sh`, `roles/strategist/prompts/{note-review,session-prep}.md` — хардкод `DS-my-strategy`, `DS-agent-workspace/scheduler/feedback-triage/`, `~/IWE/DS-my-strategy` заменён на `$IWE_WORKSPACE` + `$IWE_GOVERNANCE_REPO` (fallback: `DS-strategy`) и условные `if настроены агенты-сборщики QA`.
+- **`memory/hard-distinctions.md` HD #49:** примеры MCP-именования обобщены (`digital-twin-mcp`, `knowledge-mcp` → `<domain>-mcp`). `memory/checklists.md`: урок «knowledge-mcp stale index» → «MCP-индекс». `memory/navigation.md`: таблица MCP → placeholder'ы. `CLAUDE.md`: удалено правило `engines/tailor` (авторская реализация бота).
+- **`.claude/skills/ke/SKILL.md`, `memory/{repo-type-rules,protocol-open}.md`:** `DS-my-strategy` → `<governance-repo>` (env).
+
+### Added
+- **CI smoke-test** (`.github/workflows/validate-template.yml`): job «Smoke-test protocol hooks on clean user env» — создаёт tmp-окружение с `DS-strategy` + минимальным DayPlan и прогоняет `protocol-artifact-validate.sh`. Падает, если хук блокирует commit на чистом пользователе. Перехватывает L1→L3 утечки, которые пропускает blacklist.
+- **Расширенный blacklist** (два уровня) в `validate-template.yml` + зеркально в локальном `setup/validate-template.sh`: глобальный (запрещено везде: `tserentserenov`, `PACK-MIM`, `aist_bot_newarchitecture`, `DS-Knowledge-Index-Tseren`, `DS-my-strategy`, `engines/tailor`) и protocol-only (запрещено в `.claude/skills|hooks|rules`, `memory`, `CLAUDE.md`, но разрешено в README/docs: `@aist_me_bot`, `digital-twin`, `content-pipeline`, `knowledge-mcp`, `gateway-mcp`, `DS-agent-workspace/scheduler`). Покрытие расширено на `roles/`.
+
+### Fixed
+- CI `validate-template.yml` — зеркалирование exclude-логики локального валидатора для путей (`/Users/...`, `/opt/homebrew`) + shellcheck severity: warning→error (0 pred-existing errors, CI зеленеет).
+
+## [0.27.0] — 2026-04-21
+
+### Added
+- **seed/strategy/docs/Strategy.md** — секция «Состояние месяца — фаза стратегической позиции» (PD.FORM.078: 4 фазы Развитие/Хаос/Потолок/Пивот, диагностика по 5 сигналам, playbook, сигналы перехода) + секция «Калибр личности» (PD.CHR.007, gap-analysis по 3 направлениям: горизонт / bus factor / публичность) + строка-источник «НЭП-триады» перед таблицей R1-R{N}. Strategy Session теперь начинается с явной декларации фазы и playbook-а под неё, а не с произвольного выбора РП. Источник: WP-196 Ф12.1, S-26 promoted.
+- **memory/templates-dayplan.md** (WeekPlan) — блоки «Применённые критерии отбора РП» (PD.METHOD.017 + Time-boxing Shape Up: РП без 50% бюджета к четвергу → пересмотр на следующей сессии) + «ТОС недели + запрос недели» на открытии; секция «## Week Close» с 4 подсекциями (сверка РП↔НЭП, рекомендации изменений в НЭП/Стратегию, carry-over, мультипликатор и метрики) на закрытии. Источник: WP-196 Ф12.1, S-26.
+- **memory/templates-dayplan.md** (DayPlan) — секция «Day Close» с 3 подсекциями (три варианта плана на завтра A/B/C, KE-маршрутизация, сверка с НЭП). Day Close теперь имеет видимую структуру весь день, а не появляется «в момент закрытия». Источник: WP-196 Ф12.1, S-26.
+
+### Changed
+- **memory/templates-dayplan.md, .claude/skills/day-open/SKILL.md, .claude/hooks/protocol-artifact-validate.sh** — секция `Здоровье бота (QA)` переименована в `Здоровье платформы` (семантически strict superset: старая секция стала подзаголовком `### Бот @aist_me_bot (QA)`, добавлены `### Остальные MCP-сервисы` + `### Operational health`). Хук валидатора обновлён в lockstep (список секций + awk range + сообщение ошибки). Привязка: WP-255 (L3/L4 AI Quality для всех MCP) draft + HD «Internal health ≠ Public status page». Источник: WP-196 Ф12.3 partial, S-27 promoted.
+
 ## [0.26.4] — 2026-04-18
 
 ### Added
