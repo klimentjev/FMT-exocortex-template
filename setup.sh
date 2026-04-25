@@ -309,24 +309,23 @@ echo "[1/6] Configuring placeholders..."
 if $DRY_RUN; then
     PLACEHOLDER_FILES=$(find "$TEMPLATE_DIR" -type f \( -name "*.md" -o -name "*.json" -o -name "*.sh" -o -name "*.plist" -o -name "*.yaml" -o -name "*.yml" \) | wc -l | tr -d ' ')
     echo "  [DRY RUN] Would substitute placeholders in $PLACEHOLDER_FILES files"
-    echo "    klimentjev → $GITHUB_USER"
-    echo "    /mnt/c/Users/admin/IWE → $WORKSPACE_DIR"
-    echo "    /mnt/c/Users/admin/AppData/Roaming/npm/claude → $CLAUDE_PATH"
-    echo "    -mnt-c-Users-admin-IWE → $CLAUDE_PROJECT_SLUG"
-    echo "    4 → $TIMEZONE_HOUR"
-    echo "    4:00 UTC → $TIMEZONE_DESC"
-    echo "    /mnt/c/Users/admin → $HOME_DIR"
+    echo "    klimentjev → $GITHUB_USER"
+    echo "    /mnt/c/Users/admin/IWE → $WORKSPACE_DIR"
+    echo "    /mnt/c/Users/admin/AppData/Roaming/npm/claude → $CLAUDE_PATH"
+    echo "    -mnt-c-Users-admin-IWE → $CLAUDE_PROJECT_SLUG"
+    echo "    4 → $TIMEZONE_HOUR"
+    echo "    4:00 UTC → $TIMEZONE_DESC"
+    echo "    /mnt/c/Users/admin → $HOME_DIR"
 else
-    CR=$'\r'
     find "$TEMPLATE_DIR" -type f \( -name "*.md" -o -name "*.json" -o -name "*.sh" -o -name "*.plist" -o -name "*.yaml" -o -name "*.yml" \) | while IFS= read -r file; do
         sed_inplace \
-            -e "s|klimentjev$CR|$GITHUB_USER|g" \
-            -e "s|/mnt/c/Users/admin/IWE$CR|$WORKSPACE_DIR|g" \
-            -e "s|/mnt/c/Users/admin/AppData/Roaming/npm/claude$CR|$CLAUDE_PATH|g" \
-            -e "s|-mnt-c-Users-admin-IWE$CR|$CLAUDE_PROJECT_SLUG|g" \
-            -e "s|4$CR|$TIMEZONE_HOUR|g" \
-            -e "s|4:00 UTC$CR|$TIMEZONE_DESC|g" \
-            -e "s|/mnt/c/Users/admin$CR|$HOME_DIR|g" \
+            -e "s|klimentjev|$GITHUB_USER|g" \
+            -e "s|/mnt/c/Users/admin/IWE|$WORKSPACE_DIR|g" \
+            -e "s|/mnt/c/Users/admin/AppData/Roaming/npm/claude|$CLAUDE_PATH|g" \
+            -e "s|-mnt-c-Users-admin-IWE|$CLAUDE_PROJECT_SLUG|g" \
+            -e "s|4|$TIMEZONE_HOUR|g" \
+            -e "s|4:00 UTC|$TIMEZONE_DESC|g" \
+            -e "s|/mnt/c/Users/admin|$HOME_DIR|g" \
             "$file"
     done
 
@@ -426,31 +425,6 @@ else
     if [ -f "$TEMPLATE_DIR/.claude/settings.json" ]; then
         cp "$TEMPLATE_DIR/.claude/settings.json" "$WORKSPACE_DIR/.claude/settings.json"
         echo "  ✓ .claude/settings.json"
-        _IWE_SETTINGS_JSON="$WORKSPACE_DIR/.claude/settings.json" node <<'NODE'
-const fs = require("fs");
-const p = process.env._IWE_SETTINGS_JSON;
-if (!p || !fs.existsSync(p)) process.exit(0);
-const d = JSON.parse(fs.readFileSync(p, "utf8"));
-if (!d.permissions) d.permissions = {};
-const ad = Array.isArray(d.permissions.additionalDirectories) ? d.permissions.additionalDirectories : [];
-d.permissions.additionalDirectories = ad.filter((x) => x !== ".claude/hooks" && x !== "./.claude/hooks");
-if (d.hooks && typeof d.hooks === "object") {
-  for (const eventName of Object.keys(d.hooks)) {
-    const blocks = d.hooks[eventName];
-    if (!Array.isArray(blocks)) continue;
-    for (const block of blocks) {
-      if (!block || !Array.isArray(block.hooks)) continue;
-      for (const hook of block.hooks) {
-        if (!hook || hook.type !== "command" || typeof hook.command !== "string") continue;
-        const m = hook.command.match(/^\.claude\/hooks\/([A-Za-z0-9_-]+\.sh)$/);
-        if (m) hook.command = `bash scripts/run-claude-hook.sh ${m[1]}`;
-      }
-    }
-  }
-}
-fs.writeFileSync(p, JSON.stringify(d, null, 2) + "\n", "utf8");
-NODE
-        echo "  ✓ .claude/settings.json нормализован для hooks-wrapper"
     fi
 fi
 
