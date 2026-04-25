@@ -512,6 +512,38 @@ for f in "${NEW_FILES[@]}" "${UPDATED_FILES[@]}"; do
     esac
 done
 
+# Normalize hook settings after template sync:
+# - remove .claude/hooks from additionalDirectories
+# - rewrite direct .claude/hooks/*.sh commands to wrapper script
+for SETTINGS_JSON in "$SCRIPT_DIR/.claude/settings.json" "$WORKSPACE_DIR/.claude/settings.json"; do
+    [ -f "$SETTINGS_JSON" ] || continue
+    _IWE_SETTINGS_JSON="$SETTINGS_JSON" node <<'NODE'
+const fs = require("fs");
+const p = process.env._IWE_SETTINGS_JSON;
+if (!p || !fs.existsSync(p)) process.exit(0);
+const d = JSON.parse(fs.readFileSync(p, "utf8"));
+if (!d.permissions) d.permissions = {};
+const ad = Array.isArray(d.permissions.additionalDirectories) ? d.permissions.additionalDirectories : [];
+d.permissions.additionalDirectories = ad.filter((x) => x !== ".claude/hooks" && x !== "./.claude/hooks");
+if (d.hooks && typeof d.hooks === "object") {
+  for (const eventName of Object.keys(d.hooks)) {
+    const blocks = d.hooks[eventName];
+    if (!Array.isArray(blocks)) continue;
+    for (const block of blocks) {
+      if (!block || !Array.isArray(block.hooks)) continue;
+      for (const hook of block.hooks) {
+        if (!hook || hook.type !== "command" || typeof hook.command !== "string") continue;
+        const m = hook.command.match(/^\.claude\/hooks\/([A-Za-z0-9_-]+\.sh)$/);
+        if (m) hook.command = `bash scripts/run-claude-hook.sh ${m[1]}`;
+      }
+    }
+  }
+}
+fs.writeFileSync(p, JSON.stringify(d, null, 2) + "\n", "utf8");
+NODE
+    echo "  ✓ $(basename "$SETTINGS_JSON") нормализован для hooks-wrapper"
+done
+
 # (Step 6b removed — repo rename no longer supported, no link migration needed)
 
 # === Step 6b2: Ensure ~/.iwe-paths exists (WP-219, DP.FM.009) ===
