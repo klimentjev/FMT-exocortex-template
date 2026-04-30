@@ -9,20 +9,20 @@
 
 ## Контекст
 
-- **WeekPlan:** /mnt/c/Users/admin/IWE/DS-strategy/current/WeekPlan W*.md (последний по дате)
-- **MEMORY:** ~/.claude/projects/-mnt-c-Users-admin-IWE/memory/MEMORY.md
-- **Exocortex backup:** /mnt/c/Users/admin/IWE/DS-strategy/exocortex/
+- **WeekPlan:** {{WORKSPACE_DIR}}/{{GOVERNANCE_REPO}}/current/WeekPlan W*.md (последний по дате)
+- **MEMORY:** ~/.claude/projects/{{CLAUDE_PROJECT_SLUG}}/memory/MEMORY.md
+- **Exocortex backup:** {{WORKSPACE_DIR}}/{{GOVERNANCE_REPO}}/exocortex/
 
 ## Алгоритм
 
 ### 1. Сбор коммитов за сегодня
 
 ```bash
-# Для КАЖДОГО репо в /mnt/c/Users/admin/IWE/:
-git -C /mnt/c/Users/admin/IWE/<repo> log --since="today 00:00" --oneline --no-merges
+# Для КАЖДОГО репо в {{WORKSPACE_DIR}}/:
+git -C {{WORKSPACE_DIR}}/<repo> log --since="today 00:00" --oneline --no-merges
 ```
 
-- Пройди по ВСЕМ репозиториям в `/mnt/c/Users/admin/IWE/`
+- Пройди по ВСЕМ репозиториям в `{{WORKSPACE_DIR}}/`
 - Сгруппируй коммиты по репозиториям
 - Сопоставь с РП из недельного плана
 - Определи статус каждого затронутого РП: done / partial / not started
@@ -30,7 +30,7 @@ git -C /mnt/c/Users/admin/IWE/<repo> log --since="today 00:00" --oneline --no-m
 
 ### 2. Обновить WeekPlan
 
-Найди текущий `WeekPlan W*.md` в `DS-strategy/current/` и обнови:
+Найди текущий `WeekPlan W*.md` в `{{GOVERNANCE_REPO}}/current/` и обнови:
 
 - Пометь завершённые РП как **done**
 - Обнови статусы partial с описанием прогресса
@@ -46,20 +46,20 @@ git -C /mnt/c/Users/admin/IWE/<repo> log --since="today 00:00" --oneline --no-m
 
 ### 4. Backup экзокортекса
 
-Скопируй актуальные файлы в `/mnt/c/Users/admin/IWE/DS-strategy/exocortex/`:
+Скопируй актуальные файлы в `{{WORKSPACE_DIR}}/{{GOVERNANCE_REPO}}/exocortex/`:
 
 ```bash
 # Корневой CLAUDE.md
-cp /mnt/c/Users/admin/IWE/CLAUDE.md /mnt/c/Users/admin/IWE/DS-strategy/exocortex/CLAUDE.md
+cp {{WORKSPACE_DIR}}/CLAUDE.md {{WORKSPACE_DIR}}/{{GOVERNANCE_REPO}}/exocortex/CLAUDE.md
 
 # Memory (Слой 3)
-cp ~/.claude/projects/-mnt-c-Users-admin-IWE/memory/MEMORY.md /mnt/c/Users/admin/IWE/DS-strategy/exocortex/MEMORY.md
-cp ~/.claude/projects/-mnt-c-Users-admin-IWE/memory/*.md /mnt/c/Users/admin/IWE/DS-strategy/exocortex/
+cp ~/.claude/projects/{{CLAUDE_PROJECT_SLUG}}/memory/MEMORY.md {{WORKSPACE_DIR}}/{{GOVERNANCE_REPO}}/exocortex/MEMORY.md
+cp ~/.claude/projects/{{CLAUDE_PROJECT_SLUG}}/memory/*.md {{WORKSPACE_DIR}}/{{GOVERNANCE_REPO}}/exocortex/
 ```
 
 ### 5. Закоммитить
 
-- Закоммить все изменения в `DS-strategy` (WeekPlan + exocortex backup)
+- Закоммить все изменения в `{{GOVERNANCE_REPO}}` (WeekPlan + exocortex backup)
 - Запуши
 
 ## Правила
