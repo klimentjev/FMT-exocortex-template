@@ -51,6 +51,15 @@ hash_file() {
     sha256sum "$1" 2>/dev/null | cut -d' ' -f1
 }
 
+# Upstream всегда кладёт command: .claude/hooks/*.sh → Cursor на Windows открывает вкладки.
+# Логика в scripts/run-post-update-cursor-normalize.sh (на случай если update.sh перезаписан с GitHub).
+
+normalize_claude_settings_cursor() {
+    local sh="$SCRIPT_DIR/scripts/run-post-update-cursor-normalize.sh"
+    [ -f "$sh" ] || return 0
+    SCRIPT_DIR="$SCRIPT_DIR" WORKSPACE_DIR="$WORKSPACE_DIR" bash "$sh" || true
+}
+
 # === Detect directories ===
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 
@@ -190,6 +199,9 @@ echo ""
 
 if [ "$TOTAL_CHANGES" -eq 0 ]; then
     echo "✓ Всё актуально. Обновлений нет. ($UNCHANGED файлов проверено)"
+    echo ""
+    echo "[Cursor] Нормализация .claude/settings.json (хуки → run-claude-hook)..."
+    normalize_claude_settings_cursor || true
     exit 0
 fi
 
@@ -615,6 +627,10 @@ for f in "${NEW_FILES[@]}" "${UPDATED_FILES[@]}"; do
         ;;
     esac
 done
+
+echo ""
+echo "[Cursor] Нормализация .claude/settings.json (хуки → run-claude-hook, без additionalDirectories на .claude/hooks)..."
+normalize_claude_settings_cursor || true
 
 # (Step 6b removed — repo rename no longer supported, no link migration needed)
 

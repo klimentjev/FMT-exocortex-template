@@ -5,7 +5,9 @@ alwaysApply: true
 
 # Hook-скрипты Claude Code и агент Cursor
 
-Исполняемые хуки для **Claude Code** настроены в `.claude/settings.json`: команда **`bash scripts/run-claude-hook.sh <имя.sh>`** — тело выполняется из **`%USERPROFILE%\.iwe\claude-hooks\`** (установка: `scripts/install-claude-hooks.ps1`, эталон в `share/claude-hooks-dist/`). Копии в `.claude/hooks/` в репо — для `update.sh` / платформы; Cursor не должен открывать их при срабатывании хуков.
+Исполняемые хуки для **Claude Code** настроены в `.claude/settings.json`: команда **`bash scripts/run-claude-hook.sh <имя.sh>`** — тело выполняется из **`%USERPROFILE%\.iwe\claude-hooks\`** (установка: `scripts/install-claude-hooks.ps1`, эталон в `share/claude-hooks-dist/`). Копии в `.claude/hooks/` в репо — для платформы; Cursor не должен открывать их при срабатывании хуков.
+
+После **`update.sh`** upstream может вернуть `command: .claude/hooks/…` → снова открываются вкладки. В этом репо **`update.sh` вызывает `scripts/run-post-update-cursor-normalize.sh`**; если ваш `update.sh` перезаписан шагом [0] с GitHub без этого вызова — один раз выполните: **`bash scripts/run-post-update-cursor-normalize.sh`**, затем **`scripts/install-claude-hooks.ps1`** при новых именах скриптов в `share/claude-hooks-dist/`.
 
 Напоминания для агента **в Cursor** заданы отдельными файлами с префиксом iwe- в каталоге правил редактора.
 

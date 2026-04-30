@@ -469,6 +469,9 @@ else
     if [ -f "$TEMPLATE_DIR/.claude/settings.json" ]; then
         cp "$TEMPLATE_DIR/.claude/settings.json" "$WORKSPACE_DIR/.claude/settings.json"
         echo "  ✓ .claude/settings.json"
+        if [ -f "$TEMPLATE_DIR/scripts/run-post-update-cursor-normalize.sh" ] && command -v node >/dev/null 2>&1; then
+            SCRIPT_DIR="$TEMPLATE_DIR" WORKSPACE_DIR="$WORKSPACE_DIR" bash "$TEMPLATE_DIR/scripts/run-post-update-cursor-normalize.sh" || true
+        fi
     fi
 fi
 
