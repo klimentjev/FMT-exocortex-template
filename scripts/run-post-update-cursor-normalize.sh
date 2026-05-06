@@ -33,6 +33,11 @@ normalize_ws_line() {
 }
 
 paths=("$REPO_ROOT/.claude/settings.json" "$WORKSPACE_DIR/.claude/settings.json")
+for hf in "${HOME:-}" "${USERPROFILE:-}"; do
+  [ -z "$hf" ] && continue
+  gs="$hf/.claude/settings.json"
+  [ -f "$gs" ] && paths+=("$gs")
+done
 for ef in "$WORKSPACE_DIR/.exocortex.env" "$REPO_ROOT/.exocortex.env"; do
   [ -f "$ef" ] || continue
   env_ws=$(grep -E '^WORKSPACE_DIR=' "$ef" 2>/dev/null | head -1)

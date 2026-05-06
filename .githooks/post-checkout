@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+# После checkout — на случай смены ветки с другим settings.json
+ROOT="$(git rev-parse --show-toplevel 2>/dev/null)" || exit 0
+SCRIPT="$ROOT/scripts/run-post-update-cursor-normalize.sh"
+[ ! -f "$SCRIPT" ] && exit 0
+echo "[post-checkout] IWE: нормализация Claude settings под Cursor..."
+SCRIPT_DIR="$ROOT" WORKSPACE_DIR="$(dirname "$ROOT")" bash "$SCRIPT" || true
