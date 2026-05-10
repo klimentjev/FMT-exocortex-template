@@ -54,10 +54,12 @@ done
 
 ### 3. Архивация
 
+- **DayPlan сегодняшнего дня** → `git mv current/DayPlan $(date +%Y-%m-%d).md archive/day-plans/`. Если есть DayPlan'ы прошлых дней в `current/` (накопленный мусор) — заархивировать их тоже одной командой.
 - Done WP context files → `mv inbox/WP-{N}-*.md → archive/wp-contexts/`
 - Done РП → удалить строку из MEMORY.md (они уже в WP-REGISTRY и WeekPlan)
 
 > MEMORY.md хранит ТОЛЬКО активные РП (in_progress + pending). Done = удалить.
+> Архивация DayPlan ОБЯЗАТЕЛЬНА: следующий Day Open читает carry-over из `archive/day-plans/DayPlan {вчера}.md` и предполагает, что `current/` чистый.
 
 ### 4б. Memory Drift Scan
 
@@ -158,10 +160,28 @@ SCRIPT="{{WORKSPACE_DIR}}/{{GOVERNANCE_REPO}}/scripts/check-index-health.py"
 
 **Валидация «Завтра начать с» (ADR-207):** поле не пустое + каждый pending РП упомянут + каждый содержит конкретный next action (не «продолжить работу»).
 
+**Postcondition 9a (машинная проверка — НЕ пропускать):**
+```bash
+TODAY=$(date +%Y-%m-%d)
+grep -l "Итоги дня" {{HOME_DIR}}/IWE/{{GOVERNANCE_REPO}}/archive/day-plans/DayPlan\ ${TODAY}.md 2>/dev/null \
+  | xargs grep -l "${TODAY}" 2>/dev/null \
+  | grep -q . && echo "9a OK" || echo "9a FAIL: итоги не найдены в DayPlan ${TODAY}"
+```
+Результат `9a FAIL` → шаг НЕ помечать completed, вернуться к записи.
+
 **9b.** Дописать сводку итогов в WeekPlan:
 - Формат: `<details><summary><b>Итоги {день} {дата}</b></summary>...</details>`
 - Порядок: свежие итоги СВЕРХУ (обратная хронология)
 - Содержание: таблица коммитов по репо, закрытые РП, продвинутые РП, мультипликатор
+
+**Postcondition 9b (машинная проверка — НЕ пропускать):**
+```bash
+TODAY=$(date +%Y-%m-%d)
+DAY_NUM=$(date +%-d)
+grep -rl "Итоги.*${DAY_NUM}" {{HOME_DIR}}/IWE/{{GOVERNANCE_REPO}}/current/WeekPlan\ W*.md 2>/dev/null \
+  | grep -q . && echo "9b OK" || echo "9b FAIL: итоги не найдены в WeekPlan"
+```
+Результат `9b FAIL` → шаг НЕ помечать completed, вернуться к записи.
 
 ### 9c. Extensions (after)
 
@@ -192,6 +212,7 @@ SCRIPT="{{WORKSPACE_DIR}}/{{GOVERNANCE_REPO}}/scripts/check-index-health.py"
 - [ ] Синхронизация downstream: `update.sh` выполнен
 - [ ] Linear sync: статусы соответствуют git. Пост-sync чек: кол-во active РП в REGISTRY = кол-во active issues в Linear
 - [ ] Repo CLAUDE.md: feat-коммиты → новые правила?
+- [ ] DayPlan сегодня → `archive/day-plans/` (старые DayPlan'ы в `current/` тоже)
 - [ ] WP context: done → `mv inbox/ → archive/wp-contexts/`
 - [ ] Lesson Hygiene: уроки MEMORY.md ≤8
 - [ ] Draft-list: Pack обогащён → черновик предложен?
@@ -200,9 +221,9 @@ SCRIPT="{{WORKSPACE_DIR}}/{{GOVERNANCE_REPO}}/scripts/check-index-health.py"
 - [ ] Backup: `day-close.sh` выполнен
 - [ ] Верификация compliance: /verify запускался сегодня?
 - [ ] WakaTime + Мультипликатор: часы, бюджет, остаток недели
-- [ ] Итоги дня записаны в DayPlan
+- [ ] Итоги дня записаны в DayPlan **(postcondition 9a: grep подтверждён)**
 - [ ] Handoff-валидация: «Завтра начать с» содержит ВСЕ pending РП с конкретным next action
-- [ ] Сводка итогов записана в WeekPlan (`<details>`, обратная хронология)
+- [ ] Сводка итогов записана в WeekPlan (`<details>`, обратная хронология) **(postcondition 9b: grep подтверждён)**
 - [ ] Новое репо → MAPSTRATEGIC.md + Strategy.md
 
 Все ✅ → «День закрыт.» Иначе — указать что осталось.

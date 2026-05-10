@@ -5,9 +5,9 @@ alwaysApply: true
 
 # Hook-скрипты Claude Code и агент Cursor
 
-Исполняемые хуки для **Claude Code** настроены в `.claude/settings.json`: команда **`bash scripts/run-claude-hook.sh <имя.sh>`** — тело выполняется из **`%USERPROFILE%\.iwe\claude-hooks\`** (установка: `scripts/install-claude-hooks.ps1`, эталон в `share/claude-hooks-dist/`). Копии в `.claude/hooks/` в репо — для платформы; Cursor не должен открывать их при срабатывании хуков.
+Исполняемые хуки для **Claude Code**: команда **`bash scripts/run-claude-hook.sh <имя.sh>`** — тело в **`%USERPROFILE%\.iwe\claude-hooks\`** (`install-claude-hooks.ps1`, эталон `share/claude-hooks-dist/`). В **`.claude/settings.local.json`** лежит overlay **`hooks`** (перекрывает upstream и убирает вкладки `.claude/hooks` в Cursor); **`normalize-claude-settings-cursor.js`** пересобирает его из **`settings.json`**, не затирая ваши **`permissions`** / **`mcpServers`**.
 
-Upstream снова подставляет `command: .claude/hooks/…` → вкладки в Cursor. Шаг **`update.sh`** **[0]** с GitHub подменяет **`update.sh`** целиком и удаляет локальный хвост с автонормализацией. Выходы: **`bash scripts/exocortex-update.sh`** вместо **`bash update.sh`** (пост-нормализация всегда в конце); **`touch .iwe-skip-update-sh-bootstrap`** в корне репозитория — bootstrap **[0]** не перезаписывает ваш **`update.sh`**; вручную после апдейта **`bash scripts/run-post-update-cursor-normalize.sh`** и **`scripts/install-claude-hooks.ps1`**. Для **`git pull`/merge**: срабатывают **`.githooks/post-merge`** и **`post-checkout`** при **`core.hooksPath=.githooks`**.
+Upstream в **`settings.json`** снова подставляет `.claude/hooks/…`. Шаг **`update.sh` [0]** с GitHub затирает патченый **`update.sh`**. В корне репозитория — **`.iwe-skip-update-sh-bootstrap`** (отключает [0]). Либо **`bash scripts/exocortex-update.sh`**, либо после апдейта **`bash scripts/run-post-update-cursor-normalize.sh`**. **`git pull`**: при **`core.hooksPath=.githooks`** — **post-merge** / **post-checkout**.
 
 Напоминания для агента **в Cursor** заданы отдельными файлами с префиксом iwe- в каталоге правил редактора.
 

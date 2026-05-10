@@ -347,7 +347,7 @@ for i in "${!DEPRECATED_FOUND[@]}"; do
             ;;
         esac
         # Also remove from Claude memory dir (memory/* files)
-        case "$f" in memory/*.md)
+        case "$f" in memory/*.md|memory/*.yaml|memory/*.yml)
             mem_path="$CLAUDE_MEMORY_DIR/$(basename "$f")"
             [ -f "$mem_path" ] && rm "$mem_path" && echo "    (также из memory/)"
             ;;
@@ -588,7 +588,7 @@ if [ -d "$CLAUDE_MEMORY_DIR" ]; then
     MEM_UPDATED=0
     for f in "${NEW_FILES[@]}" "${UPDATED_FILES[@]}"; do
         case "$f" in
-            memory/*.md)
+            memory/*.md|memory/*.yaml|memory/*.yml)
                 fname=$(basename "$f")
                 if [ "$fname" != "MEMORY.md" ]; then
                     cp "$SCRIPT_DIR/$f" "$CLAUDE_MEMORY_DIR/$fname"
@@ -606,7 +606,7 @@ fi
 # Propagate skills, hooks, rules, lib, config, detectors to workspace if changed.
 # lib/config/detectors — runtime dependencies капчер-шины (capture-bus.sh) и детекторов.
 for f in "${NEW_FILES[@]}" "${UPDATED_FILES[@]}"; do
-    case "$f" in .claude/skills/*|.claude/hooks/*|.claude/rules/*|.claude/lib/*|.claude/config/*|.claude/detectors/*|.claude/settings.json)
+    case "$f" in .claude/skills/*|.claude/hooks/*|.claude/rules/*|.claude/lib/*|.claude/config/*|.claude/detectors/*|.claude/scripts/*|.claude/agents/*|.claude/settings.json)
         src="$SCRIPT_DIR/$f"
         dst="$WORKSPACE_DIR/$f"
         mkdir -p "$(dirname "$dst")"
@@ -774,6 +774,14 @@ if $ROLES_CHANGED && command -v launchctl >/dev/null 2>&1; then
                 echo "  ○ $(basename "$role_dir"): переустановите вручную"
         fi
     done
+fi
+
+# Cursor/Windows: после подтягивания манифеста .claude/settings.json снова может
+# содержать .claude/hooks/*.sh — IDE открывает эти файлы вкладками. См. docs/CURSOR-HOOKS-RESILIENCE.md
+if [ -f "$SCRIPT_DIR/scripts/run-post-update-cursor-normalize.sh" ]; then
+    echo ""
+    echo "[Cursor] Нормализация hooks в .claude/settings.json..."
+    SCRIPT_DIR="$SCRIPT_DIR" WORKSPACE_DIR="$WORKSPACE_DIR" bash "$SCRIPT_DIR/scripts/run-post-update-cursor-normalize.sh" || true
 fi
 
 # === Step 7: Commit changes ===

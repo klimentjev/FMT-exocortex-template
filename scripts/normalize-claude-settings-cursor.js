@@ -1,8 +1,10 @@
 #!/usr/bin/env node
 /**
- * Cursor/VS Code (Windows): running hooks as ".claude/hooks/*.sh" often opens editor tabs.
- * Rewrite to `bash scripts/run-claude-hook.sh <name>` (body from ~/.iwe/claude-hooks).
- * Strip `.claude/hooks` from permissions.additionalDirectories.
+ * Cursor/VS Code (Windows): hook commands ".claude/hooks/*.sh" открывают вкладки.
+ * 1) Патчит settings.json (additionalDirectories + команды).
+ * 2) Записывает .claude/settings.local.json с ключом "hooks" — merge в Claude Code
+ *    перекрывает upstream; файл не затирается update-manifest (обычно не в списке).
+ * 3) Существующий settings.local.json (permissions, mcpServers) сохраняется, добавляется hooks.
  */
 const fs = require("fs");
 
@@ -47,6 +49,10 @@ function patchCommands(node) {
   return changed;
 }
 
+function settingsLocalPath(settingsPath) {
+  return settingsPath.replace(/settings\.json$/i, "settings.local.json");
+}
+
 function processFile(filePath) {
   if (!fs.existsSync(filePath)) return false;
   let raw;
@@ -62,14 +68,44 @@ function processFile(filePath) {
     console.error(`  ✗ JSON parse failed: ${filePath}: ${e.message}`);
     return false;
   }
+
   const minBefore = JSON.stringify(d);
   normalizePermissions(d);
-  patchCommands(d.hooks);
+  if (d.hooks && typeof d.hooks === "object") {
+    patchCommands(d.hooks);
+  }
   const minAfter = JSON.stringify(d);
-  if (minBefore === minAfter) return false;
-  fs.writeFileSync(filePath, `${JSON.stringify(d, null, 2)}\n`, "utf8");
-  console.log(`  ✓ Cursor hook normalization — ${filePath}`);
-  return true;
+
+  if (minBefore !== minAfter) {
+    fs.writeFileSync(filePath, `${JSON.stringify(d, null, 2)}\n`, "utf8");
+    console.log(`  ✓ Cursor hook normalization — ${filePath}`);
+  }
+
+  const localPath = settingsLocalPath(filePath);
+  let local = {};
+  if (fs.existsSync(localPath)) {
+    try {
+      local = JSON.parse(fs.readFileSync(localPath, "utf8"));
+    } catch (e) {
+      console.error(`  ⚠ settings.local.json parse failed (${localPath}): ${e.message} — hooks-only merge`);
+    }
+  }
+
+  const merged = { ...local };
+  if (d.hooks && typeof d.hooks === "object") {
+    merged.hooks = d.hooks;
+  }
+
+  const localOut = `${JSON.stringify(merged, null, 2)}\n`;
+  const localPrev = fs.existsSync(localPath) ? fs.readFileSync(localPath, "utf8") : "";
+  let changed = minBefore !== minAfter;
+  if (localOut.replace(/\r\n/g, "\n") !== localPrev.replace(/\r\n/g, "\n")) {
+    fs.writeFileSync(localPath, localOut, "utf8");
+    console.log(`  ✓ hooks overlay (settings.local.json) — ${localPath}`);
+    changed = true;
+  }
+
+  return changed;
 }
 
 function main() {
@@ -83,7 +119,7 @@ function main() {
     if (processFile(p)) any = true;
   }
   if (!any && paths.some((p) => fs.existsSync(p))) {
-    console.log("  ○ Cursor hook normalization — файлы уже в порядке");
+    console.log("  ○ Cursor hook normalization — уже применено (и settings.local.json синхронен)");
   }
 }
 
