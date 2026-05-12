@@ -1,5 +1,5 @@
 ---
-valid_from: 2026-04-06
+valid_from: 2026-05-12
 originSessionId: 9a0e726a-951e-4408-9e02-94d7eeffbf74
 
 type: reference
@@ -14,7 +14,7 @@ description: "Справочник FPF паттернов применимых �
 ---
 # FPF (First Principles Framework) — справочник
 
-> Источник: `{{HOME_DIR}}/IWE/FPF/FPF-Spec.md` (4.6 MB, ~50000 строк)
+> Источник: `{{HOME_DIR}}/IWE/Base/FPF/FPF-Spec.md` (~6.2 MB, ~50000 строк)
 
 ## Когда читать FPF
 
@@ -85,7 +85,7 @@ description: "Справочник FPF паттернов применимых �
 ## C.28 CausalUse-CAL — практическое применение в IWE
 
 > Добавлен в FPF 2026-05-05 (pull +4138 строк). Источник ailev: systemsworld.club.
-> Полный текст: `FPF-Spec.md:45197`
+> Полный текст: `FPF-Spec.md:45752` (актуально для commit `136be3b`, 2026-05-10)
 
 **Суть.** Три коллапса, которые C.28 предотвращает:
 1. **Rung collapse** — ассоциация, интервенция и контрфактик смешаны в одном «причина X→Y»
@@ -139,4 +139,4 @@ description: "Справочник FPF паттернов применимых �
 
 ## Обновление
 
-Периодически: `cd {{HOME_DIR}}/IWE/FPF && git pull`
+Периодически: `cd {{HOME_DIR}}/IWE/Base/FPF && git pull`

@@ -4,7 +4,21 @@
 
 > Журнал синхронизаций с upstream (ailev/FPF). Обновляется еженедельно при week-close.
 
-### 2026-04-03 (сегодня)
+### 2026-05-12
+
+**Действие:** Синхронизация `Base/FPF` с `origin/main` (ailev/FPF, А. Левинчук).
+
+**FPF версия:** 20260510 (commit `136be3b`, 2026-05-10)
+- Последний коммит: «A.6.P terminology cleanup»; также подтянут `1f7c9e5` («authority-looking reliance tuning»).
+- Локальная ветка расходилась с upstream (локально был коммит `8ce4b36` dissertation subset); для соответствия официальной линии выполнен `git reset --hard origin/main`.
+
+**Побочные обновления:** `Base/FPF-VERSION.txt`, `memory/fpf-reference.md` (якорь C.28, путь к `FPF-Spec.md`, размер файла).
+
+**SPF / ZP:** без изменений.
+
+---
+
+### 2026-04-03
 
 **Действие:** Переименование `Principles/` → `Base/` (РП 7)
 
@@ -61,4 +75,4 @@ A: FPF — read-only копия. Конфликтов быть не должно
 
 ---
 
-*Last updated: 2026-04-03*
+*Last updated: 2026-05-12*
