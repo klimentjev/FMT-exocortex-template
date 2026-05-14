@@ -10,3 +10,6 @@ DS-exocortex-setup/
 .claude/settings.local.json
 .claude/checkpoint.md
 .claude/logs/
+
+# Windows task env (copy from setup/windows/iwe-task-env.example.sh)
+setup/windows/iwe-task-env.sh

@@ -32,7 +32,8 @@ else
     echo "[$(date '+%H:%M:%S')] WARN: legacy PROMPTS_DIR fallback на $PROMPTS_DIR (pre-WP-273). Запустите migrate-to-runtime-target.sh." >&2
 fi
 
-LOG_DIR="$HOME/logs/strategist"
+# IWE_LOG_ROOT: единый корень логов (Windows/Cursor — см. docs/CURSOR-WINDOWS-IWE.md). Иначе $HOME/logs.
+LOG_DIR="${IWE_LOG_ROOT:-$HOME/logs}/strategist"
 CLAUDE_PATH="{{CLAUDE_PATH}}"
 CLAUDE_TIMEOUT=1800  # 30 мин — защита от зависания Claude CLI
 

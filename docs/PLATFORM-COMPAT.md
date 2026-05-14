@@ -1,6 +1,16 @@
 # Platform Compatibility Checklist
 
-> Шаблон должен работать на macOS и Linux. Перед коммитом проверяй этот чеклист.
+> Шаблон ориентирован на **macOS** и **Linux**. На **Windows** bash-скрипты запускайте из **Git Bash** или WSL; планировщик ролей — **Task Scheduler** (см. [CURSOR-WINDOWS-IWE.md](CURSOR-WINDOWS-IWE.md), `setup/windows/`). Перед коммитом проверяй этот чеклист.
+
+## Windows и Cursor (кратко)
+
+| Тема | Рекомендация |
+|------|----------------|
+| Shell | `Git\bin\bash.exe` или WSL; не запускать `roles/*.sh` из PowerShell напрямую. |
+| Логи ролей | Опционально `IWE_LOG_ROOT` — общий каталог; подкаталоги `strategist/`, `extractor/`, `synchronizer/` (см. `docs/CURSOR-WINDOWS-IWE.md`). |
+| **launchd** / **~/Library/LaunchAgents** | Только **macOS**. На Windows — `setup/windows/register-iwe-role-tasks.ps1`. |
+| **brew** / **/opt/homebrew** | Только **macOS** (Apple Silicon). На Windows: `jq` через [Chocolatey](https://chocolatey.org/) / [Scoop](https://scoop.sh/) / MSYS2; `npx`/Node — с [nodejs.org](https://nodejs.org/). |
+| Cursor | Слэш-команды Claude Code (`/day-open`, …) в IDE не встроены; карта скиллов → `docs/CURSOR-WINDOWS-IWE.md` §3. |
 
 ## Запрещённые конструкции (без обёртки)
 
@@ -51,9 +61,9 @@ notify() {
 
 ## Архитектурные ограничения
 
-- **launchd / .plist** — macOS-only. На Linux нужен cron или systemd timer. Setup.sh пропускает шаг 5 на Linux.
-- **~/Library/LaunchAgents** — macOS path. Install-скрипты ролей пока macOS-only.
-- **/opt/homebrew/bin** — Apple Silicon macOS. В plist PATH — подставляется шаблоном, но не универсален.
+- **launchd / .plist** — **только macOS**. На Linux — cron или systemd timer; на Windows — Планировщик заданий (`setup/windows/register-iwe-role-tasks.ps1`, см. [CURSOR-WINDOWS-IWE.md](CURSOR-WINDOWS-IWE.md)). Setup.sh пропускает шаг 5 на Linux.
+- **~/Library/LaunchAgents** — **только macOS**. Install-скрипты `roles/*/install.sh` ставят plist в этот каталог.
+- **/opt/homebrew/bin** — **только macOS** (Apple Silicon). В plist PATH подставляется шаблоном, но не универсален; на Linux/Windows расширяйте PATH в своём окружении.
 - **Предотвращение сна** — скрипты определяют ОС автоматически: `caffeinate -diu` (macOS) / `systemd-inhibit` (Linux). На macOS **не используется** флаг `-s` — он игнорируется когда Optimized Battery Charging переключает профиль питания на батарею.
 - **Пробуждение ноутбука** — macOS: `pmset repeat wakeorpoweron`, Linux: `rtcwake` / systemd timer `WakeSystem=true`, Windows: Task Scheduler. Для macOS-ноутбуков рекомендуется `pmset -b sleep 0` (запрет idle sleep на батарейном профиле).
 
@@ -71,4 +81,4 @@ grep -rn "grep -P" --include="*.sh" .
 
 ---
 
-*Последнее обновление: 2026-03-16*
+*Последнее обновление: 2026-05-14*

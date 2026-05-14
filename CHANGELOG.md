@@ -5,6 +5,19 @@ All notable changes to FMT-exocortex-template will be documented in this file.
 Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 Versioning: [Semantic Versioning](https://semver.org/).
 
+## [Unreleased]
+
+### Added
+
+- **`docs/CURSOR-WINDOWS-IWE.md`** — Git Bash/WSL, `IWE_LOG_ROOT`, карта скиллов Cursor вместо слэш-команд Claude Code, ссылка на Планировщик заданий.
+- **`setup/windows/`** — `README.md`, `iwe-task-env.example.sh`, `register-iwe-role-tasks.ps1` для Strategist (утро + week review) и Extractor inbox-check (каждые 3 ч) вместо launchd.
+- **`params.cursor-windows.example.yaml`** — пример и комментарии для переноса в `params.yaml`.
+
+### Changed
+
+- **`roles/strategist/scripts/strategist.sh`**, **`roles/extractor/scripts/extractor.sh`**, **`roles/synchronizer/scripts/scheduler.sh`** — поддержка **`IWE_LOG_ROOT`** для единого корня логов (удобно на Windows).
+- **`docs/PLATFORM-COMPAT.md`**, **`extensions/README.md`**, **`.cursor/rules/iwe-day-open.mdc`** — явные пометки macOS/Linux/Windows и Cursor; `jq`/dry-run без привязки только к `brew`.
+
 ## [0.29.32] — 2026-05-06
 
 ### Fixed — WP-294 race-guard, state-файл переживал сессию

@@ -4,6 +4,14 @@
 >
 > Исключение — этот `README.md`: он обновляется как платформенный справочник (новые hook points, примеры). Пользовательский контент в нём не хранится.
 
+## Cursor и Windows
+
+- **Слэш-команды** (`/day-open`, `/run-protocol`, …) — механизм **Claude Code**; в **Cursor** выполняйте те же протоколы, открывая соответствующие `.claude/skills/<имя>/SKILL.md` по [карте в docs/CURSOR-WINDOWS-IWE.md](../docs/CURSOR-WINDOWS-IWE.md).
+- **PreToolUse-хуки** (`dry-run-gate.sh` и др.) — в первую очередь **Claude Code CLI**; в Cursor полагаемся на `.cursor/rules` и явное исполнение скиллов.
+- **`brew install jq`** — только **macOS/Linux** с Homebrew. На **Windows**: Chocolatey (`choco install jq`), Scoop (`scoop install jq`), или порт `jq` в MSYS2 / Git for Windows (если доступен).
+- **Пример `cp … ~/IWE/extensions/`** — в PowerShell: `Copy-Item` в `$env:USERPROFILE\IWE\extensions\` или копирование из Git Bash с путём `/c/Users/.../IWE/extensions/`.
+- **Dry-run sentinel** (ниже): в Cursor переменная `CLAUDE_SESSION_ID` может отсутствовать — используйте `IWE_SESSION_ID` или `noid` (см. комментарий в блоке bash).
+
 ## Dry-run контракт (БЛОКИРУЮЩЕЕ для extensions)
 
 > **Полный контракт:** [memory/dry-run-contract.md](../memory/dry-run-contract.md). Когда `/audit-installation` smoke-тестит ритуал, он создаёт sentinel `/tmp/iwe-dry-run-${SESSION_ID}.flag` и ожидает, что **никто не пишет**.
@@ -15,7 +23,8 @@ PreToolUse-хук `dry-run-gate.sh` блокирует Write/Edit/git-write/MCP-
 Если extension содержит write-логику (создание файла, INSERT в БД, отправка сообщения), **в начале** должна быть проверка sentinel:
 
 ```bash
-SID="${CLAUDE_SESSION_ID:-noid}"
+# Claude Code: CLAUDE_SESSION_ID. Cursor / ручной bash: задайте IWE_SESSION_ID или оставьте noid.
+SID="${IWE_SESSION_ID:-${CLAUDE_SESSION_ID:-noid}}"
 if [ -f "/tmp/iwe-dry-run-${SID}.flag" ]; then
     echo "[extension <name>] dry-run active, skipping write steps"
     exit 0
@@ -99,7 +108,7 @@ fi
 | `telegram_notifications` | Все роли | Telegram уведомления от ролей |
 | `extensions_dir` | Все протоколы | Директория расширений (default: `extensions`) |
 
-Подробности: [params.yaml](../params.yaml).
+Подробности: [params.yaml](../params.yaml). Пример комментариев для Windows/Cursor: [params.cursor-windows.example.yaml](../params.cursor-windows.example.yaml).
 
 ## Конфиг Day Open (day-rhythm-config.yaml)
 
@@ -195,7 +204,7 @@ cp my-extension-pack/extensions/* ~/IWE/extensions/
 }
 ```
 
-После `update.sh` эти серверы появятся в `.mcp.json`. Требуется `jq` (`brew install jq`).
+После `update.sh` эти серверы появятся в `.mcp.json`. Требуется `jq` в `PATH` (на macOS/Linux часто `brew install jq`; на Windows — см. раздел «Cursor и Windows» выше).
 
 **Важно:** `update.sh` не трогает `extensions/mcp-user.json` — ваши MCP в безопасности при обновлениях.
 

@@ -1,0 +1,18 @@
+# Пример params.yaml для ориентира (Windows + Cursor).
+# Скопируйте нужные строки в корневой params.yaml — update.sh его не затирает.
+# Протоколы читают только перечисленные в extensions/README ключи; блок ниже — справка + место для ваших флагов.
+#
+# Документация: docs/CURSOR-WINDOWS-IWE.md
+# Логи ролей вне этого файла: переменная окружения IWE_LOG_ROOT (см. setup/windows/iwe-task-env.example.sh).
+
+# --- стандартные ключи IWE (раскомментируйте при необходимости) ---
+# video_check: true
+# multiplier_enabled: true
+# reflection_enabled: true
+# lesson_rotation: true
+# auto_verify_code: false
+# verify_quick_close: true
+# telegram_notifications: false
+# extensions_dir: extensions
+
+# author_mode: false   # только для автора шаблона (см. CLAUDE.md §9)
