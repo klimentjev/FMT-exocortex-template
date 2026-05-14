@@ -776,14 +776,6 @@ if $ROLES_CHANGED && command -v launchctl >/dev/null 2>&1; then
     done
 fi
 
-# Cursor/Windows: после подтягивания манифеста .claude/settings.json снова может
-# содержать .claude/hooks/*.sh — IDE открывает эти файлы вкладками. См. docs/CURSOR-HOOKS-RESILIENCE.md
-if [ -f "$SCRIPT_DIR/scripts/run-post-update-cursor-normalize.sh" ]; then
-    echo ""
-    echo "[Cursor] Нормализация hooks в .claude/settings.json..."
-    SCRIPT_DIR="$SCRIPT_DIR" WORKSPACE_DIR="$WORKSPACE_DIR" bash "$SCRIPT_DIR/scripts/run-post-update-cursor-normalize.sh" || true
-fi
-
 # === Step 7: Commit changes ===
 echo ""
 echo "Фиксация изменений..."
