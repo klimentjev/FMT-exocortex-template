@@ -8,7 +8,7 @@
 | `PACK-logic/` | Логика, противоречия, предикация |
 | `PACK-history-of-philosophy/` | История философии, Парменид–Софист |
 | `PACK-philosophy-of-cognition/` | Условия помышления, познание |
-| `PACK-bibliography/` | SRC-карточки, библиография |
+| `PACK-bibliography/` | *(перенесено)* → `DS-strategy/library/` (`BIBLIOGRAPHY.md`, `sources/`) |
 | `PACK-education/` | Методика преподавания |
 
 **Путь от корня IWE:** `PACK/PACK-<имя>/`.

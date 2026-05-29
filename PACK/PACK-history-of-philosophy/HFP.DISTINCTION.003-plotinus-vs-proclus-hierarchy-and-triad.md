@@ -31,7 +31,7 @@ epistemic_stage: emerging
 
 ## Связи
 
-- [SRC.012](../PACK-bibliography/sources/SRC.012-Proclus-Elements-Theology-Losev1993.md) — Прокл, «Первоосновы теологии» (1993) (PACK-bibliography)
+- [SRC.012](../../DS-strategy/library/sources/SRC.012-Proclus-Elements-Theology-Losev1993.md) — Прокл, «Первоосновы теологии» (1993)
 - `DS-strategy/library/proclus/INDEX.md` — навигация по §
 - # TODO: привязать к SPF (U.*), если потребуется единый онтологический родитель
 

@@ -77,6 +77,13 @@ description: "Операционный файл памяти IWE"
 | Стратегия | `DS-strategy/docs/Strategy.md` |
 | Реестр всех РП (WP-1…WP-85+) | `DS-strategy/docs/WP-REGISTRY.md` |
 | WeekPlan | `DS-strategy/current/` |
+| Заметки и карточки цитат | `DS-strategy/notes/` |
+| Инструкция карточек цитат | `DS-strategy/notes/notes-cards-instruction/INSTRUCTION.md` |
+| Реестр изданий (карточки цитат) | `DS-strategy/library/sources/SOURCES.md` |
+| SRC-карточки изданий | `DS-strategy/library/sources/SRC.*.md` |
+| Библиография (ГОСТ) | `DS-strategy/library/BIBLIOGRAPHY.md` |
+| Манифест библиотеки | `DS-strategy/library/00-library-manifest.md` |
+| Вызов агента «Заметочник» | `memory/agent-zametochник.md` |
 
 ## GitHub-организации (НЕ путать!)
 
