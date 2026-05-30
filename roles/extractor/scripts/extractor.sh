@@ -28,8 +28,7 @@ else
     echo "[$(date '+%H:%M:%S')] WARN: legacy PROMPTS_DIR fallback на $PROMPTS_DIR (pre-WP-273). Запустите migrate-to-runtime-target.sh." >&2
 fi
 
-# IWE_LOG_ROOT переопределяет корень (см. docs/CURSOR-WINDOWS-IWE.md); иначе {{HOME_DIR}}/logs.
-LOG_DIR="${IWE_LOG_ROOT:-{{HOME_DIR}}/logs}/extractor"
+LOG_DIR="{{HOME_DIR}}/logs/extractor"
 CLAUDE_PATH="{{CLAUDE_PATH}}"
 ENV_FILE="{{HOME_DIR}}/.config/aist/env"
 

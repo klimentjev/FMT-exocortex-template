@@ -42,7 +42,7 @@ portable_date_offset() {
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 SYNC_DIR="$(dirname "$SCRIPT_DIR")"
 STATE_DIR="$HOME/.local/state/exocortex"
-LOG_DIR="${IWE_LOG_ROOT:-$HOME/logs}/synchronizer"
+LOG_DIR="$HOME/logs/synchronizer"
 LOG_FILE="$LOG_DIR/scheduler-$(date +%Y-%m-%d).log"
 
 # WP-273 R5 fix (Round 5 Евгения): substituted runners в .iwe-runtime/, но

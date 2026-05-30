@@ -5,18 +5,263 @@ All notable changes to FMT-exocortex-template will be documented in this file.
 Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 Versioning: [Semantic Versioning](https://semver.org/).
 
-## [Unreleased]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+## [Unreleased] — обновлено 2026-05-30
 
 ### Added
 
-- **`docs/CURSOR-WINDOWS-IWE.md`** — Git Bash/WSL, `IWE_LOG_ROOT`, карта скиллов Cursor вместо слэш-команд Claude Code, ссылка на Планировщик заданий.
-- **`setup/windows/`** — `README.md`, `iwe-task-env.example.sh`, `register-iwe-role-tasks.ps1` для Strategist (утро + week review) и Extractor inbox-check (каждые 3 ч) вместо launchd.
-- **`params.cursor-windows.example.yaml`** — пример и комментарии для переноса в `params.yaml`.
+- `04ba98e` feat: WP-358 Ф6 delivery — external sessions infrastructure
+- `abca838` feat(hooks): pre-commit gates PROMOTE-DRY-RUN + CLEAN-ENV-SMOKE (PD-2/PD-1, WP-347)
+- `a8eadab` feat(promote): promotion-status.yaml + record_promotion (PZ-6)
+- `36285bc` feat(coverage): coverage-skills.sh — B12a/b/c/d detector (PZ-3)
+- `ab2f461` feat(staging): staging-audit.sh — B12e decay detector (PZ-4)
+- `d575a6b` feat(sync): extend template-sync allowlist (PZ-2)
+- `2655dbb` feat(catalog): generate FMT skills-catalog.yaml (B12a artifact)
+- `a9ee8ac` feat(memory): backfill protocol-month-close.md to FMT (B12c)
+- `656262a` feat(rules): promote role-prefixes (S-15) to platform
+- `3b1cd77` feat(skills): promote bottleneck-pick (S-42+S-46) to platform L1
+- `8c15f16` feat(skill/day-close): мультипликатор считать ПО ФАКТУ + sanity check
+- `7285005` feat(distinctions): Ход (turn) ≠ Сессия (DP.SC.162 v2, WP-358)
+- `54e3f31` feat(distinctions): Session request/light/heavy — WP-358 peer-сессия 27 мая
+- `6e38782` feat(WP-350/Ф20): доставка Маршрутизатора и 5 скиллов в FMT через promote-конвейер
+- `1e32045` feat(manifest): MG5 — pre-commit hook для manifest coverage + 4 orphan-файла в манифест
+- `2136de9` feat(WP-350): JSON output, routing-path-distribution audit, routing-errors.log
+- `766eb3d` feat(WP-350): agent-fault skill для AGENT_FAULT routing
+- `33cc31d` feat(WP-350): strict/flex routing + test suite (8 cases)
+- `0b6afe1` feat(WP-350): промоция generate-executor-catalog.py + generate-helper-catalog.py
+- `cd2a295` feat(WP-350): routing-заголовки в 21 FMT хелпер-скрипт
+- `c571c55` feat(WP-350 Ф13): Маршрутизатор + Артефактор в Session Open
+- `7599ae5` feat(WP-350 Ф12): route-task.sh — Маршрутизатор задач IWE
+- `ceca611` feat(WP-350 Ф10): routing-заголовки в 20 скриптов + script_path в 3 SKILL.md
+- `6142f6a` feat(WP-350 Ф9): routing: секция в 21 скилл шаблона
+- `0ba2168` feat(WP-352/Ф3): add HD numbers to 4 FPF distinctions in distinctions.md
+- `b05a35b` feat(WP-352 Ф2): 4 FPF различения в distinctions.md
+- `016833a` feat(week-close): add step 7a iwe-backup-check.sh before backup
+- `836997c` feat: promote iwe-backup-check.sh to platform scripts
+- `a4260e7` feat(day-open): scaffold PENDING markers + protocol-close WP archiving step
+- `02bfe7d` feat: guard в script-promote.sh — блокирует перезапись фиксов FMT
+- `75d15f0` feat(WP-347 Ф3+Ф4): docs/RELEASE-PROCESS.md + правило валидатора в SCRIPT-PROMOTION.md
+- `95817fa` feat(WP-347 Ф2): CI-конвейер: B2 manifest CI + B8 set-e детектор + гранулярные флаги
+- `ce15f52` feat(rules): wp-scope — guard для umbrella РП
+- `40521e9` feat: WP-247 промоция — apply-captures + protocol-close.checks + inter-agent-handoff
+- `609eaa0` feat: promote iwe-agent-dispatcher.py to platform (WP-337 Ж-Ф4)
+- `e165020` feat(Ж-Ф4): headless-runner.sh — точка входа headless-адаптера DP.IWE.011
+- `78698f2` feat(WP-348): Ф6 — session-record extension point
+- `101bd44` feat(WP-348): Ф5 — skill-promote.sh v2 + skills-pull.sh (pull pipeline)
+- `cecf52d` feat(WP-348): Ф4 — create-skill.sh + validate-skill.sh
+- `d4e3db2` feat(WP-348): Ф3 — SKILL.md v2 шаблон + генератор каталога + мигратор
+- `2136141` feat: settings-promote.sh + pre-commit HOOK-PATH-CONVENTION gate
+- `333c83d` feat(strategist): complete runner migration — run_skill() for day-open/day-close/week-close/strategy-session
+- `f550e9b` feat(pack-templates): DP.ROLE.NNN Constraint Analyst + DP.SC.NNN + DP.WP.NNN
 
 ### Changed
 
-- **`roles/strategist/scripts/strategist.sh`**, **`roles/extractor/scripts/extractor.sh`**, **`roles/synchronizer/scripts/scheduler.sh`** — поддержка **`IWE_LOG_ROOT`** для единого корня логов (удобно на Windows).
-- **`docs/PLATFORM-COMPAT.md`**, **`extensions/README.md`**, **`.cursor/rules/iwe-day-open.mdc`** — явные пометки macOS/Linux/Windows и Cursor; `jq`/dry-run без привязки только к `brew`.
+- `b9e1658` docs(release): метрика fix-коммитов в RELEASE-PROCESS.md (PD-4, WP-347)
+- `33537d6` docs(promotion): B12 class + pair-on-promote convention (PZ-5)
+- `f1caefd` improve(peer): adversarial prompt — критик обязан найти хотя бы одно возражение
+- `74d5b67` sync(wp-new): синхронизация с user-level — active-wp пересборка + блокирующее правило
+- `c098042` ci(validate-template): add validate-fmt-scripts.sh to CI pipeline
+- `89ea560` refactor(WP-350 Ф5): R29 Артефактор → Декомпозитор, /artifactor → /decompose
+- `a5b9aa8` docs(changelog): add 2c92438 warn() fix to Unreleased
+- `f721eb0` chore(audit-installation): add SKILL.md frontmatter (version, layer, status, triggers)
+- `af829fe` chore: sync headless-runner.sh
+- `c370fe9` docs: уточнить различение Скилл ≠ SKILL.md (WP-348 post-close)
+- `e77406c` chore: release 0.34.1
+- `5b43a38` chore: release 0.34.0
+
+### Fixed
+
+- `6b164f6` fix(promote): settings-promote --dry-run пропускает existence check (WP-347 PD-2 followup)
+- `c2e96e6` fix(promote): regenerate FMT skills-catalog.yaml (B12a)
+- `0ccb1e2` fix(catalog): generate-executor-catalog.py — раскрывать env IWE_GOVERNANCE_REPO в DEFAULT_OUTPUT
+- `143ca6a` fix(claude.md): restore IntegrationGate checklist items 1, 3
+- `32e3607` fix(server-calendar): add utf-8 encoding declaration to Python heredocs
+- `39ca8ea` fix(template): replace author-specific DS-my-strategy with placeholder
+- `beb7f15` fix(week-draft): WD1 — заполнять даты Пн-Вс в таблице метрик для совместимости с append
+- `8676d68` fix(setup): auto-enable core.hooksPath for repos with .githooks/
+- `ed67968` fix(validate): whitelist direct-call hooks + parametrize DS-strategy literal in iwe-audit
+- `89367b4` fix(router): interpreter auto-detection + T13 agent-fault args
+- `8bea701` fix(WP-350): Шаг 0 Маршрутизатор — безусловный, loop-guard, AGENT_FAULT
+- `03515f0` fix(WP-350): explicit return 0 in all dispatch branches
+- `4dd7cf2` fix(WP-350): llm_tokens field, 10 test cases, return consistency
+- `8a3fa5d` fix(WP-350): audit-log on script failure, return exit code
+- `8d51a01` fix(WP-350): audit-log calls, yaml check, args quoting, test rename
+- `63503aa` fix(test-route-task): add || true to ((VAR++)) under set -e
+- `27fecea` fix(validate-fmt-scripts): safe-pattern exclusions for detector false positives
+- `457950b` fix(manifest): B2 coverage gap — add 3 orphan scripts to update-manifest.json
+- `0bc537f` fix(script-promote): робастный hint + аргументы в любом порядке
+- `dde3e7f` fix: регрессии после sync + 2 новых дополнения
+- `9dfbfaa` fix: минимальный frontmatter в guard-else вместо touch
+- `0fe32f5` fix(WP-347): RELEASE-PROCESS.md — 3 правки по Kimi-ревью
+- `81e5727` fix: scaffold guard + D11 upgrade to FAIL
+- `8d316f4` fix: три замечания Евгения — manifest/day-plan/detector-11
+- `af3b15c` fix: remove stale deprecated entries + add detector 10 for runner/manifest cross-check
+- `0321fcf` fix(WP-247): исправить путь REPORTS_DIR в protocol-close.checks.md
+- `2c92438` fix(smoke-test): define warn() — undefined function broke Validate Template CI
+- `ea7ead8` fix(dispatcher): race-condition after claude -p — git reset --hard before status commit
+- `16b468a` fix(ci): setup.sh SETUP_CI=1 не требует claude/node/npm как prerequisites
+- `7f3fba0` fix(WP-348): SIGPIPE-баг в migrate-skills-to-v2.sh has_field()
+- `8a231a3` fix(CI): закрыть 3 реальных блокера Validate Template
+- `b00ef4c` fix(settings-promote): inline jq check вместо полного validate-fmt-scripts.sh
+- `72f7572` fix: hook paths — $CLAUDE_PROJECT_DIR/ convention for all hook commands
+- `e337183` fix(manifest): remove strategist prompts from deprecated_files — runner still uses them
+- `5bffbc9` fix: replace hardcoded DS-strategy with GOVERNANCE_DIR/GOVERNANCE_REPO env vars
+- `2c5e91d` fix(pack-templates): DP.WP.NNN — добавить §6 пример Stage Dependency Map
+
+
+## [0.34.1] — 2026-05-21
+
+### Fixed
+
+- `8a231a3` fix(CI): закрыть 3 реальных блокера Validate Template — regex detector #9, hardcoded DS-strategy, smoke-test gh auth, install.sh portability
+
+
+## [0.34.0] — 2026-05-20
+
+### Added
+
+- `4c7bf32` feat(calendar): promote day-open + week-close skills — meeting/task split, week mode, bot QA restored
+- `6df8f7a` feat(calendar): server-calendar.sh v2 — L3 template sync
+- `ea9d683` feat(WP-295): CLI iwe trace show/search/upload (Ф1 Шаг 6)
+- `c277672` feat(pack-ci): auto-install CI guard via pack-new + pack-ci-install.sh
+- `117da91` feat(pack-templates): CI guard для новых Pack-репо (.github/workflows/pack-lint.yml)
+- `c180e6a` feat(WP-316 Ф6): promote Agent Fault Profile v0.33.0 — scripts + extensions
+- `de23341` feat(strategy-session): добавить шаги 1b (KE-кандидаты) и 1c (Мир) в открытие недели
+- `8a72b50` feat(WP-295): agent-trace-recorder writer hooks (Ф1 шаг 5)
+- `72f7572` fix(WP-7): hook paths — $CLAUDE_PROJECT_DIR/ convention for all hook commands
+- `2136141` feat(WP-7): settings-promote.sh + pre-commit HOOK-PATH-CONVENTION gate
+- `b00ef4c` fix(settings-promote): inline jq check вместо полного validate-fmt-scripts.sh
+
+### Fixed
+
+- `d451166` fix(memory-active-wp-update): fallback to exocortex when runtime memory is read-only
+- `0263a5a` fix(agent-inbox): add fetch+rebase before push in commit_and_push
+- `c715f5e` fix(WP-7 Ф-id-collisions): обновление slug-ссылок DP.SC.019→043, PD.SOTA.001→007
+- `767ad46` fix(dt-collect+templates): fix weekly multiplier parser + format note
+- `d13af21` fix(WP-295): pretty=format → tformat для produced_artifact_ids
+
+
+## [0.33.0] — 2026-05-18
+
+### Added
+
+- `de23341` feat(strategy-session): добавить шаги 1b (KE-кандидаты) и 1c (Мир) в открытие недели
+- `8a72b50` feat(WP-295): agent-trace-recorder writer hooks (Ф1 шаг 5)
+- `6970050` feat(WP-324): Agent Inbox 0.32.0 — pack-templates + dispatcher script
+- `223fb5f` feat(WP-324): promote S-45 Agent Inbox — extensions/agent-inbox/
+- `63aa96c` feat: changelog automation — changelog-append.sh + changelog-flush.sh + v0.31.0
+- `4002819` feat: promote S-44 to L1 — Telegram reminders as platform rule (rule 8)
+- `0c40b8f` feat: promote S-43 — напоминания через Telegram
+
+### Fixed
+
+- `767ad46` fix(dt-collect+templates): fix weekly multiplier parser + format note
+- `d13af21` fix(WP-295): pretty=format → tformat для produced_artifact_ids
+- `9d96a63` fix(changelog): 5 багов из code review субагента
+- `4db37fd` fix: rename S-43→S-44 (Telegram reminders) to avoid numbering conflict with Agent Fault Profile
+
+
+## [0.32.0] — 2026-05-17
+
+### Added
+
+- **Agent Inbox pack-templates (WP-324, новое):** `pack-templates/digital-platform/08-service-clauses/DP.SC.NNN-agent-inbox.md` + `pack-templates/digital-platform/02-domain-entities/DP.ROLE.NNN-dispatcher.md` — переносные версии обещания и роли с placeholders ({{GOVERNANCE_REPO}}) и комментариями адаптации; новый пилот клонирует и подставляет свои номера DP.SC/DP.ROLE.
+- **`extensions/agent-inbox/scripts/iwe-agent-dispatcher.py`** — диспетчер на headless `claude -p`. Не зависит от RemoteTrigger v1→v2 API issue. Pure-Python stdlib + минимальный YAML frontmatter parser (без зависимостей). Поддерживает env vars для конфигурации (IWE_DISPATCHER_REPO_URL, IWE_DISPATCHER_AUTHOR_EMAIL, etc). Запуск через cron / systemd / launchd / GitHub Actions.
+- **Headless `claude -p` как референсный канал dispatcher** (DP.ROLE.NNN §4 + §7 + SPEC.md §2): не зависит от RemoteTrigger v1→v2 API issue, работает на любой машине с установленным claude CLI; покрывает 80% задач (одна машина = один канал).
+
+### Changed
+
+- `extensions/agent-inbox/SPEC.md` §2 — добавлена таблица каналов запуска (claude CLI / RemoteTrigger / systemd / launchd) с рекомендацией headless CLI как референсной реализации.
+- S-45 (Agent Inbox) остаётся `testing` после расширения объёма: фундамент + script + pack-templates готовы, полная end-to-end automation smoke (4 реальные task по расписанию) deferred — требует Nix systemd unit или cron на исполняющей машине.
+
+### Из накопленных коммитов
+
+- `223fb5f` feat(WP-324): promote S-45 Agent Inbox — extensions/agent-inbox/
+- `63aa96c` feat: changelog automation — changelog-append.sh + changelog-flush.sh + v0.31.0
+- `4002819` feat: promote S-44 to L1 — Telegram reminders as platform rule (rule 8)
+- `0c40b8f` feat: promote S-43 — напоминания через Telegram
+- `9d96a63` fix(changelog): 5 багов из code review субагента
+- `4db37fd` fix: rename S-43→S-44 (Telegram reminders) to avoid numbering conflict with Agent Fault Profile
+
+## [0.31.0] — 2026-05-17
+
+### Added
+
+- Полный набор promote-скриптов: `script-promote.sh`, `hook-promote.sh`, `skill-promote.sh` + `validate-fmt-scripts.sh` с автовалидацией в `template-sync.sh` (WP-5 L1-flow)
+- Smoke-тест в promote-скриптах — изолированный env с шаблонными переменными
+- `changelog-append.sh` + `changelog-flush.sh` — автоматическое ведение CHANGELOG при каждой промоции
+- S-44: Telegram-напоминания как платформенное правило (правило 8 в CLAUDE.md, WP-5)
+- S-33 (Hooks/Scripts Bypass Gate) промотирован в L1 §2 платформенных правил
+- Knowledge Routing Gate (WP-216 Ф4): `routing-vocab.md` fast-path + DP.SC.036
+- Флаг `--related` и секция «Связки с РП» в шаблоне WP-context + шаг 3.5 в Ритуале
+- cross-platform path leaks detector (WP-5/WP-7 Stability-4)
+- Secret Drift Detector: `iwe-grep-secret.sh` MVP + Railway GraphQL v2 cloud scan (WP-315)
+- Sync-фаза WP Gate resilience — pre-flight + graceful degradation (WP-294)
+- `reflection-template` + Шаги 6.7-6.8 в `personal-guide-render` (WP-309 Ф3)
+- EC-триггер для конфликтов НЭП в `strategy-session`
+- News Lens: шаг 6a Day Open — Haiku subagent синтез новостей
+- q-шкала качества недели в Week Close + якоря q=2 и q=4 (WP-310 Gap-А)
+- Agent Fault Profile: процесс учёта косяков агента + скрипты `agent_fault_remind.py`, `sync_feedback_to_memory.py`
+- S-45 Agent Inbox (WP-324): `extensions/agent-inbox/` структура (tasks/results/scout/templates/archive) + SPEC.md + README.md + 5 шаблонов промптов (analyze-section, scout-daily, evolution-cron, soak-verify, _template); реализация DP.SC.135 + DP.ROLE.045 в PACK-digital-platform; status: testing (CCR-автоматизация ждёт RemoteTrigger v2 API spec)
+- Явный L1-flow для всех артефактов в CLAUDE.md (scripts + hooks + skills + CLAUDE.md)
+- WP-283 Ф-H: отказ от WORKPLAN.md hub-and-spoke (антипаттерн, OwnerIntegrity)
+- matrix-CI по `GOVERNANCE_REPO` + detector `.sh` scope + 2 hardcoded fix
+
+### Fixed
+
+- `day-close`: wakatime path `~/.wakatime/wakatime-cli` (CLI не в PATH)
+- hardcoded `DS-strategy` в `dt-collect.sh` + repair-pass в `update.sh`
+- routing slow-path для FMT пользователей: `repo-type-rules.md` вместо `DP.KR.001` (недоступен без Pack)
+- WP-7: guard stale repair против нечитаемого dst под `set -e` + hash-check для stale propagated L1 files
+- `update.sh`: progress counter в step [2] + manifest version sync после apply
+- WP-315: два `set -e` бага в `iwe-grep-secret.sh` + E2E arithmetic zero-eval paths (`|| true`)
+- `load-extensions`: robust workspace resolution + BASH_SOURCE fallback
+- `setup.sh`: `source ~/.iwe-paths` before role install + validate `WORKSPACE_DIR`
+- `wp-sync-bundle`: self-test не зависит от hardcoded WP-294
+- S-44: переименование S-43→S-44 (конфликт нумерации с Agent Fault Profile)
+
+## [0.30.0] — 2026-05-11
+
+### Added — WP-5 #12: промоция авторских скриптов как L1 (S-19/S-20/S-21)
+
+Перенесены из авторской зоны в шаблон три скрипта + сопроводительная документация:
+
+- `scripts/week-draft-init.sh` — создаёт пустой черновик недельного поста на Пн Day Close
+- `scripts/week-draft-append.sh` — обновляет строку метрик дня в черновике (WakaTime, коммиты, закрытые РП)
+- `scripts/check-script-collisions.sh` — детектор коллизий имён между авторскими и FMT-скриптами; запускать ПЕРЕД любой промоцией L3→L1
+- `docs/SCRIPT-PROMOTION.md` — 7-шаговый процесс промоции скрипта (DP.KR.001 §5.6)
+
+Параметризация через `params.yaml`:
+- `knowledge_repo` — путь к knowledge-index репо (относительно `WORKSPACE_DIR`). Пустая строка → накопительный черновик пропускается (фича опциональна).
+
+Скрипты безопасно деградируют при отсутствии параметров — выводят подсказку и `exit 0`.
 
 ## [0.29.32] — 2026-05-06
 
@@ -1258,7 +1503,7 @@ Commits: 150be24 (I1+I2 sync из DS-ai-systems), 731471f (I3 sweep 11 точе�
 
 ### Added
 - **[update-manifest.json](update-manifest.json)** — манифест всех платформенных файлов (100+ записей) с описаниями. Используется update.sh для доставки обновлений
-- **[DP.SC.019](../PACK-digital-platform/pack/digital-platform/08-service-clauses/DP.SC.019-template-update.md)** — сценарий «Обновление экзокортекса» + сервис S50 Template Update в MAP.002
+- **[DP.SC.019](../PACK-digital-platform/pack/digital-platform/08-service-clauses/DP.SC.043-template-update.md)** — сценарий «Обновление экзокортекса» + сервис S50 Template Update в MAP.002
 - **Инструкция «настрой календарь»** в CLAUDE.md — при запросе пользователя Claude запускает `setup-calendar.sh`
 
 ## [0.10.0] — 2026-03-19
