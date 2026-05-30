@@ -178,12 +178,6 @@ Temporal metadata: `valid_from: YYYY-MM-DD` (обязательно при со�
 **Архитектурное обоснование:** платформенные файлы (L1) и пользовательские расширения (L3) -- разные слои. Смешение слоёв = хрупкость при обновлении. Разделение: платформенное → `FMT-exocortex-template` → `update.sh`. Пользовательское → `extensions/` + `params.yaml`.
 
 **Для автора шаблона (`params.yaml → author_mode: true`):** прямое редактирование L1 файлов РАЗРЕШЕНО.
-<<<<<<< /tmp/tmp.crYjkNfIju/claude-merge.md
-- **Flow:** авторский IWE (source-of-truth) → `template-sync.sh` → FMT (с плейсхолдерами) → GitHub → `update.sh` → пользователи.
-- **Скрипт:** `$IWE_TEMPLATE/scripts/template-sync.sh` (создан 2026-05-05). Режимы: без флагов = sync, `--dry-run` = показать diff, `--check` = проверить drift (exit 1 = drift).
-- **Правило:** L1 изменение → редактировать в авторском IWE → `bash $IWE_TEMPLATE/scripts/template-sync.sh` → `git add CLAUDE.md && git commit` в FMT.
-- **Запрещено:** редактировать FMT/CLAUDE.md напрямую (template-sync перезатрёт при следующем sync).
-=======
 - **Flow (единый для всего L1):** авторский IWE (source-of-truth) → доставка в FMT (с отрезанием личного) → GitHub → `update.sh` → пользователи. Авторский IWE = SoT для ВСЕГО: CLAUDE.md, скриптов, хуков, скиллов.
 - **CLAUDE.md:** авторский IWE → `bash $IWE_TEMPLATE/scripts/template-sync.sh` → автоматически в FMT (плейсхолдеры + отрезание §9). Режимы: без флагов = sync, `--dry-run` = diff, `--check` = drift (exit 1).
 - **Промоция артефактов в шаблон** — единая команда по типу:
@@ -193,7 +187,7 @@ Temporal metadata: `valid_from: YYYY-MM-DD` (обязательно при со�
   - CLAUDE.md: `bash $IWE_SCRIPTS/template-sync.sh` (автозамена §9 + плейсхолдеры)
 - **Все promote-скрипты:** применяют одинаковые подстановки (личные пути и repo-имя → env vars) → прогоняют `validate-fmt-scripts.sh` → копируют. Флаг `--dry-run` показывает результат без копирования.
 - **Валидатор** запускается автоматически после каждого `template-sync.sh`. Вручную: `bash $IWE_SCRIPTS/validate-fmt-scripts.sh $IWE_SCRIPTS/`.
->>>>>>> /tmp/tmp.crYjkNfIju/files/CLAUDE.md
+- **Запрещено:** редактировать FMT/CLAUDE.md напрямую (template-sync перезатрёт при следующем sync).
 
 
 ### README.md (FMT-exocortex-template)
