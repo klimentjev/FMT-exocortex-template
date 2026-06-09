@@ -17,10 +17,21 @@ Versioning: [Semantic Versioning](https://semver.org/).
 
 
 
-## [Unreleased] — обновлено 2026-06-06
+
+
+
+## [Unreleased] — обновлено 2026-06-08
 
 ### Added
 
+- `bfa7172` feat(WP-405 Ф2): translate all 39 SKILL.md descriptions to English
+- `321bab6` feat(distinctions): Gateway с одной ответственностью ≠ Gateway с прикладной логикой
+- `a24f295` feat: memory sync hook + exocortex restore (closes #125)
+- `274e1cf` feat(catalogs): generate-catalogs.py + публичные каталоги скиллов/скриптов/ролей
+- `40db8e7` feat(WP-7-DAP1B): day-close --sessions + scaffold sessions-today integration
+- `d533a9e` feat(agents): self-check после peer-сессии — разговорный стиль (DP.SC.050)
+- `d3727f5` feat(peer): стиль report.md — разговорный для пилота (DP.SC.050)
+- `4eea41e` feat(WP-7): active-wp-sweep awaiting-batch + WeekPlan union + scaffold compact dashboard
 - `61c46f3` feat(peer): sync kimi-peer-adapter.sh v3 from DS-my-strategy (selective merge)
 - `42e015f` feat(WP-356): промоция артефактов Day Open pipeline (5 скриптов + 1 хук)
 - `e5c86a0` feat(WP-378): навык /discovery-session + распаковка strategy-session
@@ -58,13 +69,10 @@ Versioning: [Semantic Versioning](https://semver.org/).
 - `7e9aa78` feat(triage): post-2026-06-01 backlog cleanup infrastructure
 - `dc18e90` feat(detection): MVP FMT critical/deadline issues alert (peer-session 2026-06-01-18) (#145)
 - `6be164d` feat(hindsight): WP-337/А.13 FMT template — docker-compose, start, launchd, docs
-- `43e8268` feat(WP-377): promote pack-creator + org-dev + spf-guard
-- `f47bf49` feat(WP-348): promote apply-captures defer_until invariant to L1
-- `bc5686f` feat(L1): B-005 reliability обхода Backlog и pending-фаз
-- `fbc5585` feat(L1): promote DP.D.052 v2 формулировок из peer-сессии 2026-05-31-11
 
 ### Changed
 
+- `51f609d` docs(WP-349 Ф31): web-onboarding v2 — freemium, две оси, без триала
 - `ba4f5e6` docs(WP-349): Ф34 — онбординг-доки под канон двух осей
 - `6a634a8` chore: обновление promotion-status (peer-conversation skill)
 - `8b683de` docs(readme): упрощена формулировка про другие агенты
@@ -79,10 +87,24 @@ Versioning: [Semantic Versioning](https://semver.org/).
 - `0a15c8a` docs(skills): Ф4 WP-386 — явный Шаг 1 Extensions checks + WHY-комментарий dry-run sentinel
 - `c54ff45` ci: migrate actions/checkout@v4 → v6, github-script@v7 → v8
 - `76be56b` docs(CHANGELOG): корректировки 0.35.0 по post-deploy verify
-- `22cdd0d` chore(WP-377): R29 Детектор → R47 в hooks/lib/detectors
 
 ### Fixed
 
+- `5600848` fix(strategy-session): системный фикс — СТОП в step-файлах, resume-механизм, устранение молчаливых переходов
+- `8a29f3b` fix(strategy-session): БЛОКИРУЮЩЕЕ — один шаг за раз, ждать ответа пилота перед следующим
+- `a80c7d1` fix(skills): translate ke/fpf descriptions to English for SkillHub compatibility
+- `b354254` fix(strategy-session): стиль «на пальцах» + подавление MonthClose в weekly
+- `ca72920` fix(strategy-session): WP-393 Ф7.1 — переключение на новый процесс + обход Backlog в шаге 07
+- `c881f06` fix(diagnose-iwe): drill-down уточняет ВСЕ слабые срезы (РП5 Ф-26)
+- `1d65a90` fix(cross-platform): Ф-25 WP-5 — три дефекта Windows/Linux совместимости
+- `38fd6b0` fix(strategist): WP-5 Ф-27 — два бага в notify-шаблоне дайджеста
+- `1a6a1be` fix(update): protect personal L4 config day-rhythm-config.yaml from clobber
+- `be4a84c` fix: batch fix for issues #161 #162 #35 #57 #17 + pipeline improvement
+- `20f0afa` fix(checks): anchored grep ^status: prevents false-positive from report body text
+- `b2c42ea` fix(template): replace DS-my-strategy with {{GOVERNANCE_REPO}} in peer-conversation SKILL.md
+- `1392b9b` fix(day-close): step 1c → 1b + исправить skip-сообщение check-index-health
+- `b24c91e` fix(peer): PPID fallback + idle/peer-session status guards в kimi-peer-adapter.sh
+- `ac4e3af` fix(#160,#159,#158): security gate B7.3 + day-close after hook + missing scripts
 - `6fd9e77` fix(peer): pidfile fallback uses PPID, remove orphan cleanup
 - `a85cf57` fix(fmt7): pre-commit валидирует только staged-скрипты (#150 collateral)
 - `efadfa0` fix(fmt): триаж 4 issues + сигнальный канал Day Open
