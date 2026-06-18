@@ -1,7 +1,7 @@
 ---
-valid_from: 2026-06-10
+valid_from: 2026-06-18
 originSessionId: 9a0e726a-951e-4408-9e02-94d7eeffbf74
-last_sync_commit: 093d30e
+last_sync_commit: a2bd85af04b77a9a07ef7d6958fcacadb8c803ff
 
 type: reference
 horizon: warm
@@ -15,7 +15,7 @@ description: "Справочник FPF паттернов применимых �
 ---
 # FPF (First Principles Framework) — справочник
 
-> Источник: `{{HOME_DIR}}/IWE/FPF/FPF-Spec.md` (4.6 MB, ~83000 строк, commit `093d30e`)
+> Источник: `{{HOME_DIR}}/IWE/Base/FPF/FPF-Spec.md` (8.7 MB, ~86000 строк, commit `a2bd85af`)
 > Автообновление: см. WP-364 Direction 1 «Конвейер синхронизации FPF upstream»
 
 ## Когда читать FPF
@@ -58,9 +58,12 @@ description: "Справочник FPF паттернов применимых �
 
 | Код | Название | Статус | Почему важно для IWE |
 |-----|----------|--------|---------------------|
-| C.2.P | Epistemic Precision Restoration | Stable | Восстановление точности эпистемы: EntityOfConcern, ClaimGraph, Viewpoint |
+| C.2.P | Epistemic Precision Restoration | Stable | Восстановление точности эпистемы: entityOfConcernRef, ClaimGraph, Viewpoint |
+| A.3.4 | U.Transformation: Bounded Change Under Conditions | Stable | Ограниченное изменение при условиях: transformer, input/output conditions |
+| A.3.4.P | Transformation Ontic Precision Restoration | Stable | Восстановление точности трансформаций: flow, process, workflow, pipeline |
+| A.6.RSIR | Relation, Signature, Interface, Role, Slot Precision Restoration | Stable | Точность отношений, сигнатур, интерфейсов, ролей, слотов |
 | A.19.ECS | Evaluation CharacteristicSpace Construction | Stable | Построение пространства характеристик для оценки объектов |
-| A.19.SPR | State-Family Precision Restoration | Stable | Восстановление точности состояний: status, posture, readiness |
+| A.19.SPR | State-Family Precision Restoration | Stable | Восстановление точности состояний: status, posture, readiness, stance |
 | E.18.1 | Principles-to-Work Transduction Path (P2W) | Stable | Как принципы переносятся в работу без преждевременного выбора метода |
 | E.21 | FPF Pattern-Quality Evaluation CharacteristicSpace | Stable | Оценка качества паттернов FPF для declared reader/use/scope |
 | F.19 | Ontology-First Plain Technical Rewriting | Stable | Онтология-first переписывание: phrase apparatus, boilerplate, negative catalogue |
@@ -72,7 +75,7 @@ description: "Справочник FPF паттернов применимых �
 | Надсистема | Suprasystem | Содержит SoI (∋) |
 | Целевая система | System-of-Interest (SoI) | То, что создаём |
 | Система создания | Constructor | Создаёт SoI (→) |
-| Объект озабоченности | EntityOfConcern | То, о чём речь в эпистеме; ≠ Description |
+| Объект озабоченности | entityOfConcernRef | То, о чём речь в эпистеме; ≠ Description. Новый FPF: `entityOfConcernRef` (бывший describedEntity) |
 
 ## Универсальные различения
 
@@ -86,7 +89,7 @@ description: "Справочник FPF паттернов применимых �
 | Знание ≠ Обучение | Pack vs курс |
 | Знание ≠ Информация | Формализовано vs сырые данные |
 | Виды ≠ Характеристики | Классификация vs измеряемое качество |
-| EntityOfConcern ≠ Description | Объект озабоченности ≠ его описание (A.7, A.6.2–A.6.4) |
+| entityOfConcernRef ≠ Description | Объект озабоченности ≠ его описание (A.7, A.6.2–A.6.4). В FPF June 2026: `entityOfConcernRef` (бывший describedEntity) |
 
 ## Принципы работы
 
@@ -156,12 +159,22 @@ description: "Справочник FPF паттернов применимых �
 | ADI-цикл (B.5) | Гипотеза → проверка логикой → проверка данными | Принятие решений (/think) |
 | Lawful Comparison (A.19) | Сравнение вариантов по одинаковым критериям | Выбор архитектуры (/archgate) |
 | Strict Distinction (A.7) | Разные вещи — разные имена. Не смешивать в одном типе/enum | Code review, именование |
-| EntityOfConcern | Объект озабоченности — то, о чём речь в эпистеме; ≠ Description | C.2.P, A.6.2–A.6.4 |
+| entityOfConcernRef | Объект озабоченности — то, о чём речь в эпистеме; ≠ Description. В FPF June 2026 заменил describedEntity | C.2.P, A.6.2–A.6.4 |
 | P2W (E.18.1) | Principles-to-Work: как принципы становятся работой без выбора метода | Стратегические сессии, ArchGate |
 | ECS (A.19.ECS) | Evaluation CharacteristicSpace: пространство характеристик оценки | Метрики, benchmark, QA |
 
 ## Обновление
 
-- **Ручное:** `cd {{HOME_DIR}}/IWE/FPF && git pull`
+- **Ручное:** `cd {{HOME_DIR}}/IWE/Base/FPF && git pull`
 - **Автоматическое:** WP-364 Direction 1 «Конвейер синхронизации FPF upstream» — еженедельный delta-report + автообновление кеша
-- **Текущая версия:** sync commit `093d30e` (2026-06-08)
+- **Текущая версия:** sync commit `a2bd85af` (2026-06-18)
+
+### Ключевые изменения June 2026
+
+| Было | Стало | Где |
+|------|-------|-----|
+| `describedEntity` | `entityOfConcernRef` | Паттерны A.6.2–A.6.4, C.2.P |
+| `Transduction` (Language-State) | `Move` | A.16, A.16.0 |
+| `Draft` | `Stable` | A.5, B.2.1, B.4.1, и др. |
+| `slot graph` | `slot relations` | Описание эпистем |
+| Новые паттерны | A.3.4, A.3.4.P, A.6.RSIR, A.6.M | Трансформации, интерфейсы, модули |
