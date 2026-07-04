@@ -53,6 +53,9 @@ description: "Справочник FPF паттернов применимых �
 | C.26 | Quantum-Like Modeling Lens | Stable | Probe-coupled взаимодействия, order effects |
 | C.27 | Temporal Claim Adequacy | Stable | Утверждения о скорости, ритме, трендах |
 | C.28 | **CausalUse-CAL** | Stable | **Причинные утверждения: M1 улучшает X, рычаг даёт Y** |
+| C.29 | Mathematical Lens Adequacy | Stable | Допустимое использование математических линз: preserved/lost structure, stop conditions |
+| C.30 | Grounded Architecture and Selected-Structure Adequacy | Stable | ArchitectureOf@Context: selected structures, architecture moves, modularity |
+| C.22.2 | ProblemCard@Context | Stable | Problem framing с DesignRunTag split, TaskSignature attachment |
 
 ### Новые и обновлённые паттерны (май–июнь 2026)
 
@@ -64,6 +67,8 @@ description: "Справочник FPF паттернов применимых �
 | E.18.1 | Principles-to-Work Transduction Path (P2W) | Stable | Как принципы переносятся в работу без преждевременного выбора метода |
 | E.21 | FPF Pattern-Quality Evaluation CharacteristicSpace | Stable | Оценка качества паттернов FPF для declared reader/use/scope |
 | F.19 | Ontology-First Plain Technical Rewriting | Stable | Онтология-first переписывание: phrase apparatus, boilerplate, negative catalogue |
+| E.24 | Ontic settlement (U-kinds) | Stable | Онтическая нормализация U-kinds, holons, meta-holon transitions |
+| A.15.4 | Problem Frame / Source Restoration | Stable | Problem frame, cluster boundary, work-relevant source restoration |
 
 ## Системная терминология
 
@@ -164,4 +169,16 @@ description: "Справочник FPF паттернов применимых �
 
 - **Ручное:** `cd {{HOME_DIR}}/IWE/FPF && git pull`
 - **Автоматическое:** WP-364 Direction 1 «Конвейер синхронизации FPF upstream» — еженедельный delta-report + автообновление кеша
-- **Текущая версия:** sync commit `093d30e` (2026-06-08)
+- **Текущая версия:** sync commit `fe0df9d` (2026-06-21, June 2026)
+
+### Ключевые изменения June 2026 (sync 2026-06-21)
+
+| Было | Стало | Где |
+|------|-------|-----|
+| `describedEntity` | `entityOfConcernRef` | Паттерны A.6.2–A.6.4, C.2.P, corpus-wide ontic migration |
+| `Transduction` (Language-State) | `Move` | A.16, A.16.0 |
+| `Draft` | `Stable` | A.5, B.2.1, B.4.1, и др. |
+| `slot graph` | `slot relations` | Описание эпистем |
+| I/D/S terminology | EntityOfConcern, ontic precision | Episteme, publication, representation |
+| Новые паттерны | C.29, C.30, C.22.2, E.24, A.15.4 | Math lens, architecture, problem cards, ontic settlement |
+| Новые паттерны | A.3.4, A.3.4.P, A.6.RSIR, A.6.M | Трансформации, интерфейсы, модули |
