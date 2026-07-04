@@ -16,6 +16,11 @@ related:
 routing:
   executor: sonnet
   deterministic: false
+agents: single
+interaction: multi-step
+gates_required: []
+gates_enforced: []
+gates_rationale: "операционный скилл; WP Gate применим только при создании нового РП, не для операционных вызовов"
 ---
 
 # /artifactor — Артефактор-Постановщик
@@ -23,6 +28,10 @@ routing:
 > **Роль:** DP.ROLE.058 Артефактор-Постановщик  
 > **Триггер:** запрос без routing-tag (Маршрутизатор → Артефактор) или `/artifactor "текст"`  
 > **Service Clause:** DP.SC.160
+
+## When to use
+
+Classifies raw pilot request → structured JSON {task_type, class, artifact, budget_estimate, confidence, routing_tag, resolution_path}. Keyword-fast (<200ms) or Haiku fallback (<60s). Does NOT create WP or call executor.
 
 ## Обещание (контракт)
 
@@ -47,7 +56,7 @@ routing:
 - При запросе <5 слов: вернуть `{"error": "INSUFFICIENT_INPUT"}`, стоп
 - `budget_estimate: "?"` только при `problem-framing` или полной неопределённости
 
-## Алгоритм
+## Algorithm
 
 ### Шаг 1. Keyword-lookup
 
@@ -88,6 +97,10 @@ python3 "${IWE_SCRIPTS:-$HOME/IWE/scripts}/artifactor.py" "$ARGUMENTS"
 
 **Поле `routing_tag`** = значение `task_type` (snake_case).
 
+### Шаг 3. Вернуть результат
+
+Вывести JSON в stdout. Без дополнительных пояснений.
+
 ## Режим отказа
 
 | Сценарий | Поведение |
@@ -95,3 +108,6 @@ python3 "${IWE_SCRIPTS:-$HOME/IWE/scripts}/artifactor.py" "$ARGUMENTS"
 | Запрос < 5 слов | `{"error": "INSUFFICIENT_INPUT"}` |
 | Скрипт не найден / сбой | Перейти к Шагу 2 напрямую |
 | Запрос на иностранном языке | Классифицировать как есть, `confidence: low` |
+
+<!-- USER-SPACE -->
+<!-- /USER-SPACE -->
