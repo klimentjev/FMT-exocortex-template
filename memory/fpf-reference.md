@@ -1,7 +1,7 @@
 ---
-valid_from: 2026-06-21
+valid_from: 2026-07-04
 originSessionId: 9a0e726a-951e-4408-9e02-94d7eeffbf74
-last_sync_commit: fe0df9dcb06cfc87c8a6cb2f7cce3ac0d3b64d5e
+last_sync_commit: f7c7e93f137a4691b390d46046428434e847099d
 
 type: reference
 horizon: warm
@@ -15,7 +15,7 @@ description: "Справочник FPF паттернов применимых �
 ---
 # FPF (First Principles Framework) — справочник
 
-> Источник: `{{HOME_DIR}}/IWE/FPF/FPF-Spec.md` (4.6 MB, ~83000 строк, commit `093d30e`)
+> Источник: `{{HOME_DIR}}/IWE/FPF/FPF-Spec.md` (9.8 MB, ~94000 строк, commit `f7c7e93f1`)
 > Автообновление: см. WP-364 Direction 1 «Конвейер синхронизации FPF upstream»
 
 ## Когда читать FPF

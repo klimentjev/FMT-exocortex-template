@@ -4,6 +4,28 @@
 
 > Журнал синхронизаций с upstream (ailev/FPF). Обновляется еженедельно при week-close.
 
+### 2026-07-04
+
+**Действие:** Синхронизация `Base/FPF` с `origin/main` (ailev/FPF, А. Левинчук).
+
+**FPF версия:** 20260704 (commit `f7c7e93`, 2026-07-04)
+- Последний коммит: «non-holonic roles, holonic methods».
+- Подтянуто 6 коммитов с `02a8b4b` (2026-06-26).
+
+**Ключевые изменения upstream:**
+- non-holonic roles, holonic methods
+- «carrier» word-using precision restoration
+- carrier word-using precision restoration
+- first publication of narrativization DPF
+- rendering remark and E.4.FPF mention
+- Structure-to-Narrative Rendering and PDF format
+
+**Побочные обновления:** `Base/FPF-VERSION.txt`, `memory/fpf-reference.md`.
+
+**SPF / ZP:** без изменений.
+
+---
+
 ### 2026-06-28
 
 **Действие:** Синхронизация `Base/FPF` с `origin/main` (ailev/FPF, А. Левинчук).
