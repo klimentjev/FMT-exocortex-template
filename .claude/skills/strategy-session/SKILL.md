@@ -77,7 +77,7 @@ gates_rationale: "операционный скилл; WP Gate применим 
 - Бюджет (часы)
 - Артефакт-критерий (что появится по завершении)
 
-Запиши в `{{WORKSPACE_DIR}}/{{GOVERNANCE_REPO}}/current/WeekPlan W{N}.md` (где N — номер ISO-недели).
+Запиши в `{{WORKSPACE_DIR}}/{{GOVERNANCE_REPO}}/current/WeekPlan W{N}.md` (где N — номер ISO-недели), используя единый шаблон WeekPlan из `roles/strategist/prompts/session-prep.md` (включая секцию `## Weekly Control Sheet (операционный контур недели)`).
 
 ### 2.4. Обновление MEMORY.md (2 мин)
 
