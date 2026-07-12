@@ -53,6 +53,11 @@ budget_spread:
   threshold_h: 4         # Only WPs with weekly budget ≥ this value are spread
   rounding: 0.5          # Round daily_slot to nearest N hours
 
+# РП, которые попадают в план дня ТОЛЬКО по будням (пн–пт). В сб/вс не включать в DayPlan / план дня в WeekPlan.
+weekday_only_wps:
+  - S1-RP1   # диссертация
+  - НЭП-2    # деньги
+
 pomodoro:
   work_minutes: 25
   break_minutes: 5
