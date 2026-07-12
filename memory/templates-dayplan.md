@@ -38,6 +38,19 @@ agent: Стратег
 
 **Бюджет дня:** ~Yh РП всего / ~Xh физ / Плановый мультипликатор ~N.Nx
 
+## Меню дня (diet.md)
+
+> **Обязательно при Day Open:** фрагмент `### День N` из `DS-strategy/docs/health/diet.md` (пн=1 … вс=7). Алгоритм: `extensions/day-open.before.diet-menu.md`.
+
+<details>
+<summary><b>Меню дня (diet.md · День N)</b></summary>
+
+> Источник: [diet.md](../docs/health/diet.md)
+
+[секция ### День N из diet.md — дословно]
+
+</details>
+
 ## Day Close (заполняется вечером)
 
 > **Канонический каркас** (из PD.METHOD.008 § Стадия 5 Закрытие дня). Три подсекции: три варианта плана на завтра + KE-маршрутизация + сверка с НЭП.
