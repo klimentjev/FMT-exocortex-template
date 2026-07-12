@@ -4,7 +4,8 @@
 
 day_open:
   week_close_day: sunday
-  strategy_day: sunday          # Day for strategizing session (monday..sunday)
+  strategy_day: sunday          # Акцент на стратегировании в этот день (НЕ отменяет DayPlan)
+  always_create_dayplan: true   # БЛОКИРУЮЩЕЕ: DayPlan создавать КАЖДЫЙ день, включая strategy_day
   self_dev_slot: 1              # Slot number for self-development (always first by default)
   self_dev_missing_alert: true  # Explicitly say if no self-dev in today's plan
   interactive: false            # false = Day Open одним блоком. true = промежуточные вопросы.

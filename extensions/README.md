@@ -107,6 +107,8 @@ fi
 
 | Параметр | Что управляет |
 |----------|---------------|
+| `day_open.always_create_dayplan` | `true` — DayPlan обязателен каждый день, включая `strategy_day` (перекрывает шаг 7 скилла) |
+| `day_open.strategy_day` | День недели с акцентом на стратегирование; **не** отменяет DayPlan при `always_create_dayplan: true` |
 | `weekday_only_wps` | Список РП (id из WeekPlan), которые включаются в план дня только пн–пт; в сб/вс не ставить |
 | `budget_spread.enabled` | Распределять недельный бюджет РП по дням (true/false) |
 | `budget_spread.threshold_h` | Минимальный недельный бюджет для участия в расчёте (по умолчанию: 4h) |
