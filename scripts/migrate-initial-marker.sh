@@ -49,7 +49,7 @@ if [ -z "$TARGET" ]; then
         WS=$(grep -E '^WORKSPACE_DIR=' "$ENV_FILE" | head -1 | cut -d= -f2-)
         GOV=$(grep -E '^GOVERNANCE_REPO=' "$ENV_FILE" | head -1 | cut -d= -f2-)
         if [ -n "$WS" ] && [ -n "$GOV" ]; then
-            TARGET="$WS/$GOV/docs/Strategy.md"
+            TARGET="$WS/$GOV/_myiwe/Strategy.md"
         fi
     fi
     if [ -z "$TARGET" ]; then

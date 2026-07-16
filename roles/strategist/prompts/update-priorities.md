@@ -74,4 +74,4 @@
 - **WeekPlan:** `{{WORKSPACE_DIR}}/{{GOVERNANCE_REPO}}/current/WeekPlan W*.md`
 - **NЭП:** `{{WORKSPACE_DIR}}/{{GOVERNANCE_REPO}}/docs/Dissatisfactions.md`
 - **Backlog:** `{{WORKSPACE_DIR}}/{{GOVERNANCE_REPO}}/inbox/backlog-with-triggers.md`
-- **Red lines:** `{{WORKSPACE_DIR}}/{{GOVERNANCE_REPO}}/docs/Strategy.md` §Red Lines
+- **Red lines:** `{{WORKSPACE_DIR}}/{{GOVERNANCE_REPO}}/_myiwe/Strategy.md` §Red Lines

@@ -395,7 +395,7 @@ Claude прочитает CLAUDE.md и memory/ и проведёт тебя че
 3. **Первый WeekPlan** — Конкретные задачи на неделю с бюджетами
 4. **Регистрация в WP-REGISTRY.md и WeekPlan** — рабочие продукты из сессии появятся в реестре и плане
 
-**Результат:** заполненные `DS-strategy/docs/Strategy.md`, `Dissatisfactions.md` и первый `WeekPlan` в `DS-strategy/current/`.
+**Результат:** заполненные `DS-strategy/_myiwe/Strategy.md`, `Dissatisfactions.md` и первый `WeekPlan` в `DS-strategy/current/`.
 
 ## Этап 3: Настройка заметок через Telegram (5 мин, опционально)
 

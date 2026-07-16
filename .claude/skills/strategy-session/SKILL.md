@@ -31,7 +31,7 @@ gates_rationale: "операционный скилл; WP Gate применим 
 
 Проверь наличие любого из:
 
-- `{{WORKSPACE_DIR}}/{{GOVERNANCE_REPO}}/docs/Strategy.md`
+- `{{WORKSPACE_DIR}}/{{GOVERNANCE_REPO}}/_myiwe/Strategy.md`
 - `{{WORKSPACE_DIR}}/{{GOVERNANCE_REPO}}/current/WeekPlan W*.md`
 
 | Состояние | Режим | Куда дальше |
@@ -57,7 +57,7 @@ gates_rationale: "операционный скилл; WP Gate применим 
 - «Чему хочешь научиться?»
 - «Какие 2-3 крупные цели на ближайшие 3-6 месяцев?»
 
-Запиши ответы в `{{WORKSPACE_DIR}}/{{GOVERNANCE_REPO}}/docs/Strategy.md` по структуре:
+Запиши ответы в `{{WORKSPACE_DIR}}/{{GOVERNANCE_REPO}}/_myiwe/Strategy.md` по структуре:
 - Видение (1 год)
 - Цели на горизонт (3-6 месяцев)
 - Принципы (что для меня важно)

@@ -1,0 +1,1 @@
+for gitdir in $(find . -maxdepth 2 -name .git -type d | sort); do repo=$(dirname "$gitdir"); echo "=== $repo ==="; cd "$repo"; git log --oneline --since="2026-07-15T00:00:00" --until="2026-07-16T00:00:00" 2>/dev/null; cd ..; done

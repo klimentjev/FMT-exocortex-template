@@ -4,7 +4,8 @@ description: "Вызов агента Заметочник — карточки 
 type: reference
 horizon: warm
 domains: [notes, citations, DS-strategy]
-status: active
+status: superseded
+superseded_by: DS-strategy/.cursor/skills/zametochник/SKILL.md
 valid_from: 2026-05-29
 owner: user
 schema_version: 1

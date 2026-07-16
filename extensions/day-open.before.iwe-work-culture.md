@@ -34,3 +34,14 @@ Governance-репо: переменная окружения `$IWE_GOVERNANCE_RE
 1. **Шаг 7 Day Open не пропускать** — даже если сегодня `strategy_day`. Платформенный скилл может писать «DayPlan не создавать»; это правило **перекрывает** его для этого IWE.
 2. **Всегда** создавать `current/DayPlan YYYY-MM-DD.md` + санитация `current/` (`extensions/day-open.after.md`) **до** записи.
 3. `strategy_day` = дополнительный акцент (weekly review, стратегирование), а не замена DayPlan. План дня дублируется в DayPlan; в WeekPlan — только сводка или ссылка при необходимости.
+
+## Трекер мини-РП на день
+
+Источник: `DS-strategy/tools/mini-wp-week-tracker.html`.
+
+1. При каждом Day Open вызвать skill `mini-wp-tracker` (project skill в `DS-strategy/.cursor/skills/mini-wp-tracker/`).
+2. Skill выполняет:
+   - проверку `DS-strategy/docs/Strategy.md` на актуальность макс-РП и мини-РП;
+   - обновление массивов `MAX_RP` и `MINI_RP` в трекере при расхождении;
+   - проверку, что файл доступен пилоту (файл сам сбрасывает таблицу на шаблон дня при открытии в новую дату через `localStorage`).
+3. При необходимости запустить шаблон дня вручную через кнопку «Шаблон дня».

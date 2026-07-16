@@ -4,7 +4,7 @@
 ## Контекст
 
 - **HUB (личные планы):** {{WORKSPACE_DIR}}/{{GOVERNANCE_REPO}}/current/
-- **Документы стратегии:** {{WORKSPACE_DIR}}/{{GOVERNANCE_REPO}}/docs/ (ВСЕ файлы: Strategy.md, Dissatisfactions.md, Session Agenda.md)
+- **Документы стратегии:** `{{WORKSPACE_DIR}}/{{GOVERNANCE_REPO}}/_myiwe/Strategy.md` + `{{WORKSPACE_DIR}}/{{GOVERNANCE_REPO}}/docs/Dissatisfactions.md` + `{{WORKSPACE_DIR}}/{{GOVERNANCE_REPO}}/docs/Session Agenda.md`
 - **Inbox:** {{WORKSPACE_DIR}}/{{GOVERNANCE_REPO}}/inbox/ ([fleeting-notes.md](https://github.com/{{GITHUB_USER}}/{{GOVERNANCE_REPO}}/blob/main/inbox/fleeting-notes.md) + свежие файлы за неделю)
 - **Активные РП:** `bash {{WORKSPACE_DIR}}/scripts/active-wp-sweep.sh` (агрегатор по `{{GOVERNANCE_REPO}}/inbox/WP-*.md` + git-активность 7д)
 - **Стратегические карты:** {{WORKSPACE_DIR}}/*/MAPSTRATEGIC.md (если есть в репо)
@@ -18,7 +18,8 @@
 │   ├── WeekPlan W{N} YYYY-MM-DD.md    # план недели (Пн дата)
 │   └── DayPlan YYYY-MM-DD.md          # план дня
 ├── archive/                            # старые файлы
-├── docs/                               # Strategy.md, Dissatisfactions.md, Session Agenda.md
+├── docs/                               # Dissatisfactions.md, Session Agenda.md
+├── _myiwe/                             # Strategy.md
 ├── inbox/                              # fleeting-notes.md + входящие
 ```
 
@@ -72,7 +73,7 @@
 
 #### 4. Сверка со стратегией + агрегация MAPSTRATEGIC (→ блок «Стратегическая сверка»)
 
-- Прочитай `{{GOVERNANCE_REPO}}/docs/Strategy.md` — фокусы года, Q1 цели, приоритеты месяца
+- Прочитай `{{GOVERNANCE_REPO}}/_myiwe/Strategy.md` — фокусы года, Q1 цели, приоритеты месяца
 - Прочитай `{{WORKSPACE_DIR}}/*/MAPSTRATEGIC.md` (если файл есть в репо)
 - **Агрегируй** фазы из MAPSTRATEGIC.md → обнови секцию «Текущие фазы (MAPSTRATEGIC)» в Strategy.md
 - Обнови «Приоритеты месяца» — статусы на основе итогов в WeekPlan

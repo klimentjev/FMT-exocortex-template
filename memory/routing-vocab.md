@@ -30,7 +30,7 @@ related: DP.SC.036, DP.KR.001
 | **DayPlan** | `{{STRATEGY_REPO}}/current/DayPlan YYYY-MM-DD.md` | `DayPlan 2026-05-12.md` | Один на день |
 | **MonthClose / итоги месяца** | `{{STRATEGY_REPO}}/archive/month-reports/MonthClose YYYY-MM.md` | `MonthClose 2026-05.md` | |
 | **Strategy Session / протокол стратегирования** | `{{STRATEGY_REPO}}/sessions/YYYY-MM-DD.md` | `2026-05-12.md` | |
-| **Стратегия** (долгосрочный документ) | `{{STRATEGY_REPO}}/docs/Strategy.md` | Один файл, обновляется | |
+| **Стратегия** (долгосрочный документ) | `{{STRATEGY_REPO}}/_myiwe/Strategy.md` | Один файл, обновляется | |
 | **Неудовлетворённости / НЭП** | `{{STRATEGY_REPO}}/docs/Dissatisfactions.md` | Один файл | |
 | **Reminder** (напоминание на дату) | `{{STRATEGY_REPO}}/inbox/reminder-YYYY-MM-DD-<тема>.md` | `reminder-2026-05-12-wp121-backfill-check.md` | |
 

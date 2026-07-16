@@ -24,7 +24,7 @@
 
 - **Заметки:** `{{WORKSPACE_DIR}}/{{GOVERNANCE_REPO}}/inbox/fleeting-notes.md`
 - **НЭП:** {{WORKSPACE_DIR}}/{{GOVERNANCE_REPO}}/docs/Dissatisfactions.md
-- **Стратегия:** {{WORKSPACE_DIR}}/{{GOVERNANCE_REPO}}/docs/Strategy.md
+- **Стратегия:** {{WORKSPACE_DIR}}/{{GOVERNANCE_REPO}}/_myiwe/Strategy.md
 - **План недели:** {{WORKSPACE_DIR}}/{{GOVERNANCE_REPO}}/current/WeekPlan W*.md
 - **Inbox Экстрактора:** {{WORKSPACE_DIR}}/{{GOVERNANCE_REPO}}/inbox/captures.md
 - **MEMORY:** ~/.claude/projects/{{CLAUDE_PROJECT_SLUG}}/memory/MEMORY.md
@@ -64,7 +64,7 @@
 
 - `{{GOVERNANCE_REPO}}/docs/Dissatisfactions.md` — текущие НЭП (S* стратегические, O* операционные)
 - `{{GOVERNANCE_REPO}}/current/WeekPlan W*.md` — РП и приоритеты недели
-- `{{GOVERNANCE_REPO}}/docs/Strategy.md` — фокусы года, приоритеты месяца
+- `{{GOVERNANCE_REPO}}/_myiwe/Strategy.md` — фокусы года, приоритеты месяца
 - MEMORY.md — статусы РП
 - QA-отчёт бота: `DS-agent-workspace/scheduler/feedback-triage/` (последний по дате) — **структурированный отчёт** из feedback_triage DB (авто-классификация ботом). Замечания (✏️) и urgent (high/critical) — в начале файла. Real-time алерты уже отправлены ботом → Note-Review только проверяет кластеры (≥3 в одном кластере → пометить)
 
@@ -143,7 +143,7 @@
 | НЭП | `{{GOVERNANCE_REPO}}/docs/Dissatisfactions.md` |
 | Задача (на завтра / с дедлайном) | `{{GOVERNANCE_REPO}}/current/DayPlan*.md` (ближайший) или `WeekPlan W*.md` |
 | Задача (на неделю) | `{{GOVERNANCE_REPO}}/current/WeekPlan W*.md` |
-| Задача (стратегическая) | `{{GOVERNANCE_REPO}}/docs/Strategy.md` |
+| Задача (стратегическая) | `{{GOVERNANCE_REPO}}/_myiwe/Strategy.md` |
 | Личные данные | `{{GOVERNANCE_REPO}}/personal/` (contacts / accounts / secrets / reference) |
 
 > Стратег (Day-Plan, 4:00) читает эти документы и ВИДИТ предложения.
