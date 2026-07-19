@@ -16,17 +16,17 @@
 
 ---
 
-## РП текущей недели (W29: 13–19 июля 2026)
+## РП текущей недели (W30: 20–26 июля 2026)
 
-> Порядок: in_progress → pending → done. SoT: WeekPlan W29 + DayPlan.
+> Порядок: in_progress → pending → done. SoT: WeekPlan W30 + DayPlan.
 
 | # | РП | Бюджет | Статус | Дедлайн |
 |---|-----|--------|--------|---------|
-| S1-RP1 | Диссертация — связный фрагмент | 20h | in_progress (чт: nl-540 + _myiwe; фрагмент partial) | W29 |
-| НЭП-2 | Деньги — оффер / 5 касаний | 10h | in_progress (0 касаний — 4 дня подряд) | W29 |
-| WP-8 | ФиЯ — один шаг | 2h | pending (ср done; чт без факта) | W29 |
-| Health | Фитнес 3 слота + журнал | 6h | in_progress (жим 15.07 done; чт deferred) | W29 |
-| W29-review | Weekly review + правило | 2h | pending | вс |
+| S1-RP1 | Диссертация — фрагмент show-ready | 20h | in_progress (carry W29 ~6h/20h) | W30 |
+| НЭП-2 | Деньги — 5 касаний (09:00 блок) | 5h | in_progress (0 касаний — режим минимум фактов) | W30 |
+| WP-8 | ФиЯ — один шаг | 2h | in_progress (carry HFP.DISTINCTION.004) | W30 |
+| Health | Фитнес 3 тренировки + журнал | 6h | in_progress (carry 1/3) | W30 |
+| W30-review | Орг-управление — Day Close + факт | 2h | pending | вс W30 |
 
 ---
 
