@@ -40,12 +40,12 @@ agent: Стратег
 
 ## Меню дня (diet.md)
 
-> **Обязательно при Day Open:** фрагмент `### День N` из `DS-strategy/docs/health/diet.md` (пн=1 … вс=7). Алгоритм: `extensions/day-open.before.diet-menu.md`.
+> **Обязательно при Day Open:** фрагмент `### День N` из `DS-strategy/drafts/health/diet.md` (пн=1 … вс=7). Алгоритм: `extensions/day-open.before.diet-menu.md`.
 
 <details>
 <summary><b>Меню дня (diet.md · День N)</b></summary>
 
-> Источник: [diet.md](../docs/health/diet.md)
+> Источник: [diet.md](../drafts/health/diet.md)
 
 [секция ### День N из diet.md — дословно]
 
@@ -80,7 +80,7 @@ agent: Стратег
 
 ### Сверка с НЭП
 
-> Какая S-НЭП (из [Dissatisfactions.md](../docs/Dissatisfactions.md)) продвинулась сегодня? Какая без движения? Если РП дня не бил ни по одной S — вопрос «зачем».
+> Какая S-НЭП (из [Dissatisfactions.md](../DS-strategy/_myiwe/Dissatisfactions.md)) продвинулась сегодня? Какая без движения? Если РП дня не бил ни по одной S — вопрос «зачем».
 
 | S-код | Краткая формулировка | Сегодня | Комментарий |
 |-------|---------------------|---------|-------------|
@@ -251,7 +251,7 @@ agent: Стратег
 
 ## Сверка РП ↔ НЭП
 
-> Какие S-НЭП (из [Dissatisfactions.md](../docs/Dissatisfactions.md)) двигались на этой неделе и через какие РП? Где провисают?
+> Какие S-НЭП (из [Dissatisfactions.md](../DS-strategy/_myiwe/Dissatisfactions.md)) двигались на этой неделе и через какие РП? Где провисают?
 
 | S-код | S-НЭП | РП недели | Движение | Комментарий |
 |-------|-------|-----------|----------|-------------|

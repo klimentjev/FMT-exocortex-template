@@ -61,7 +61,7 @@ weekday_only_wps:
 
 # Меню дня из diet.md → фрагмент в DayPlan при каждом Day Open (шаг 7a)
 diet_menu:
-  source: DS-strategy/docs/health/diet.md
+  source: DS-strategy/drafts/health/diet.md
   week_start: monday          # День 1 = понедельник … День 7 = воскресенье
 
 pomodoro:
