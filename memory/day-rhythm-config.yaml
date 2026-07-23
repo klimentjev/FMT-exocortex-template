@@ -8,6 +8,12 @@ day_open:
   always_create_dayplan: true   # БЛОКИРУЮЩЕЕ: DayPlan создавать КАЖДЫЙ день, включая strategy_day
   self_dev_slot: 1              # Slot number for self-development (always first by default)
   self_dev_missing_alert: true  # Explicitly say if no self-dev in today's plan
+  # Темы слота саморазвития (шаг 3 Day Open). Жёсткий carry из «Завтра начать с» имеет приоритет.
+  # Если carry нет или он закрыт — предлагать тему из backlog (ротация / размышление).
+  self_dev_backlog:
+    - theme: "псевдо-я и подлинное я"
+      mode: reflect              # размышление (не обязательно артефакт-черновик)
+      note: "Пилот 2026-07-23: предлагать в другие дни (не вытесняя текущий carry по «логике снятия»)"
   interactive: false            # false = Day Open одним блоком. true = промежуточные вопросы.
   calendar_ids: []              # Calendar IDs to check. Empty = all available calendars.
                                 # Examples: ['primary', 'work@company.com', 'team-calendar-id@group']
