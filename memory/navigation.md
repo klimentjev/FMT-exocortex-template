@@ -74,7 +74,7 @@ description: "Операционный файл памяти IWE"
 
 | Файл | Путь |
 |------|------|
-| Стратегия | `DS-strategy/_myiwe/Strategy.md` |
+| Стратегия | `DS-strategy/docs/Strategy.md` |
 | Реестр всех РП (WP-1…WP-85+) | `DS-strategy/docs/WP-REGISTRY.md` |
 | WeekPlan | `DS-strategy/current/` |
 
@@ -88,5 +88,5 @@ description: "Операционный файл памяти IWE"
 
 ## WP Context Files
 
-> Все context files: `DS-strategy/inbox/WP-{N}-{slug}.md`
+> Все context files: `DS-strategy/inbox/WP-{N}/WP-{N}.md` (всегда папка — WP-434)
 > Архив: `DS-strategy/archive/wp-contexts/`

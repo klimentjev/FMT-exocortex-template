@@ -27,11 +27,14 @@ gates_rationale: "операционный скилл; WP Gate применим 
 
 ## Algorithm
 
+### Шаг 0. Extensions (before)
+`bash .claude/scripts/load-extensions.sh strategy-session before` → Exit 0: Read каждый файл, выполнить. Exit 1: пропустить.
+
 ## Шаг 1. Определить режим
 
 Проверь наличие любого из:
 
-- `{{WORKSPACE_DIR}}/{{GOVERNANCE_REPO}}/_myiwe/Strategy.md`
+- `{{WORKSPACE_DIR}}/{{GOVERNANCE_REPO}}/docs/Strategy.md`
 - `{{WORKSPACE_DIR}}/{{GOVERNANCE_REPO}}/current/WeekPlan W*.md`
 
 | Состояние | Режим | Куда дальше |
@@ -57,7 +60,7 @@ gates_rationale: "операционный скилл; WP Gate применим 
 - «Чему хочешь научиться?»
 - «Какие 2-3 крупные цели на ближайшие 3-6 месяцев?»
 
-Запиши ответы в `{{WORKSPACE_DIR}}/{{GOVERNANCE_REPO}}/_myiwe/Strategy.md` по структуре:
+Запиши ответы в `{{WORKSPACE_DIR}}/{{GOVERNANCE_REPO}}/docs/Strategy.md` по структуре:
 - Видение (1 год)
 - Цели на горизонт (3-6 месяцев)
 - Принципы (что для меня важно)
@@ -77,7 +80,7 @@ gates_rationale: "операционный скилл; WP Gate применим 
 - Бюджет (часы)
 - Артефакт-критерий (что появится по завершении)
 
-Запиши в `{{WORKSPACE_DIR}}/{{GOVERNANCE_REPO}}/current/WeekPlan W{N}.md` (где N — номер ISO-недели), используя единый шаблон WeekPlan из `roles/strategist/prompts/session-prep.md` (включая секцию `## Weekly Control Sheet (операционный контур недели)`).
+Запиши в `{{WORKSPACE_DIR}}/{{GOVERNANCE_REPO}}/current/WeekPlan W{N}.md` (где N — номер ISO-недели).
 
 ### 2.4. Обновление MEMORY.md (2 мин)
 
@@ -86,6 +89,8 @@ gates_rationale: "операционный скилл; WP Gate применим 
 ### 2.5. Закрытие initial-сессии
 
 Скажи: «Готово. Завтра утром можешь сказать "открывай день" — Стратег соберёт DayPlan на сегодня. По понедельникам в 04:00 автоматически готовится session-prep для следующей сессии.»
+
+**Extensions (after):** `bash .claude/scripts/load-extensions.sh strategy-session after` → Exit 0: Read каждый файл, выполнить. Exit 1: пропустить.
 
 ---
 
@@ -136,6 +141,8 @@ WIP-лимит (8-15).
 
 **Связка:** discovery даёт контекст приоритетов → планирование его упаковывает. Стратег
 подключается к недельному ритуалу только при триггере пересмотра; иначе — Плановик один.
+
+**Extensions (after):** `bash .claude/scripts/load-extensions.sh strategy-session after` → Exit 0: Read каждый файл, выполнить. Exit 1: пропустить.
 
 <!-- USER-SPACE -->
 <!-- /USER-SPACE -->

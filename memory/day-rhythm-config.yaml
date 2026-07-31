@@ -4,16 +4,9 @@
 
 day_open:
   week_close_day: sunday
-  strategy_day: sunday          # Акцент на стратегировании в этот день (НЕ отменяет DayPlan)
-  always_create_dayplan: true   # БЛОКИРУЮЩЕЕ: DayPlan создавать КАЖДЫЙ день, включая strategy_day
+  strategy_day: sunday          # Day for strategizing session (monday..sunday)
   self_dev_slot: 1              # Slot number for self-development (always first by default)
   self_dev_missing_alert: true  # Explicitly say if no self-dev in today's plan
-  # Темы слота саморазвития (шаг 3 Day Open). Жёсткий carry из «Завтра начать с» имеет приоритет.
-  # Если carry нет или он закрыт — предлагать тему из backlog (ротация / размышление).
-  self_dev_backlog:
-    - theme: "псевдо-я и подлинное я"
-      mode: reflect              # размышление (не обязательно артефакт-черновик)
-      note: "Пилот 2026-07-23: предлагать в другие дни (не вытесняя текущий carry по «логике снятия»)"
   interactive: false            # false = Day Open одним блоком. true = промежуточные вопросы.
   calendar_ids: []              # Calendar IDs to check. Empty = all available calendars.
                                 # Examples: ['primary', 'work@company.com', 'team-calendar-id@group']
@@ -59,16 +52,6 @@ budget_spread:
   enabled: true          # Distribute weekly budget of WPs across remaining days
   threshold_h: 4         # Only WPs with weekly budget ≥ this value are spread
   rounding: 0.5          # Round daily_slot to nearest N hours
-
-# РП, которые попадают в план дня ТОЛЬКО по будням (пн–пт). В сб/вс не включать в DayPlan / план дня в WeekPlan.
-weekday_only_wps:
-  - S1-RP1   # диссертация
-  - НЭП-2    # деньги
-
-# Меню дня из diet.md → фрагмент в DayPlan при каждом Day Open (шаг 7a)
-diet_menu:
-  source: DS-strategy/drafts/health/diet.md
-  week_start: monday          # День 1 = понедельник … День 7 = воскресенье
 
 pomodoro:
   work_minutes: 25

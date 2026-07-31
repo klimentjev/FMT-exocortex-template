@@ -306,7 +306,7 @@ CLAUDE_PROJECT_SLUG="$(echo "$WORKSPACE_DIR" | tr '/' '-')"
 # Если ни один не найден — default DS-strategy (будет создан при первом seed-ритуале).
 GOVERNANCE_REPO=""
 if [ -d "$WORKSPACE_DIR/DS-strategy" ]; then
-    GOVERNANCE_REPO="DS-strategy"
+    GOVERNANCE_REPO="${IWE_GOVERNANCE_REPO:-DS-strategy}"
 fi
 if [ -z "$GOVERNANCE_REPO" ]; then
     for d in "$WORKSPACE_DIR"/DS-*; do
@@ -378,16 +378,19 @@ else
 # Do not add shell commands — only KEY=VALUE lines are allowed.
 
 # === Core (substituted into runtime files via build-runtime.sh) ===
-GITHUB_USER=$GITHUB_USER
-WORKSPACE_DIR=$WORKSPACE_DIR
-CLAUDE_PATH=$CLAUDE_PATH
-CLAUDE_PROJECT_SLUG=$CLAUDE_PROJECT_SLUG
-TIMEZONE_HOUR=$TIMEZONE_HOUR
-TIMEZONE_DESC=$TIMEZONE_DESC
-HOME_DIR=$HOME_DIR
-GOVERNANCE_REPO=$GOVERNANCE_REPO
-IWE_TEMPLATE=$IWE_TEMPLATE_PATH
-IWE_RUNTIME=$IWE_RUNTIME_PATH
+# issue #223: значения ВСЕГДА в кавычках — файл читается через `source`,
+# непроцитированное значение с пробелом (напр. TIMEZONE_DESC=4:00 UTC)
+# ломает sourcing: bash трактует хвост как команду ("UTC: command not found").
+GITHUB_USER="$GITHUB_USER"
+WORKSPACE_DIR="$WORKSPACE_DIR"
+CLAUDE_PATH="$CLAUDE_PATH"
+CLAUDE_PROJECT_SLUG="$CLAUDE_PROJECT_SLUG"
+TIMEZONE_HOUR="$TIMEZONE_HOUR"
+TIMEZONE_DESC="$TIMEZONE_DESC"
+HOME_DIR="$HOME_DIR"
+GOVERNANCE_REPO="$GOVERNANCE_REPO"
+IWE_TEMPLATE="$IWE_TEMPLATE_PATH"
+IWE_RUNTIME="$IWE_RUNTIME_PATH"
 
 # === Platform LLM Proxy (optional own API key for unlimited usage) ===
 PLATFORM_LLM_PROXY_URL=https://llm.aisystant.com/v1
@@ -673,10 +676,38 @@ else
     echo "[4e] Generating executor-catalog.yaml..."
     if CATALOG_OUTPUT=$(IWE_GOVERNANCE_REPO="$GOVERNANCE_REPO" python3 "$TEMPLATE_DIR/scripts/generate-executor-catalog.py" 2>&1); then
         echo "$CATALOG_OUTPUT" | sed 's/^/  /'
+    elif echo "$CATALOG_OUTPUT" | grep -q "No module named 'yaml'"; then
+        # Голая Ubuntu/Debian не тащит PyYAML в system python3 (issue найден живым
+        # прогоном WP-5, 2026-07-27) — сырой traceback пугает новичка без подсказки.
+        echo "  ⚠ executor-catalog.yaml не сгенерирован — не хватает библиотеки PyYAML для python3."
+        if [ "$(uname)" = "Linux" ]; then
+            echo "    Установи: sudo apt install python3-yaml (или: pip3 install pyyaml, если pip3 уже стоит)"
+        else
+            echo "    Установи: pip3 install pyyaml"
+        fi
+        echo "    Потом выполни вручную:"
+        echo "    python3 $TEMPLATE_DIR/scripts/generate-executor-catalog.py"
     else
         echo "$CATALOG_OUTPUT" | sed 's/^/  /'
         echo "  ⚠ executor-catalog.yaml не сгенерирован — запусти вручную:"
         echo "    python3 $TEMPLATE_DIR/scripts/generate-executor-catalog.py"
+    fi
+fi
+
+# === 4f. Regenerate hot-files.list for the actual governance repo (issue #294/#291) ===
+# The repo ships hot-files.list pre-baked with the author's GOVERNANCE_REPO name —
+# without regenerating here, verify-context-budget.sh reports MISSING on any install
+# where GOVERNANCE_REPO differs from the author's.
+if $DRY_RUN; then
+    echo "[DRY RUN] Would regenerate hot-files.list (IWE_GOVERNANCE_REPO=$GOVERNANCE_REPO)"
+else
+    echo "[4f] Regenerating hot-files.list..."
+    if HOTFILES_OUTPUT=$(IWE_ROOT="$WORKSPACE_DIR" IWE_GOVERNANCE_REPO="$GOVERNANCE_REPO" bash "$TEMPLATE_DIR/scripts/generate-hot-files-list.sh" 2>&1); then
+        echo "$HOTFILES_OUTPUT" | sed 's/^/  /'
+    else
+        echo "$HOTFILES_OUTPUT" | sed 's/^/  /'
+        echo "  ⚠ hot-files.list не пересобран — запусти вручную:"
+        echo "    IWE_GOVERNANCE_REPO=$GOVERNANCE_REPO bash $TEMPLATE_DIR/scripts/generate-hot-files-list.sh"
     fi
 fi
 
@@ -734,58 +765,79 @@ else
 fi
 
 # === 6. Create DS-strategy repo ===
-echo "[6/6] Setting up DS-strategy..."
-MY_STRATEGY_DIR="$WORKSPACE_DIR/DS-strategy"
+echo "[6/6] Setting up $GOVERNANCE_REPO..."
+MY_STRATEGY_DIR="$WORKSPACE_DIR/$GOVERNANCE_REPO"
 STRATEGY_TEMPLATE="$TEMPLATE_DIR/seed/strategy"
 
 if [ -d "$MY_STRATEGY_DIR/.git" ]; then
-    echo "  DS-strategy already exists as git repo."
+    echo "  $GOVERNANCE_REPO already exists as git repo."
 elif $DRY_RUN; then
     if [ -d "$STRATEGY_TEMPLATE" ]; then
-        echo "  [DRY RUN] Would create DS-strategy from seed/strategy → $MY_STRATEGY_DIR"
+        echo "  [DRY RUN] Would create $GOVERNANCE_REPO from seed/strategy → $MY_STRATEGY_DIR"
         echo "  [DRY RUN] Would init git repo + initial commit"
         if ! $CORE_ONLY; then
-            echo "  [DRY RUN] Would create GitHub repo: $GITHUB_USER/DS-strategy (private)"
+            echo "  [DRY RUN] Would create GitHub repo: $GITHUB_USER/$GOVERNANCE_REPO (private)"
         fi
     else
-        echo "  [DRY RUN] Would create minimal DS-strategy (seed/strategy not found)"
+        echo "  [DRY RUN] Would create minimal $GOVERNANCE_REPO (seed/strategy not found)"
     fi
 else
     if [ -d "$STRATEGY_TEMPLATE" ]; then
+        # bug (issue #305): $MY_STRATEGY_DIR can exist as a plain non-git dir on a
+        # rerun after a prior failed setup.sh left it via the "seed/strategy not
+        # found" fallback below (mkdir -p .../{current,inbox,...}). `cp -r src dst`
+        # then nests src INSIDE an existing dst instead of merging — reproduces the
+        # reported "DS-strategy/strategy/..." double-nesting. Fail loud instead of
+        # silently producing a broken layout; `cp -r src/. dst/` copies contents
+        # correctly whether dst pre-exists (empty, after this guard) or not.
+        if [ -d "$MY_STRATEGY_DIR" ] && [ -n "$(ls -A "$MY_STRATEGY_DIR" 2>/dev/null)" ]; then
+            echo "  ERROR: $MY_STRATEGY_DIR already exists and is not a git repo (partial/failed prior run?)."
+            echo "  Fix: inspect and clean it up (or rename it aside), then re-run setup.sh."
+            exit 1
+        fi
         # Copy my-strategy template into its own repo
-        cp -r "$STRATEGY_TEMPLATE" "$MY_STRATEGY_DIR"
+        mkdir -p "$MY_STRATEGY_DIR"
+        cp -r "$STRATEGY_TEMPLATE"/. "$MY_STRATEGY_DIR"/
         cd "$MY_STRATEGY_DIR"
         git init
         git add -A
-        git commit -m "Initial exocortex: DS-strategy governance hub"
+        git commit -m "Initial exocortex: $GOVERNANCE_REPO governance hub"
+
+        # Enable secrets-check pre-commit hook (issue #317: install-iwe-paths.sh
+        # runs at step [4d], before this repo exists — its auto-enable loop can't
+        # see it on first setup.sh run, and update.sh never calls that script).
+        if [ -d "$MY_STRATEGY_DIR/.githooks" ]; then
+            git config core.hooksPath .githooks 2>/dev/null && \
+                echo "  Pre-commit hook enabled (.githooks/)" || true
+        fi
 
         if ! $CORE_ONLY; then
             # Create GitHub repo (full mode only)
-            gh repo create "$GITHUB_USER/DS-strategy" --private --source=. --push 2>/dev/null || \
-                echo "  GitHub repo DS-strategy already exists or creation skipped."
+            gh repo create "$GITHUB_USER/$GOVERNANCE_REPO" --private --source=. --push 2>/dev/null || \
+                echo "  GitHub repo $GOVERNANCE_REPO already exists or creation skipped."
         else
             echo "  Локальный репозиторий создан. Для публикации на GitHub:"
-            echo "    cd $MY_STRATEGY_DIR && gh repo create $GITHUB_USER/DS-strategy --private --source=. --push"
+            echo "    cd $MY_STRATEGY_DIR && gh repo create $GITHUB_USER/$GOVERNANCE_REPO --private --source=. --push"
         fi
     else
-        echo "  ERROR: seed/strategy/ not found. DS-strategy will be incomplete."
+        echo "  ERROR: seed/strategy/ not found. $GOVERNANCE_REPO will be incomplete."
         echo "  Fix: re-clone the template and run setup.sh again."
         echo "  Creating minimal structure as fallback..."
         mkdir -p "$MY_STRATEGY_DIR"/{current,inbox,archive/wp-contexts,docs,exocortex}
         cd "$MY_STRATEGY_DIR"
         git init
         git add -A
-        git commit -m "Initial exocortex: DS-strategy governance hub (minimal)"
+        git commit -m "Initial exocortex: $GOVERNANCE_REPO governance hub (minimal)"
 
         if ! $CORE_ONLY; then
-            gh repo create "$GITHUB_USER/DS-strategy" --private --source=. --push 2>/dev/null || \
-                echo "  GitHub repo DS-strategy already exists or creation skipped."
+            gh repo create "$GITHUB_USER/$GOVERNANCE_REPO" --private --source=. --push 2>/dev/null || \
+                echo "  GitHub repo $GOVERNANCE_REPO already exists or creation skipped."
         fi
     fi
 fi
 
-# === 7. Clone Base repos (FPF + SPF) ===
-echo "[7/7] Installing Base repos (FPF, SPF)..."
+# === 7. Clone Base repos (ZP + FPF + SPF) ===
+echo "[7/7] Installing Base repos (ZP, FPF, SPF)..."
 if $CORE_ONLY; then
     echo "  пропущено (core mode)"
 elif ! command -v gh >/dev/null 2>&1; then
@@ -809,6 +861,7 @@ else
         fi
     }
 
+    clone_base_repo "ZP" "TserenTserenov/ZP"
     clone_base_repo "FPF" "ailev/FPF"
     clone_base_repo "SPF" "TserenTserenov/SPF"
 fi
@@ -834,7 +887,7 @@ else
     echo "  ✓ CLAUDE.md:   $WORKSPACE_DIR/CLAUDE.md"
     echo "  ✓ Memory:      $CLAUDE_MEMORY_DIR/ ($(ls "$CLAUDE_MEMORY_DIR"/*.md 2>/dev/null | wc -l | tr -d ' ') files)"
     echo "  ✓ Symlink:     $WORKSPACE_DIR/memory → $CLAUDE_MEMORY_DIR"
-    echo "  ✓ DS-strategy: $MY_STRATEGY_DIR/"
+    echo "  ✓ $GOVERNANCE_REPO: $MY_STRATEGY_DIR/"
     echo "  ✓ Template:    $TEMPLATE_DIR/"
     echo ""
 
