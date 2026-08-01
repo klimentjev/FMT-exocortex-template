@@ -46,7 +46,7 @@ git -C {{WORKSPACE_DIR}}/<repo> log --since="today 00:00" --oneline --no-merges
 
 ### 4. Backup экзокортекса
 
-Скопируй актуальные файлы в `{{WORKSPACE_DIR}}/{{GOVERNANCE_REPO}}/exocortex/`:
+Скопируй актуальные файлы в `{{WORKSPACE_DIR}}/{{GOVERNANCE_REPO}}/exocortex/` (**только обновить/добавить**, не удалять лишние файлы в `exocortex/`):
 
 ```bash
 # Корневой CLAUDE.md

@@ -78,6 +78,7 @@ Day Close = протокол. Исполнять ТОЛЬКО пошагово �
 
 ### 5. Автоматические шаги
 `"$IWE_SCRIPTS/day-close.sh"` — Linear sync, downstream sync (update.sh), backup (memory/ + CLAUDE.md).
+Бэкап в `exocortex/` = **upsert без `--delete`** (не сносить файлы, которых нет в live `memory/`). После скрипта: если в `git status` массовые `D exocortex/` → `git restore exocortex/`, не коммитить удаления. Проверка → `extensions/day-close.checks.exocortex-backup-safe.md`.
 
 ### 6. Мультипликатор IWE
 > Условный шаг: если `params.yaml → multiplier_enabled: false` → пропустить.
@@ -113,6 +114,7 @@ TODAY_DAYPLAN="${IWE_GOVERNANCE_REPO:-DS-strategy}/archive/day-plans/DayPlan $(d
 
 ### 10b. Финальный коммит (все затронутые репозитории, не только governance)
 `git status --short` по КАЖДОМУ репо, который сессия трогала за день — как минимум workspace root (`{{HOME_DIR}}/IWE/`, там физически лежат `MEMORY.md` и `memory/*.md`, их правят шаги 4б/4) и `${IWE_GOVERNANCE_REPO:-DS-strategy}` (WeekPlan/DayPlan/WP-REGISTRY). Незафиксированное (включая правки шага 10a) → `git add <specific paths>` → commit → push. Переходить к шагу 11 только когда `git status` чист во всех репо.
+**exocortex:** не `git add exocortex/`; стейджить только конкретные обновлённые файлы. Массовые удаления из бэкапа — откат, не коммит (см. шаг 5).
 
 ### 10c. Heartbeat для Day Open guard
 Пишется ПОСЛЕ push шага 10b — DayPlan уже реально закоммичен. day-open-pipeline.sh на следующий день читает этот файл как сигнал «Day Close сделан» (fallback — присутствие архивного DayPlan в git, симметрично day-open):

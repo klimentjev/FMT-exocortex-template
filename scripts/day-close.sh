@@ -73,13 +73,16 @@ do_backup() {
     rm -rf "$EXOCORTEX_DST/memory"
   fi
 
-  # Mirror *.md/*.yaml/*.yml from auto-memory; --delete prunes files removed upstream.
-  # CLAUDE.md is excluded so the workspace copy below isn't deleted by --delete.
+  # Upsert *.md/*.yaml/*.yml from auto-memory into exocortex/.
+  # NO --delete: exocortex/ may hold more than the live memory set (older protocols,
+  # templates, agent-only notes). Pruning deleted files that still exist only in
+  # the backup mirror (incident 2026-07-31). Stale cleanup = explicit pilot decision.
+  # CLAUDE.md is excluded here and written below with {{HOME_DIR}} substitution.
   # -L (copy-links) dereferences symlinks so target content is copied, not the link —
   # prevents a self-referencing ELOOP symlink from recurring here (WP-7 DOC8).
   # day-rhythm-config.yaml is excluded here and handled separately via merge (see below)
   # to preserve user-configured keys (e.g. calendar_ids) from being overwritten by template defaults.
-  rsync -aL --delete \
+  rsync -aL \
     --exclude='CLAUDE.md' \
     --exclude='day-rhythm-config.yaml' \
     --include='*.md' --include='*.yaml' --include='*.yml' \
