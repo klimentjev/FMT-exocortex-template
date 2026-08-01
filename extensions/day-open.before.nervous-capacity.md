@@ -13,9 +13,9 @@
 
 1. `Read` файл `DS-strategy/library/nervous-capacity/PROMPT.md` (§ Open + **§ UI опроса**).
 2. Собрать данные (пилот / fitnes2 / вчерашний Close).
-3. Если критичных полей нет — **запустить кликабельный опрос** по `PROMPT.md` § UI опроса (не plain-text по умолчанию):
-   - предпочтительно Cursor `AskQuestion` с вариантами по 5 маркерам (+ доп. поля Open);
-   - иначе fallback: `DS-strategy/library/nervous-capacity/survey-open.html` (создать/обновить, если отсутствует или устарел) → пилот копирует строку ответа в чат;
+3. Если критичных полей нет — **запустить кликабельный опрос в чате** (не plain-text по умолчанию):
+   - **Сначала** Cursor tool `AskQuestion` с payload из `DS-strategy/library/nervous-capacity/askquestion-open.json` (канон: title «Ёмкость · утро…», 6 вопросов). Не писать варианты списком в markdown, если tool доступен.
+   - Иначе fallback: `DS-strategy/library/nervous-capacity/survey-open.html` → пилот копирует строку ответа в чат;
    - дождаться ответа **или** явного «н/д / продолжай без данных».
 4. Дальше — критерии §2–4 этого файла; итог рассуждения держать в рамке промпта (без морали, без нового трекера учёта).
 

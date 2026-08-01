@@ -13,3 +13,4 @@ globs: *
    - ПОСЛЕ шага 6b проверь `extensions/day-open.after.md`. 
    - ПЕРЕД git commit проверь `extensions/day-open.checks.md`. 
    - Пропуск extensions = неполное открытие.
+5. **Ёмкость в чате (БЛОКИРУЮЩЕЕ для Cursor):** при `day-open.before.nervous-capacity` — вызвать tool `AskQuestion` с payload `DS-strategy/library/nervous-capacity/askquestion-open.json` (кликабельные кнопки в чате). Не подменять сразу HTML/plain-text, если `AskQuestion` доступен. HTML `survey-open.html` — только fallback.
