@@ -57,7 +57,7 @@ Governance-репо: переменная окружения `$IWE_GOVERNANCE_RE
 
 1. При каждом Day Open вызвать skill `mini-wp-tracker` (project skill в `DS-strategy/.cursor/skills/mini-wp-tracker/`).
 2. Skill выполняет:
-   - проверку `DS-strategy/docs/Strategy.md` на актуальность макс-РП и мини-РП;
+   - проверку `DS-strategy/_myiwe/Strategy.md` на актуальность макс-РП и мини-РП;
    - обновление массивов `MAX_RP` и `MINI_RP` в трекере при расхождении;
    - проверку, что файл доступен пилоту (файл сам сбрасывает таблицу на шаблон дня при открытии в новую дату через `localStorage`).
 3. При необходимости запустить шаблон дня вручную через кнопку «Шаблон дня».
