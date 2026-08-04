@@ -177,7 +177,7 @@ Respond in Russian unless the user writes in English.
 - **Именование РП:** существительное-артефакт, по возможности русский; колонка «Название» в реестре ≤80 символов → SYNC-CORE; переименование — синхронно REGISTRY + WeekPlan + DayPlan + WP-context.
 - **WeekPlan/WeekReport:** WeekPlan = только интенты, WeekReport = только факты.
 - **Режим «на пальцах»:** триггеры «объясни», «на пальцах», «что сделали», «простыми словами» → Response Style + `memory/feedback_response_clarity_for_pilot.md`.
-- **DS-exocortex:** второй checkout шаблона с drift — не использовать в ежедневной работе; судьба — отдельное решение (не смешивать с `_my-pls`).
+- **DS-exocortex (dormant):** второй checkout шаблона Церена, ~793 behind; **не использовать**. L1 = корень IWE + `update.sh`. Решение: `DS-strategy/inbox/decision-2026-08-04-ds-exocortex-dormant.md`. Удаление/gitlink — только АрхГейт.
 
 ---
 

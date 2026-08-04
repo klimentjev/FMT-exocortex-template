@@ -7,3 +7,8 @@
 # Копия исходников хуков для установки в %USERPROFILE%\.iwe\claude-hooks — не индексировать.
 share/claude-hooks-dist/
 
+
+# Спящий второй checkout FMT (не L1 этой установки)
+# см. DS-strategy/inbox/decision-2026-08-04-ds-exocortex-dormant.md
+DS-exocortex/
+

@@ -55,7 +55,7 @@
 | Правила типов репо | `memory/repo-type-rules.md` |
 | Роли агентов (каталог) | `DS-strategy/docs/DP.AGENT.001-section-3.2-catalog-roles.md` |
 | Что такое IWE + FAQ | Репозиторий шаблона на GitHub: `TserenTserenov/FMT-exocortex-template` → `docs/IWE-HELP.md` |
-| Полная установка | `DS-exocortex/setup.sh`; справка upstream: `FMT-exocortex-template/docs/SETUP-GUIDE.md` на GitHub |
+| Полная установка / обновление L1 | из **корня** IWE: `bash update.sh`; справка: GitHub `TserenTserenov/FMT-exocortex-template` → `docs/SETUP-GUIDE.md` |
 
 **Поиск по базе знаний Pack (через меня):**
 Скажи «найди документы про ...» → использую `knowledge-mcp search`.

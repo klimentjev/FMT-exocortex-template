@@ -37,12 +37,12 @@ description: "Операционный файл памяти IWE"
 
 | Репо | Путь |
 |------|------|
+| Платформа L1 (рабочая) | корень `IWE/` + `update.sh` |
+| Governance L3 | `DS-strategy/` (`_my-pls/`, `current/`) |
+| `DS-exocortex/` | **dormant** — не SoT; решение в inbox |
 <!-- Добавьте свои DS-репо. Пример: -->
 <!-- | Мой бот (READ-ONLY) | `your-org/your-bot/` | -->
-<!-- | Монорепо ИИ-систем | `your-org/ai-systems/` | -->
-| Шаблонизатор | `FMT-exocortex-template/setup.sh` |
-| Личная онтология | `DS-strategy/ontology.md` |
-| Программа обучения | `DS-principles-curriculum/` |
+| Личная онтология | `DS-strategy/` (см. `_my-pls/`) |
 
 ## Pack-репо
 
