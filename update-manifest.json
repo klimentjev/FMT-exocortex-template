@@ -1,6 +1,6 @@
 {
   "version": "0.36.2",
-  "description": "Манифест платформенных файлов FMT-exocortex-template. Используется update.sh для доставки обновлений.",
+  "description": "РњР°РЅРёС„РµСЃС‚ РїР»Р°С‚С„РѕСЂРјРµРЅРЅС‹С… С„Р°Р№Р»РѕРІ FMT-exocortex-template. РСЃРїРѕР»СЊР·СѓРµС‚СЃСЏ update.sh РґР»СЏ РґРѕСЃС‚Р°РІРєРё РѕР±РЅРѕРІР»РµРЅРёР№.",
   "files": [
     {
       "path": ".claude/agents/wp-sync-actualizer.md"
@@ -22,6 +22,9 @@
     },
     {
       "path": ".claude/detectors/detector_pattern_awareness.sh"
+    },
+    {
+      "path": ".claude/hooks/.orphan-allowlist"
     },
     {
       "path": ".claude/hooks/agent-trace-recorder.sh"
@@ -433,6 +436,9 @@
     },
     {
       "path": ".githooks/commit-msg"
+    },
+    {
+      "path": ".githooks/post-commit"
     },
     {
       "path": ".githooks/pre-commit"
@@ -1302,6 +1308,9 @@
       "path": "scripts/check-open-sessions.sh"
     },
     {
+      "path": "scripts/check-orphan-hooks.sh"
+    },
+    {
       "path": "scripts/check-platform-compat.sh"
     },
     {
@@ -1408,6 +1417,9 @@
     },
     {
       "path": "scripts/headless-runner.sh"
+    },
+    {
+      "path": "scripts/hermes-peer-adapter.sh"
     },
     {
       "path": "scripts/hindsight_adapter.py"
@@ -1524,6 +1536,9 @@
       "path": "scripts/peer-adapter-filter.py"
     },
     {
+      "path": "scripts/peer-session-finalize.sh"
+    },
+    {
       "path": "scripts/pending-phases-sweep.sh"
     },
     {
@@ -1540,6 +1555,9 @@
     },
     {
       "path": "scripts/route-task.sh"
+    },
+    {
+      "path": "scripts/run-regression-tests.sh"
     },
     {
       "path": "scripts/script-promote.sh"
@@ -1594,6 +1612,51 @@
     },
     {
       "path": "scripts/test-route-task.sh"
+    },
+    {
+      "path": "scripts/tests/lib/capture_fixture.sh"
+    },
+    {
+      "path": "scripts/tests/lib/seed_strategy_fixture.sh"
+    },
+    {
+      "path": "scripts/tests/test_capture_bus_contract.sh"
+    },
+    {
+      "path": "scripts/tests/test_capture_bus_detector_timeout.sh"
+    },
+    {
+      "path": "scripts/tests/test_create_wp_contract.sh"
+    },
+    {
+      "path": "scripts/tests/test_create_wp_registry_coherence.sh"
+    },
+    {
+      "path": "scripts/tests/test_create_wp_repeat_and_cwd.sh"
+    },
+    {
+      "path": "scripts/tests/test_critical_alert_contract.sh"
+    },
+    {
+      "path": "scripts/tests/test_critical_alert_disabled_tracker.sh"
+    },
+    {
+      "path": "scripts/tests/test_critical_alert_failure_matrix.sh"
+    },
+    {
+      "path": "scripts/tests/test_day_close_lock_timezone.sh"
+    },
+    {
+      "path": "scripts/tests/test_fresh_seed_reproduction.sh"
+    },
+    {
+      "path": "scripts/tests/test_hook_classification.sh"
+    },
+    {
+      "path": "scripts/tests/test_upgrade_worktree_cleanup.sh"
+    },
+    {
+      "path": "scripts/tests/validate_manifest_coverage.sh"
     },
     {
       "path": "scripts/update-derived-snapshot.py"
@@ -1682,6 +1745,7 @@
     "scripts/tests/test_delivery_content.py",
     "scripts/tests/test_delivery_formal.py",
     "scripts/tests/test_dry_run_gate.py",
+    "scripts/tests/test_install_hooks.py",
     "scripts/tests/test_manifest_coverage_local.py",
     "scripts/tests/test_skill_promote.py",
     "scripts/tests/test_translate_delta.py",
@@ -1762,51 +1826,51 @@
     },
     {
       "path": ".claude/hooks/wakatime-heartbeat.sh",
-      "reason": "removed from platform in v0.34 — user-installed hook only"
+      "reason": "removed from platform in v0.34 вЂ” user-installed hook only"
     },
     {
       "path": ".claude/skills/peer-conversation/modes.md",
-      "reason": "removed from platform — moved to peer-conversation skill internals"
+      "reason": "removed from platform вЂ” moved to peer-conversation skill internals"
     },
     {
       "path": "sessions/2026-06/2026-06-17-01-kimi-setup/00-writer.md",
-      "reason": "session transcripts archived, removed by WP-401 Ф6.1 2026-07-22"
+      "reason": "session transcripts archived, removed by WP-401 Р¤6.1 2026-07-22"
     },
     {
       "path": "sessions/2026-06/2026-06-17-01-kimi-setup/01-peer.md",
-      "reason": "session transcripts archived, removed by WP-401 Ф6.1 2026-07-22"
+      "reason": "session transcripts archived, removed by WP-401 Р¤6.1 2026-07-22"
     },
     {
       "path": "sessions/2026-06/2026-06-17-01-kimi-setup/02-writer.md",
-      "reason": "session transcripts archived, removed by WP-401 Ф6.1 2026-07-22"
+      "reason": "session transcripts archived, removed by WP-401 Р¤6.1 2026-07-22"
     },
     {
       "path": "sessions/2026-06/2026-06-17-01-kimi-setup/03-peer.md",
-      "reason": "session transcripts archived, removed by WP-401 Ф6.1 2026-07-22"
+      "reason": "session transcripts archived, removed by WP-401 Р¤6.1 2026-07-22"
     },
     {
       "path": "sessions/2026-06/2026-06-17-01-kimi-setup/meta.yaml",
-      "reason": "session transcripts archived, removed by WP-401 Ф6.1 2026-07-22"
+      "reason": "session transcripts archived, removed by WP-401 Р¤6.1 2026-07-22"
     },
     {
       "path": "sessions/2026-06/2026-06-17-01-kimi-setup/report.md",
-      "reason": "session transcripts archived, removed by WP-401 Ф6.1 2026-07-22"
+      "reason": "session transcripts archived, removed by WP-401 Р¤6.1 2026-07-22"
     },
     {
       "path": "docs/developer/README.md",
-      "reason": "documentation pipeline deprecated, consolidated in memory/, removed by WP-401 Ф6.1 2026-07-23"
+      "reason": "documentation pipeline deprecated, consolidated in memory/, removed by WP-401 Р¤6.1 2026-07-23"
     },
     {
       "path": "docs/developer/card-template.md",
-      "reason": "documentation pipeline deprecated, consolidated in memory/, removed by WP-401 Ф6.1 2026-07-23"
+      "reason": "documentation pipeline deprecated, consolidated in memory/, removed by WP-401 Р¤6.1 2026-07-23"
     },
     {
       "path": "docs/developer/developer-guide.md",
-      "reason": "documentation pipeline deprecated, consolidated in memory/, removed by WP-401 Ф6.1 2026-07-23"
+      "reason": "documentation pipeline deprecated, consolidated in memory/, removed by WP-401 Р¤6.1 2026-07-23"
     },
     {
       "path": "docs/developer/testing-as-spec.md",
-      "reason": "documentation pipeline deprecated, consolidated in memory/, removed by WP-401 Ф6.1 2026-07-23"
+      "reason": "documentation pipeline deprecated, consolidated in memory/, removed by WP-401 Р¤6.1 2026-07-23"
     }
   ]
 }

@@ -8,15 +8,15 @@ domains: [reference]
 status: active
 owner: user
 schema_version: 1
-fpf_version: "2ada413629b846ef308222d16489a82cb5b40a71"
-fpf_synced_at: 2026-07-29
+fpf_version: "8b727cba9e893a467b82aab9da84fb7d6d945480"
+fpf_synced_at: 2026-08-04
 
 name: "fpf-reference"
 description: "Справочник FPF паттернов применимых в IWE: структура, ключевые Part C (C.11-C.28), трансляция терминов"
 ---
 # FPF (First Principles Framework) — справочник
 
-> Источник: `{{HOME_DIR}}/IWE/FPF/FPF-Spec.md` (4.6 MB, ~50000 строк)
+> Источник: `{{HOME_DIR}}/IWE/Base/FPF/FPF-Spec.md` (~12 MB, ~74500 строк)
 
 ## Когда читать FPF
 

@@ -4,6 +4,27 @@
 
 > Журнал синхронизаций с upstream (ailev/FPF). Обновляется еженедельно при week-close.
 
+### 2026-08-04
+
+**Действие:** Синхронизация `Base/FPF` с `origin/main` (ailev/FPF, А. Левинчук).
+
+**FPF версия:** 20260804 (commit `8b727cb`, 2026-08-04)
+- Последний коммит: «A.6.3.CSC language repairing».
+- Подтянуто 5 коммитов с `373c879` (measurement relations correction).
+
+**Ключевые изменения upstream:**
+- A.6.3.CSC language repairing
+- relation ontological adjustments
+- process relations adjustment
+- architectural patterns ontological adjustment
+- problem relation
+
+**Побочные обновления:** `Base/FPF-VERSION.txt`, `memory/fpf-reference.md` (якорь SHA).
+
+**SPF:** уже актуален (`6a9d637`, без изменений). **ZP:** не трогали.
+
+---
+
 ### 2026-07-04
 
 **Действие:** Синхронизация `Base/FPF` с `origin/main` (ailev/FPF, А. Левинчук).
@@ -114,7 +135,7 @@
 
 **Как:**
 ```bash
-cd /mnt/c/Users/admin/IWE/Base/FPF
+cd "$IWE_WORKSPACE/Base/FPF"   # or: cd Base/FPF from IWE root
 git pull origin main
 ```
 
