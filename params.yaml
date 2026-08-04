@@ -47,4 +47,4 @@ extensions_dir: extensions
 
 # === Автор шаблона ===
 
-author_mode: true
+author_mode: false
