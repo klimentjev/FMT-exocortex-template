@@ -75,7 +75,7 @@ description: "Операционный файл памяти IWE"
 | Файл | Путь |
 |------|------|
 | Стратегия | `DS-strategy/docs/Strategy.md` |
-| Реестр всех РП (WP-1…WP-85+) | `DS-strategy/docs/WP-REGISTRY.md` |
+| Реестр всех РП (WP-1…WP-85+) | `DS-strategy/_my-pls/WP-REGISTRY.md` |
 | WeekPlan | `DS-strategy/current/` |
 
 ## GitHub-организации (НЕ путать!)

@@ -34,7 +34,12 @@ if [[ -z "${IWE_GOVERNANCE_REPO:-}" ]] && [[ ! -d "$IWE/$GOV_REPO" ]]; then
 fi
 
 STRATEGY="$IWE/$GOV_REPO"
-REGISTRY="$STRATEGY/docs/WP-REGISTRY.md"
+# Author install: SoT in _my-pls/; template/seed still uses docs/
+if [[ -f "$STRATEGY/_my-pls/WP-REGISTRY.md" ]]; then
+  REGISTRY="$STRATEGY/_my-pls/WP-REGISTRY.md"
+else
+  REGISTRY="$STRATEGY/docs/WP-REGISTRY.md"
+fi
 INBOX="$STRATEGY/inbox"
 STATE_DIR="$IWE/.claude/state"
 

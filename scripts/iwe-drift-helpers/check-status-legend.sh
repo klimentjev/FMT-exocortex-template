@@ -27,7 +27,15 @@ set -eu
 # Load unified environment: WORKSPACE_DIR, IWE_ROOT, IWE_SCRIPTS, etc.
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 source "$SCRIPT_DIR/../../.claude/lib/iwe-env-bootstrap.sh" || exit 1
-REGISTRY="${REGISTRY:-$IWE_ROOT/${IWE_GOVERNANCE_REPO:-}/docs/WP-REGISTRY.md}"
+if [ -z "${REGISTRY:-}" ]; then
+  _GOV="$IWE_ROOT/${IWE_GOVERNANCE_REPO:-DS-strategy}"
+  if [ -f "$_GOV/_my-pls/WP-REGISTRY.md" ]; then
+    REGISTRY="$_GOV/_my-pls/WP-REGISTRY.md"
+  else
+    REGISTRY="$_GOV/docs/WP-REGISTRY.md"
+  fi
+  unset _GOV
+fi
 MODE="${MODE:-all}"
 
 # Терминальные статусы — закрытие РП. Источник: легенда WP-REGISTRY.md.

@@ -14,7 +14,12 @@ set -uo pipefail
 IWE="${IWE_ROOT:-$HOME/IWE}"
 GOV_REPO="${IWE_GOVERNANCE_REPO:-DS-strategy}"
 STRATEGY="$IWE/$GOV_REPO"
-REGISTRY="$STRATEGY/docs/WP-REGISTRY.md"
+# Author install: SoT in _my-pls/; template/seed still uses docs/
+if [[ -f "$STRATEGY/_my-pls/WP-REGISTRY.md" ]]; then
+  REGISTRY="$STRATEGY/_my-pls/WP-REGISTRY.md"
+else
+  REGISTRY="$STRATEGY/docs/WP-REGISTRY.md"
+fi
 ARCHIVE_DIR="$STRATEGY/archive/wp-contexts"
 
 WP_NUM=""

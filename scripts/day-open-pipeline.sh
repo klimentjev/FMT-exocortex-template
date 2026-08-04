@@ -171,7 +171,13 @@ DAYPLAN_PATH="$CURRENT_DIR/$DAYPLAN_NAME"
 # into the pilot's real DayPlan. Belt-and-suspenders alongside that script's own
 # end-of-run cleanup.
 WEEKPLAN_PATH=$(ls -t "$CURRENT_DIR"/WeekPlan\ *.md 2>/dev/null | grep -v '(probe)' | head -1 || true)
-WP_REGISTRY="$IWE/${IWE_GOVERNANCE_REPO:-DS-strategy}/docs/WP-REGISTRY.md"
+_GOV="$IWE/${IWE_GOVERNANCE_REPO:-DS-strategy}"
+if [[ -f "$_GOV/_my-pls/WP-REGISTRY.md" ]]; then
+  WP_REGISTRY="$_GOV/_my-pls/WP-REGISTRY.md"
+else
+  WP_REGISTRY="$_GOV/docs/WP-REGISTRY.md"
+fi
+unset _GOV
 # WP-7 Ф-DRIFT-DATA-PIPELINES D1 (13.07): было memory/cp-profile.json, который не
 # писал ни один механизм. update-derived-snapshot.py (шаг 1.5 выше) уже пишет сюда.
 CP_PROFILE="$IWE/${IWE_GOVERNANCE_REPO:-DS-strategy}/inbox/WP-425/cache/derived_snapshot.json"

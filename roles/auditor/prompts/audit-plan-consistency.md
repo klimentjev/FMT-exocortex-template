@@ -10,7 +10,7 @@
 
 1. **MEMORY.md** → секция «РП текущей недели»
 2. **WeekPlan** → `{{GOVERNANCE_REPO}}/current/WeekPlan W{N}...`
-3. **WP-REGISTRY** → `{{GOVERNANCE_REPO}}/docs/WP-REGISTRY.md`
+3. **WP-REGISTRY** → `{{GOVERNANCE_REPO}}/_my-pls/WP-REGISTRY.md` (если нет — `{{GOVERNANCE_REPO}}/docs/WP-REGISTRY.md`)
 4. **DayPlan** → `{{GOVERNANCE_REPO}}/current/DayPlan YYYY-MM-DD.md` (если есть)
 
 ## Алгоритм

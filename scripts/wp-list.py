@@ -178,7 +178,9 @@ def main():
     if args.source in ("archive", "all"):
         roots.append(gov_root / "archive" / "wp-contexts")
 
-    registry_done = registry_done_status(gov_root / "docs" / "WP-REGISTRY.md")
+    author_registry = gov_root / "_my-pls" / "WP-REGISTRY.md"
+    registry_path = author_registry if author_registry.exists() else gov_root / "docs" / "WP-REGISTRY.md"
+    registry_done = registry_done_status(registry_path)
 
     seen = {}
     for root in roots:

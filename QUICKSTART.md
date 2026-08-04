@@ -11,7 +11,7 @@
 | Текущий план недели | `DS-strategy/current/WeekPlan W*.md` | РП, задачи, статусы |
 | Оперативная память | `memory/MEMORY.md` (корень IWE) | Блокирующие правила, таблица РП |
 | Входящие материалы | `DS-strategy/inbox/` | Загружаемые тексты, черновики, заметки |
-| Стратегия | `DS-strategy/_myiwe/Strategy.md` | Куда двигаемся |
+| Стратегия | `DS-strategy/_my-pls/Strategy.md` | Куда двигаемся |
 | Доменные знания | `PACK-*/` | Source of truth по темам |
 | Навигация по всем репо | `memory/navigation.md` (корень IWE) | Карта файлов и репо |
 
