@@ -1,92 +1,100 @@
 ---
 valid_from: 2026-04-13
-originSessionId: 9a0e726a-951e-4408-9e02-94d7eeffbf74
-
+updated: 2026-08-04
 type: reference
 horizon: warm
 domains: [reference]
 status: active
 owner: user
 schema_version: 1
-
 name: "navigation"
-description: "Операционный файл памяти IWE"
+description: "Операционная карта этой установки IWE (сверка с диском — L1/L3 фаза 5)"
 ---
-# Навигация по репозиториям (Слой 3)
 
+# Навигация по репозиториям (эта установка)
 
-## Ключевые файлы
+> SoT факта дерева: то, что есть на диске. Устаревшие шаблонные пути сюда не копировать.
+> Личная система жизнедеятельности: `DS-strategy/_my-pls/my-pls-map.md` + `my-pls-system.md`.
+
+## Ключевые файлы платформы
 
 | Тема | Файл |
 |------|------|
 | Различения (жёсткие пары) | `memory/hard-distinctions.md` |
-| FPF (навигация, принципы) | `memory/fpf-reference.md` |
+| FPF (навигация) | `memory/fpf-reference.md` |
 | Правила по типам репо | `memory/repo-type-rules.md` |
 | Чеклисты | `memory/checklists.md` |
-| SOTA-практики (18 шт.) | `memory/sota-reference.md` |
-| Протокол Open (WP Gate, Ритуал) | `memory/protocol-open.md` |
-| Протокол Close (маршрутизация, Quick Close) | `memory/protocol-close.md` |
-| Day Close (полный алгоритм) | `.claude/skills/day-close/SKILL.md` |
-| Week Close (полный алгоритм) | `.claude/skills/week-close/SKILL.md` |
+| SOTA | `memory/sota-reference.md` |
+| Протокол Open | `memory/protocol-open.md` |
+| Протокол Close | `memory/protocol-close.md` |
+| Day Close | `.claude/skills/day-close/SKILL.md` |
+| Week Close | `.claude/skills/week-close/SKILL.md` |
 | Шаблоны DayPlan/WeekPlan | `memory/templates-dayplan.md` |
-| Нулевые принципы + иерархия | `ZP/README.md` |
-| Кодирование сущностей | `SPF/spec/SPF.SPEC.001-entity-coding.md` |
-| Масштабируемость Pack | `SPF/spec/SPF.SPEC.003-pack-scalability.md` |
+| FPF (полное дерево) | `Base/FPF/` |
+| SPF (спеки / шаблон Pack) | `Base/SPF/` — напр. `Base/SPF/spec/SPF.SPEC.001-entity-coding.md` |
+| Культура работы (L3) | `extensions/iwe-work-culture.md` |
 
-## Репозитории
+## Репозитории и зоны
 
-| Репо | Путь |
-|------|------|
-| Платформа L1 (рабочая) | корень `IWE/` + `update.sh` |
-| Governance L3 | `DS-strategy/` (`_my-pls/`, `current/`) |
-| `DS-exocortex/` | **dormant** — не SoT; решение в inbox |
-<!-- Добавьте свои DS-репо. Пример: -->
-<!-- | Мой бот (READ-ONLY) | `your-org/your-bot/` | -->
-| Личная онтология | `DS-strategy/` (см. `_my-pls/`) |
+| Зона | Путь | Заметка |
+|------|------|---------|
+| Платформа L1 | корень `IWE/` + `update.sh` | форк FMT; upstream Церена |
+| Governance L3 | `DS-strategy/` | `_my-pls/`, `current/`, `inbox/`, `library/` |
+| `DS-exocortex/` | dormant | не SoT; `inbox/decision-2026-08-04-ds-exocortex-dormant.md` |
+| DS-MCP | `DS-MCP/` | локальные MCP-заготовки |
+| Base | `Base/FPF`, `Base/SPF` | принципы / форма Pack |
+| Расширения L3 | `extensions/`, `params.yaml` | не править skills «под себя» |
 
-## Pack-репо
+## Pack (есть на диске)
 
 | Pack | Путь |
 |------|------|
-| PACK-personal | Личностное развитие |
-| PACK-verification | Верификация и приёмка (трансдоменный) |
-| PACK-autonomous-agents | Автономные агенты (BC, различения, методы) |
+| PACK-personal | `PACK-personal/` |
+| PACK-aufheben | `PACK/PACK-aufheben/` |
+| PACK-bibliography | `PACK/PACK-bibliography/` |
+| PACK-digital-platform | `PACK/PACK-digital-platform/` (частично; полный DP — через облачный поиск Pack) |
+| PACK-education | `PACK/PACK-education/` |
+| PACK-history-of-philosophy | `PACK/PACK-history-of-philosophy/` |
+| PACK-logic | `PACK/PACK-logic/` |
+| PACK-philosophy-of-cognition | `PACK/PACK-philosophy-of-cognition/` |
 
-## Ключевые документы (Pack DP)
+> Нет локально: `PACK-verification`, `PACK-autonomous-agents`, `DS-autonomous-agents`, `DS-agent-workspace`, `DS-principles-curriculum`, корневой `ZP/`, папка `FMT-exocortex-template/`.
 
-| Документ | Код |
-|----------|-----|
-| Тиры обслуживания | DP.ARCH.002 |
-| Каталог ролей (Role-Centric) | DP.ROLE.001 § 3.2 |
-| Role-Centric Architecture | DP.D.033 |
-| Реестр исполнителей | DP.ROLE.001 § 3.1 |
-| Runbook ошибок бота | DP.RUNBOOK.001 |
-
-## MCP
-
-| MCP | Путь |
-|-----|------|
-<!-- | Activity Hub | `your-org/activity-hub/` | -->
-| Автономные агенты (код) | `DS-autonomous-agents/` |
-| Данные агентов (workspace) | `DS-agent-workspace/` |
-
-## Стратегия
+## Стратегия и _my-pls
 
 | Файл | Путь |
 |------|------|
+| Руководство по системе | `DS-strategy/_my-pls/my-pls-system.md` |
+| Карта жанров | `DS-strategy/_my-pls/my-pls-map.md` |
 | Стратегия | `DS-strategy/_my-pls/05-Strategy.md` |
-| Реестр всех РП (WP-1…WP-85+) | `DS-strategy/_my-pls/WP-REGISTRY.md` |
-| WeekPlan | `DS-strategy/current/` |
+| Неудовлетворённости | `DS-strategy/_my-pls/03-Dissatisfactions.md` |
+| Реестр РП | `DS-strategy/_my-pls/WP-REGISTRY.md` |
+| Бортовой журнал | `DS-strategy/current/08-logbook.md` |
+| Протокол дня | `DS-strategy/current/07-operational-day-protocol.md` |
+| WeekPlan / DayPlan | `DS-strategy/current/` |
+| Каталог ролей (локальная копия) | `DS-strategy/docs/DP.AGENT.001-section-3.2-catalog-roles.md` |
 
-## GitHub-организации (НЕ путать!)
+## MCP
 
-| Org | Какие репо | Примеры |
-|-----|-----------|---------|
-| `ailev` | FPF | `ailev/FPF` |
+| Что | Как |
+|-----|-----|
+| База знаний Pack / guides | MCP `knowledge` / `iwe-knowledge` (облако aisystant) |
+| Цифровой двойник | MCP `ddt` (если подключён) |
+| Локальные заготовки | `DS-MCP/` |
 
-> **Правило:** При генерации GitHub-ссылки → проверь org по этой таблице. НЕ подставляй `aisystant` по умолчанию.
+## GitHub-организации (эта установка)
+
+| Org | Роль |
+|-----|------|
+| `klimentjev` | ваши форки (FMT, DS-strategy, …) |
+| upstream FMT | автор шаблона экзокортекса на GitHub (remote `upstream`) |
+| `aisystant` | часть Pack (напр. PACK-personal) |
+| `ailev` | FPF upstream |
+
+> Ссылки генерировать по факту `git remote`, не подставлять org наугад.
 
 ## WP Context Files
 
-> Все context files: `DS-strategy/inbox/WP-{N}/WP-{N}.md` (всегда папка — WP-434)
+> Часто: `DS-strategy/inbox/WP-{N}-{slug}.md` (плоский файл).  
+> Канон шаблона (папка): `inbox/WP-{N}/WP-{N}.md` — если появится, не ломать.  
 > Архив: `DS-strategy/archive/wp-contexts/`

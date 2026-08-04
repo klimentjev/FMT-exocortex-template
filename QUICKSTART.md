@@ -12,7 +12,7 @@
 | Оперативная память | `memory/MEMORY.md` (корень IWE) | Блокирующие правила, таблица РП |
 | Входящие материалы | `DS-strategy/inbox/` | Загружаемые тексты, черновики, заметки |
 | Стратегия | `DS-strategy/_my-pls/05-Strategy.md` | Куда двигаемся |
-| Доменные знания | `PACK-*/` | Source of truth по темам |
+| Доменные знания | `PACK-personal/`, `PACK/*` | Source of truth по темам |
 | Навигация по всем репо | `memory/navigation.md` (корень IWE) | Карта файлов и репо |
 
 ---
@@ -33,11 +33,11 @@
 
 | Что | Куда |
 |-----|------|
-| Новый РП (рабочий пакет) | `MEMORY.md` → таблица РП **и** `DS-strategy/current/WeekPlan*.md` |
-| Контекст задачи (≥2h или ≥2 сессий) | `DS-strategy/inbox/WP-{N}-{slug}.md` |
-| Правило для всех репо | `c:\Users\admin\IWE\CLAUDE.md` |
+| Новый РП (рабочий пакет) | `_my-pls/WP-REGISTRY.md` **и** `DS-strategy/current/WeekPlan*.md` (+ при необходимости `memory/MEMORY.md`) |
+| Контекст задачи (≥2h или ≥2 сессий) | `DS-strategy/inbox/WP-{N}-*.md` (или папка `WP-{N}/`) |
+| Правило для всех репо | `CLAUDE.md` в корне IWE (§9 — личное; L1 не править «под себя») |
 | Правило для одного репо | `<repo>/CLAUDE.md` |
-| Доменное знание (паттерн, метод, различение) | Нужный `PACK-*/` |
+| Доменное знание (паттерн, метод, различение) | Нужный Pack: `PACK-personal/` или `PACK/PACK-…/` |
 | Временная заметка / замечание | `DS-strategy/inbox/fleeting-notes.md` |
 | Из Telegram | Автоматически → `DS-strategy/inbox/fleeting-notes.md` |
 
@@ -54,11 +54,11 @@
 | Чеклисты | `memory/checklists.md` |
 | Правила типов репо | `memory/repo-type-rules.md` |
 | Роли агентов (каталог) | `DS-strategy/docs/DP.AGENT.001-section-3.2-catalog-roles.md` |
-| Что такое IWE + FAQ | Репозиторий шаблона на GitHub: `TserenTserenov/FMT-exocortex-template` → `docs/IWE-HELP.md` |
-| Полная установка / обновление L1 | из **корня** IWE: `bash update.sh`; справка: GitHub `TserenTserenov/FMT-exocortex-template` → `docs/SETUP-GUIDE.md` |
+| Что такое IWE + FAQ | GitHub: upstream-репо шаблона FMT → `docs/IWE-HELP.md` (remote `upstream`) |
+| Полная установка / обновление L1 | из **корня** IWE: `bash update.sh`; справка upstream FMT → `docs/SETUP-GUIDE.md` |
 
 **Поиск по базе знаний Pack (через меня):**
-Скажи «найди документы про ...» → использую `knowledge-mcp search`.
+Скажи «найди документы про ...» → поиск по базе знаний Pack (MCP).
 
 ---
 
@@ -89,4 +89,4 @@
 | `«заливай»` / `«запуши»` | commit + push без вопросов |
 | `«закрываю»` / `«всё»` | полный протокол закрытия |
 | `«запиши замечание: X»` | пишу в fleeting-notes.md |
-| `«найди документы про X»` | поиск через knowledge-mcp |
+| `«найди документы про X»` | поиск по базе знаний Pack (MCP) |
