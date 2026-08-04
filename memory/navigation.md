@@ -33,6 +33,7 @@ description: "Операционная карта этой установки IW
 | FPF (полное дерево) | `Base/FPF/` |
 | SPF (спеки / шаблон Pack) | `Base/SPF/` — напр. `Base/SPF/spec/SPF.SPEC.001-entity-coding.md` |
 | Культура работы (L3) | `extensions/iwe-work-culture.md` |
+| Куда писать знание (Capture) | `DS-strategy/exocortex/capture-routing.md` |
 
 ## Репозитории и зоны
 

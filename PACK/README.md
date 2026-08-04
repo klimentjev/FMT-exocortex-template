@@ -13,4 +13,5 @@
 
 **Путь от корня IWE:** `PACK/PACK-<имя>/`.
 
-Навигация: `DS-strategy/exocortex/navigation.md` → раздел Pack-репо.
+**Куда писать знание (эта установка):** `DS-strategy/exocortex/capture-routing.md`  
+Навигация по дереву: корневой `memory/navigation.md`.
