@@ -34,7 +34,7 @@ if [[ -z "${IWE_GOVERNANCE_REPO:-}" ]] && [[ ! -d "$IWE/$GOV_REPO" ]]; then
 fi
 
 STRATEGY="$IWE/$GOV_REPO"
-# Author install: SoT in _my-pls/; template/seed still uses docs/
+# User L3 registry path: prefer _my-pls/; template/seed still uses docs/
 if [[ -f "$STRATEGY/_my-pls/WP-REGISTRY.md" ]]; then
   REGISTRY="$STRATEGY/_my-pls/WP-REGISTRY.md"
 else

@@ -172,6 +172,7 @@ DAYPLAN_PATH="$CURRENT_DIR/$DAYPLAN_NAME"
 # end-of-run cleanup.
 WEEKPLAN_PATH=$(ls -t "$CURRENT_DIR"/WeekPlan\ *.md 2>/dev/null | grep -v '(probe)' | head -1 || true)
 _GOV="$IWE/${IWE_GOVERNANCE_REPO:-DS-strategy}"
+# User L3 registry path: prefer _my-pls/; template/seed still uses docs/
 if [[ -f "$_GOV/_my-pls/WP-REGISTRY.md" ]]; then
   WP_REGISTRY="$_GOV/_my-pls/WP-REGISTRY.md"
 else

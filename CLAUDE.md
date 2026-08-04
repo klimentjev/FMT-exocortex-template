@@ -23,7 +23,8 @@
 1. **WP Gate:** ЛЮБОЕ задание → `memory/protocol-open.md` ДО начала работы. Новый РП → Ритуал согласования → явное «да»/«делаем»/«открывай»; без этого не регистрировать.
 2. **Push:** «заливай»/«запуши»/«закрывай» → commit + push без вопросов, ДО отчёта Закрытия. Любой Close: `git status --short` по всем репо → незафиксированное commit + push ДО следующего шага.
 3. **Close:** Триггер Закрытия → протокол Закрытия → выполнить.
-4. **Pull-on-Touch:** `git pull --rebase` при первом обращении к репо за сессию (все `/mnt/c/Users/admin/IWE/*`). Dirty → stash; конфликт → `memory/reference/agent-core.md`.
+4. **Pull-on-Touch:** `git pull --rebase` при первом обращении к репо за сессию (все `{{HOME_DIR}}/IWE
+/*`). Dirty → stash; конфликт → `memory/reference/agent-core.md`.
 5. **Чеклист-верификация:** Quick/Day Close — sub-agent Haiku R23 сверяет с чеклистом. Исключения: ≤15 мин или без изменений файлов.
 6. **Hooks/Scripts Bypass Gate (S-33):** без явного разрешения не менять `.claude/hooks|scripts/`, `.iwe-runtime/`, `FMT-exocortex-template/`, не обходить хуки; блок хука → bug-файл + пилоту + ждать. → `.claude/rules-lazy/hooks-bypass-gate.md`.
 7. **Автономность:** не спрашивать подтверждения — выполни → отчитайся. Исключения: необратимо-разрушительное; WP Gate Ритуал; choice-question. Полный текст → `.claude/rules-lazy/blocking-rules-full.md` п.7.
@@ -59,7 +60,7 @@
 Файлы/репо → `memory/navigation.md` · Pack-репо → `memory/repo-type-rules.md` · терминология → `memory/hard-distinctions.md` · FPF/SOTA/Роли → `memory/fpf-reference.md`, `memory/sota-reference.md`, `memory/roles.md` · документ/чеклист → `memory/checklists.md`.
 
 Политика: ≤11 файлов; построчно проверяется только distinctions.md (≤150), остальное — суммарным M1/M2-бюджетом (WP-7 NR1.2); lazy-reference без лимита. Горизонты/frontmatter → `memory/memory-lifecycle-spec.md`; temporal metadata → `memory/protocol-work.md §2`.
-Рабочая директория: `/mnt/c/Users/admin/IWE/`; `memory/` = симлинк на auto-memory.
+Рабочая директория: `{{HOME_DIR}}/IWE/`; `memory/` = симлинк на auto-memory.
 
 ## 5. АрхГейт — ОБЯЗАТЕЛЬНАЯ оценка
 
@@ -69,11 +70,11 @@
 
 ## Контекстный бюджет IWE (WP-445)
 
-Hot-каркас ≤20K токенов (M1), строгая цель ≤12K (M2). Изменил файл из `hot-files.list` (оба CLAUDE.md, rules/*.md) → перед коммитом `/mnt/c/Users/admin/IWE/scripts/verify-context-budget.sh`.
+Hot-каркас ≤20K токенов (M1), строгая цель ≤12K (M2). Изменил файл из `hot-files.list` (оба CLAUDE.md, rules/*.md) → перед коммитом `{{HOME_DIR}}/IWE/scripts/verify-context-budget.sh`.
 
 ## 7. Обновление этого файла
 
-> **3 слоя:** L1 (§1-§7) = платформа (`update.sh`). L2 (§8) = staging. L3 (§9) = авторское.
+> **3 слоя:** L1 (§1-§7) = платформа (`update.sh`). L2 (§8) = staging. L3 (§9) = личное (пользователь).
 > Протоколы → `memory/protocol-*.md` · различения → `.claude/rules/distinctions.md` · форматирование → `.claude/rules/formatting.md` · стабильные знания → `memory/*.md` · свои правила → §8/§9.
 
 <!-- PLATFORM-END -->
@@ -108,7 +109,8 @@ Discrepancy found (file ≠ plan, stale content): **report to pilot, do not sile
 
 ## Working Directory
 
-`/mnt/c/Users/admin/IWE/`
+`{{HOME_DIR}}/IWE
+/`
 
 ## Status Reporting — Agent Status Registry (РП-395)
 
@@ -155,30 +157,28 @@ Respond in Russian unless the user writes in English.
 
 ## 8. Staging (обкатка → шаблон)
 
-> Правила на обкатке (STAGING.md) → работают → переносятся в шаблон (L1). Новое поведение в §9 → ОДНОВРЕМЕННО строка в STAGING.md (`status: testing`). Промоция на Week Close (`validated`→`promoted`, `rejected` остаётся в §9 — не удалять) → скилл `/author-mode` и `.claude/rules-lazy/blocking-rules-full.md`.
-
-**Активная запись:** S-45 Agent Inbox (WP-324) — `inbox/agent/` + `iwe-agent-dispatcher.py`, промотировано в FMT `extensions/agent-inbox/`. Status: testing.
-
----
-
-## 9. Авторское (только мой IWE)
-
-> Элаборации всех пунктов → `memory/reference/agent-core.md`.
-
-- **Без Obsidian (DS-strategy):** просмотр через VS Code.
-- **Комментарии кода — только EN (решение Андрея, 14.06.2026):** весь `/mnt/c/Users/admin/IWE/**`; исключение — user-facing строки по языку интерфейса.
-- **Различения (авторские):** `.claude/rules/distinctions.md` (секция «Авторские») + `memory/distinctions-warm.md` (в т.ч. «Бот = интерфейс, не место агентов»).
-- **Именование:** governance-репо называется `DS-strategy` по умолчанию; рабочая директория `/mnt/c/Users/admin/IWE/`.
-- **Extensions Gate (БЛОКИРУЮЩЕЕ):** пользователи кастомизируют ТОЛЬКО `extensions/*.md` + `params.yaml` (правка `.claude/skills/` или `memory/protocol-*.md` = ошибка); автор (`author_mode: true`) редактирует L1 напрямую — авторский IWE = SoT, доставка в FMT через `template-sync.sh`.
-- **README.md (FMT-exocortex-template):** изменение структуры — по согласованию с владельцем.
-- **WP Entry Filter (S-47, БЛОКИРУЮЩЕЕ):** новый РП — только при явной связи с R1-R6 месяца или внешнем заказчике; иначе → `inbox/backlog-with-triggers.md`. Исключения: spin-off закрытого РП; прямое поручение пилота.
-- **Именование РП:** существительное-артефакт, только русский (Pack-ID допустим); реестр ≤80 символов → SYNC-CORE; переименование — синхронно REGISTRY+MEMORY.md+WeekPlan+DayPlan+WP-context.
-- **Память (S-35):** новые `memory/*.md` — обязательный frontmatter; шаблон и горизонты → `memory/memory-lifecycle-spec.md` (единственный источник).
-- **Security Audit Cadence (WP-212, S-36):** per-ArchGate (§Б B7.1 + STRIDE) · Week Close (`security-posture.md §3`) · Daily (tsekh-1) · Month Close (VR.R.002).
-- **WeekPlan/WeekReport split (WP-297):** WeekPlan = только интенты, WeekReport = только факты; при создании WeekPlan итоги уезжают в WeekReport.
-- **Режим «на пальцах» (S-37):** триггеры «объясни», «на пальцах», «что сделали», «простыми словами» → Response Style + `memory/feedback_response_clarity_for_pilot.md`.
-- **Календарный конвейер (WP-357):** SoT — `DS-strategy/calendar/process-catalog.yaml` (+ derived `date-ledger.yaml`, не редактировать); новый процесс = каталог + plist; спецификация → `docs/calendar-pipeline.md`.
+> Канал staging → FMT — для **авторов шаблона**, не для этой установки.
+> Здесь `author_mode: false`: не вести промоцию в FMT, не править L1 «как автор».
+> Файл `STAGING.md` можно читать; новые личные правила класть в §9 / `extensions/`, не в staging-конвейер Церена.
 
 ---
 
-*Последнее обновление: 2026-07-16 (M2-слим, WP-7 HOTBUDGET-M2)*
+## 9. Личное (L3 этой установки)
+
+> Слой пользователя. `update.sh` его не затирает. Элаборации платформы → `memory/reference/agent-core.md`.
+
+- **Разделение слоёв (БЛОКИРУЮЩЕЕ):** L1 = платформа Церена (skills, hooks, `memory/protocol-*`, scripts из шаблона) — обновлять через `update.sh`, не править «под себя». L3 = `extensions/`, `params.yaml`, этот §9, `DS-strategy/` (в т.ч. `_my-pls/`), `.cursor/`. Кастом поведения ритуалов → только `extensions/*.md`.
+- **author_mode:** `false` в `params.yaml`. Не включать, пока нет явной роли мейнтейнера форка для других.
+- **Система жизнедеятельности:** SoT жанров — `DS-strategy/_my-pls/` (карта `my-pls-map.md`, руководство `my-pls-system.md`). Стратегия — `_my-pls/05-Strategy.md`. Реестр РП — `_my-pls/WP-REGISTRY.md`. Бортовой журнал — `DS-strategy/current/08-logbook.md`.
+- **Среда:** Windows; основной клиент — Cursor (+ наследие Claude Code). Governance-репо — `DS-strategy`. Корень рабочей среды — `{{HOME_DIR}}/IWE/`.
+- **Без Obsidian (DS-strategy):** просмотр через VS Code / Cursor.
+- **Комментарии кода — только EN** во всём дереве IWE; исключение — user-facing строки по языку интерфейса.
+- **Extensions Gate (БЛОКИРУЮЩЕЕ):** кастом протоколов/скиллов — ТОЛЬКО `extensions/*.md` + `params.yaml`. Прямая правка `.claude/skills/` или `memory/protocol-*.md` «под себя» = ошибка слоя.
+- **Именование РП:** существительное-артефакт, по возможности русский; колонка «Название» в реестре ≤80 символов → SYNC-CORE; переименование — синхронно REGISTRY + WeekPlan + DayPlan + WP-context.
+- **WeekPlan/WeekReport:** WeekPlan = только интенты, WeekReport = только факты.
+- **Режим «на пальцах»:** триггеры «объясни», «на пальцах», «что сделали», «простыми словами» → Response Style + `memory/feedback_response_clarity_for_pilot.md`.
+- **DS-exocortex:** второй checkout шаблона с drift — не использовать в ежедневной работе; судьба — отдельное решение (не смешивать с `_my-pls`).
+
+---
+
+*Последнее обновление: 2026-08-04 (L1/L3 split фаза 3 — пользовательский §9)*
