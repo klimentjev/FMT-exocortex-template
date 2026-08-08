@@ -22,7 +22,7 @@ Usage:
 
 --memory: путь к MEMORY.md (default: ~/IWE/memory/MEMORY.md)
 --governance-repo: корень governance-репо, где искать inbox/WP-N/
-    (default: ~/IWE/ + os.environ.get("IWE_GOVERNANCE_REPO", "DS-strategy"))
+    (default: ~/IWE/DS-strategy, переопределяется $IWE_GOVERNANCE_REPO)
 
 Exit code:
     0 — дрейфов не найдено

@@ -13,8 +13,7 @@ check-wp-format.py — линтер WP-REGISTRY.md (WP-7 T2 + name contamination
   --fix          автоматически исправить NC-нарушения (T2 исправлять рискованно)
   --exit-nonzero выйти с кодом 1 при любых нарушениях (для pre-commit hook)
 
-Без аргументов: читает $IWE/DS-strategy/_my-pls/WP-REGISTRY.md (если есть) или .../docs/WP-REGISTRY.md;
-либо ${IWE_GOVERNANCE_REPO:-DS-strategy}/...
+Без аргументов: читает $IWE/DS-strategy/docs/WP-REGISTRY.md или ${IWE_GOVERNANCE_REPO:-DS-strategy}/...
 """
 
 import sys
@@ -309,13 +308,13 @@ if __name__ == "__main__":
     else:
         iwe = os.environ.get("IWE_ROOT", os.path.expanduser("~/IWE"))
         gov = os.environ.get("IWE_GOVERNANCE_REPO", "DS-strategy")
-        registry = None
-        for rel in ("_my-pls/WP-REGISTRY.md", "docs/WP-REGISTRY.md"):
-            candidate = os.path.join(iwe, gov, rel)
+        # Попробовать найти REGISTRY через env-var имя репо
+        for gov_name in [gov]:
+            candidate = os.path.join(iwe, gov_name, "docs", "WP-REGISTRY.md")
             if os.path.exists(candidate):
                 registry = candidate
                 break
-        if registry is None:
+        else:
             print("Не найден WP-REGISTRY.md. Укажите путь явно.", file=sys.stderr)
             sys.exit(1)
 

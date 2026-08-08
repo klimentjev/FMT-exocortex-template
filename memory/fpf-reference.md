@@ -1,5 +1,5 @@
 ---
-valid_from: 2026-07-29
+valid_from: 2026-08-02
 originSessionId: 9a0e726a-951e-4408-9e02-94d7eeffbf74
 
 type: reference
@@ -8,15 +8,15 @@ domains: [reference]
 status: active
 owner: user
 schema_version: 1
-fpf_version: "8b727cba9e893a467b82aab9da84fb7d6d945480"
-fpf_synced_at: 2026-08-04
+fpf_version: "9a9a42e4d154021ca3f7415e0009a4214832f65f"
+fpf_synced_at: 2026-08-02
 
 name: "fpf-reference"
 description: "Справочник FPF паттернов применимых в IWE: структура, ключевые Part C (C.11-C.28), трансляция терминов"
 ---
 # FPF (First Principles Framework) — справочник
 
-> Источник: `{{HOME_DIR}}/IWE/Base/FPF/FPF-Spec.md` (~12 MB, ~74500 строк)
+> Источник: `{{HOME_DIR}}/IWE/FPF/FPF-Spec.md`, ревизия закреплена полем `fpf_version` во frontmatter. Размер и число строк намеренно не дублируются.
 
 ## Когда читать FPF
 
@@ -28,8 +28,8 @@ description: "Справочник FPF паттернов применимых �
 ## Как читать
 
 - НЕ читать целиком
-- Сначала оглавление (первые 200 строк), потом нужную секцию
-- Grep для конкретных паттернов (например, `A.7` для Strict Distinction)
+- Сначала найти заголовок нужной части: `grep -nE '^#{1,4} .*Part [A-G]' FPF-Spec.md`
+- Затем искать точный код/заголовок паттерна (например, `grep -n 'A\.7' FPF-Spec.md`) и читать ограниченный диапазон вокруг совпадения
 
 ## Структура FPF
 

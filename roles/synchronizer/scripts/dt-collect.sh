@@ -298,8 +298,7 @@ collect_wp() {
     # Источник: WP-REGISTRY.md (после ОПТ-4/WP-297 Ф6.3 таблица РП удалена из MEMORY.md).
     # Формат строки: | <NNN> | <P> | <Название> | <Ст> | <Репо> | <Бюджет> |
     # Статусы: ✅ done · 🔄 in_progress · ⏳ pending · 📦 archived · ↗️ merged · 🧪 testing
-    local REGISTRY_FILE="$GOVERNANCE_DIR/_my-pls/WP-REGISTRY.md"
-    [[ -f "$REGISTRY_FILE" ]] || REGISTRY_FILE="$GOVERNANCE_DIR/docs/WP-REGISTRY.md"
+    local REGISTRY_FILE="$GOVERNANCE_DIR/docs/WP-REGISTRY.md"
     local MEMORY_FILE="$HOME/.claude/projects/-Users-$(whoami)-IWE/memory/MEMORY.md"
 
     python3 -c "
@@ -638,8 +637,7 @@ print(json.dumps(result))
 # ============================================================
 
 collect_registry() {
-    local REGISTRY="$GOVERNANCE_DIR/_my-pls/WP-REGISTRY.md"
-    [[ -f "$REGISTRY" ]] || REGISTRY="$GOVERNANCE_DIR/docs/WP-REGISTRY.md"
+    local REGISTRY="$GOVERNANCE_DIR/docs/WP-REGISTRY.md"
 
     python3 -c "
 import json, os, re

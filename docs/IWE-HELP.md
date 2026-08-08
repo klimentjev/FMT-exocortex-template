@@ -121,7 +121,7 @@ bash ~/IWE/FMT-exocortex-template/roles/strategist/scripts/strategist.sh day-pla
 | Справочная | `memory/*.md` | По запросу |
 
 MEMORY.md — личные (текущие задачи, РП недели). Редактируется каждую сессию.
-`DS-strategy/_my-pls/WP-REGISTRY.md` — полный реестр всех РП от последнего к первому (DP.WP.015). Обновляется на Close при изменении статуса. (Шаблон новых установок по-прежнему кладёт реестр в `docs/WP-REGISTRY.md`; скрипты ищут `_my-pls/` первым.)
+`DS-strategy/docs/WP-REGISTRY.md` — полный реестр всех РП от последнего к первому (DP.WP.015). Обновляется на Close при изменении статуса.
 Остальные memory/*.md — платформенные. Обновляются из upstream через `update.sh`.
 
 ---

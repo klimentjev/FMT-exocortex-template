@@ -1,8 +1,7 @@
 #!/usr/bin/env python3
-"""build-active-wp.py — пересборка current/active-wp.md из WP-REGISTRY.md.
+"""build-active-wp.py — пересборка current/active-wp.md из docs/WP-REGISTRY.md.
 
 Source-of-truth: WP-REGISTRY.md (markdown-таблица).
-Путь: `_my-pls/WP-REGISTRY.md` если есть, иначе `docs/WP-REGISTRY.md` (шаблон).
 Вывод: current/active-wp.md — открытые РП (🔄 ⏳ 🧪 🚧 ⏸) сверху, закрытые (✅ 📦 ↗️ ❌) ниже,
 обе секции по убыванию номера РП.
 
@@ -38,8 +37,7 @@ from pathlib import Path
 IWE_ROOT = Path(os.environ.get("IWE_ROOT", Path.home() / "IWE"))
 GOV_REPO = os.environ.get("IWE_GOVERNANCE_REPO", "DS-strategy")
 ROOT = IWE_ROOT / GOV_REPO
-_AUTHOR_REGISTRY = ROOT / "_my-pls" / "WP-REGISTRY.md"
-REGISTRY = _AUTHOR_REGISTRY if _AUTHOR_REGISTRY.exists() else ROOT / "docs" / "WP-REGISTRY.md"
+REGISTRY = ROOT / "docs" / "WP-REGISTRY.md"
 OUTPUT = ROOT / "current" / "active-wp.md"
 INBOX_DIR = ROOT / "inbox"
 ARCHIVE_DIR = ROOT / "archive" / "wp-contexts"
@@ -131,19 +129,14 @@ def render(rows: list[dict]) -> str:
             out.append(clean_status_in_row(r["raw"], r["status_display"]))
         return "\n".join(out) + "\n"
 
-    try:
-        registry_label = REGISTRY.relative_to(ROOT).as_posix()
-    except ValueError:
-        registry_label = str(REGISTRY)
-
     lines = [
-        f"<!-- AUTO-GENERATED from {registry_label} by scripts/build-active-wp.py. Не редактировать вручную. -->",
+        "<!-- AUTO-GENERATED from docs/WP-REGISTRY.md by scripts/build-active-wp.py. Не редактировать вручную. -->",
         "<!-- index-health: skip -->",
         "",
         "# Активные РП — вид на WP-REGISTRY",
         "",
         f"> Открытые ({len(active)}) сверху, закрытые ({len(closed)}) ниже. Обе секции по убыванию номера.",
-        f"> Source-of-truth — `{registry_label}`. Регенерация: `python3 scripts/build-active-wp.py`.",
+        "> Source-of-truth — `docs/WP-REGISTRY.md`. Регенерация: `python3 scripts/build-active-wp.py`.",
         "",
         "<details>",
         "<summary><b>Обозначения статусов (Ст)</b></summary>",
