@@ -11,7 +11,7 @@
 | Текущий план недели | `DS-strategy/current/WeekPlan W*.md` | РП, задачи, статусы |
 | Оперативная память | `memory/MEMORY.md` (корень IWE) | Блокирующие правила, таблица РП |
 | Входящие материалы | `DS-strategy/inbox/` | Загружаемые тексты, черновики, заметки |
-| Стратегия | `DS-strategy/_my-pls/05-Strategy.md` | Куда двигаемся |
+| Стратегия | `DS-strategy/_my-plus/05-Strategy.md` | Куда двигаемся |
 | Доменные знания | `PACK-personal/`, `PACK/*` | Source of truth по темам |
 | Навигация по всем репо | `memory/navigation.md` (корень IWE) | Карта файлов и репо |
 
@@ -33,7 +33,7 @@
 
 | Что | Куда |
 |-----|------|
-| Новый РП (рабочий пакет) | `_my-pls/WP-REGISTRY.md` **и** `DS-strategy/current/WeekPlan*.md` (+ при необходимости `memory/MEMORY.md`) |
+| Новый РП (рабочий пакет) | `_my-plus/WP-REGISTRY.md` **и** `DS-strategy/current/WeekPlan*.md` (+ при необходимости `memory/MEMORY.md`) |
 | Контекст задачи (≥2h или ≥2 сессий) | `DS-strategy/inbox/WP-{N}-*.md` (или папка `WP-{N}/`) |
 | Правило для всех репо | `CLAUDE.md` в корне IWE (§9 — личное; L1 не править «под себя») |
 | Правило для одного репо | `<repo>/CLAUDE.md` |

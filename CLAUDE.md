@@ -166,9 +166,9 @@ Respond in Russian unless the user writes in English.
 
 > Слой пользователя. `update.sh` его не затирает. Элаборации платформы → `memory/reference/agent-core.md`.
 
-- **Разделение слоёв (БЛОКИРУЮЩЕЕ):** L1 = платформа Церена (skills, hooks, `memory/protocol-*`, scripts из шаблона) — обновлять через `update.sh`, не править «под себя». L3 = `extensions/`, `params.yaml`, этот §9, `DS-strategy/` (в т.ч. `_my-pls/`), `.cursor/`. Кастом поведения ритуалов → только `extensions/*.md`.
+- **Разделение слоёв (БЛОКИРУЮЩЕЕ):** L1 = платформа Церена (skills, hooks, `memory/protocol-*`, scripts из шаблона) — обновлять через `update.sh`, не править «под себя». L3 = `extensions/`, `params.yaml`, этот §9, `DS-strategy/` (в т.ч. `_my-plus/`), `.cursor/`. Кастом поведения ритуалов → только `extensions/*.md`.
 - **author_mode:** `false` в `params.yaml`. Не включать, пока нет явной роли мейнтейнера форка для других.
-- **Система жизнедеятельности:** SoT жанров — `DS-strategy/_my-pls/` (карта `my-pls-map.md`, руководство `my-pls-system.md`). Стратегия — `_my-pls/05-Strategy.md`. Реестр РП — `_my-pls/WP-REGISTRY.md`. Бортовой журнал — `DS-strategy/current/08-logbook.md`.
+- **Система жизнедеятельности:** SoT жанров — `DS-strategy/_my-plus/` (карта `my-plus-map.md`, руководство `my-plus-system.md`). Стратегия — `_my-plus/05-Strategy.md`. Реестр РП — `_my-plus/WP-REGISTRY.md`. Бортовой журнал — `DS-strategy/current/08-logbook.md`.
 - **Среда:** Windows; основной клиент — Cursor (+ наследие Claude Code). Governance-репо — `DS-strategy`. Корень рабочей среды — `{{HOME_DIR}}/IWE/`.
 - **Без Obsidian (DS-strategy):** просмотр через VS Code / Cursor.
 - **Комментарии кода — только EN** во всём дереве IWE; исключение — user-facing строки по языку интерфейса.
@@ -176,7 +176,7 @@ Respond in Russian unless the user writes in English.
 - **Именование РП:** существительное-артефакт, по возможности русский; колонка «Название» в реестре ≤80 символов → SYNC-CORE; переименование — синхронно REGISTRY + WeekPlan + DayPlan + WP-context.
 - **WeekPlan/WeekReport:** WeekPlan = только интенты, WeekReport = только факты.
 - **Режим «на пальцах»:** триггеры «объясни», «на пальцах», «что сделали», «простыми словами» → Response Style + `memory/feedback_response_clarity_for_pilot.md`.
-- **Маршрутизация знания (фаза 6):** домен → Pack по `DS-strategy/exocortex/capture-routing.md`; жизнь/план/стоп-отчет → `_my-pls`/`current`; ритуалы → `extensions/`; DP/FMT Церена — читать, не авторствовать.
+- **Маршрутизация знания (фаза 6):** домен → Pack по `DS-strategy/exocortex/capture-routing.md`; жизнь/план/стоп-отчет → `_my-plus`/`current`; ритуалы → `extensions/`; DP/FMT Церена — читать, не авторствовать.
 - **DS-exocortex (dormant):** второй checkout шаблона Церена, ~793 behind; **не использовать**. L1 = корень IWE + `update.sh`. Решение: `DS-strategy/inbox/decision-2026-08-04-ds-exocortex-dormant.md`. Удаление/gitlink — только АрхГейт.
 
 ---
