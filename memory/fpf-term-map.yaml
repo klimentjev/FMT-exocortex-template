@@ -13,3 +13,8 @@ terms:
     scope: "фраза целиком, НЕ аббревиатура — P2W как код остаётся валидным (E.18.1), меняется только раскрытие"
     found_at: "2026-07-12 (семинар 1 FPF, объявлено Левенчуком)"
     note: "апстрим сам внутренне непоследователен на 2026-07-13 — в нескольких местах FPF-Spec.md ещё встречается старая проза 'Principles-to-Work (P2W)' рядом с новым заголовком; не грепать по голому P2W"
+  - deprecated: "U.Role / U.RoleAssignment"
+    canonical: "local system-role kind / U.SystemRoleAssignment"
+    scope: "FPF A.2: роль больше не отдельный корневой U-kind; классификация — local system-role kind, факт назначения — U.SystemRoleAssignment (A.2.1). IWE-роли каталога (R1 Стратег и т.п.) — другой слой, не этот термин"
+    found_at: "2026-08-13 (commit 11f2345 role now SystemRole)"
+    note: "в IWE ещё встречается старая форма в memory/hard-distinctions.md (строка про «сервис» → провайдерская роль)"

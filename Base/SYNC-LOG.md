@@ -4,6 +4,27 @@
 
 > Журнал синхронизаций с upstream (ailev/FPF). Обновляется еженедельно при week-close.
 
+### 2026-08-19
+
+**Действие:** Синхронизация `Base/FPF` с `origin/main` (ailev/FPF, А. Левинчук).
+
+**FPF версия:** 20260816 (commit `3d09862`, 2026-08-16)
+- Последний коммит: «C.17 rewrited».
+- Подтянуто 12 коммитов с `8b727cb` (журнал с 2026-08-04; локально часть уже была на `b7ec5a0` без записи).
+
+**Ключевые изменения upstream:**
+- C.17 rewrite (Characterising Generative Novelty and Value)
+- ontological refactoring of relations (22 patterns + next batch)
+- role now SystemRole (`U.SystemRoleAssignment`, local system-role kind)
+- less of wrong agency like "governed patterns"
+- E.4.PFAD / E.4.DPF / E.18.1 correction
+
+**Побочные обновления:** `Base/FPF-VERSION.txt`, `memory/fpf-reference.md` (якорь SHA), `memory/fpf-term-map.yaml`.
+
+**SPF:** уже актуален (`de4590c`, без изменений). **ZP:** не трогали.
+
+---
+
 ### 2026-08-04
 
 **Действие:** Синхронизация `Base/FPF` с `origin/main` (ailev/FPF, А. Левинчук).
