@@ -1,5 +1,5 @@
 ---
-valid_from: 2026-08-19
+valid_from: 2026-08-02
 originSessionId: 9a0e726a-951e-4408-9e02-94d7eeffbf74
 
 type: reference
@@ -8,8 +8,8 @@ domains: [reference]
 status: active
 owner: user
 schema_version: 1
-fpf_version: "3d098629dc218572089f1890080c17d6f1d9a867"
-fpf_synced_at: 2026-08-19
+fpf_version: "9a9a42e4d154021ca3f7415e0009a4214832f65f"
+fpf_synced_at: 2026-08-02
 
 name: "fpf-reference"
 description: "Справочник FPF паттернов применимых в IWE: структура, ключевые Part C (C.11-C.28), трансляция терминов"
@@ -21,7 +21,7 @@ description: "Справочник FPF паттернов применимых �
 ## Когда читать FPF
 
 - При работе с концепциями Level 1 (мета-онтология)
-- При неясности базовых различений (System-Role / Method / Work, System/Episteme)
+- При неясности базовых различений (Role/Method/Work, System/Episteme)
 - При необходимости точной формулировки паттерна (A.*, B.*, etc.)
 - При создании/проверке Pack на соответствие FPF
 
@@ -33,7 +33,7 @@ description: "Справочник FPF паттернов применимых �
 
 ## Структура FPF
 
-- **Part A** — Kernel: Holon, BoundedContext, System-Role / Method / Work, Signature Stack
+- **Part A** — Kernel: Holon, BoundedContext, Role-Method-Work, Signature Stack
 - **Part B** — Aggregation (Γ), Trust (F-G-R), Evolution Loop
 - **Part C** — Domain extensions: Sys-CAL, KD-CAL, Kind-CAL, NQD-CAL, CausalUse-CAL
 - **Part D** — Ethics & Conflict
