@@ -8,15 +8,15 @@ domains: [reference]
 status: active
 owner: user
 schema_version: 1
-fpf_version: "9a9a42e4d154021ca3f7415e0009a4214832f65f"
-fpf_synced_at: 2026-08-02
+fpf_version: "c7ac61bbaa8d3c10165b1a5a4a350956c87d77c9"
+fpf_synced_at: 2026-08-26
 
 name: "fpf-reference"
 description: "Справочник FPF паттернов применимых в IWE: структура, ключевые Part C (C.11-C.28), трансляция терминов"
 ---
 # FPF (First Principles Framework) — справочник
 
-> Источник: `{{HOME_DIR}}/IWE/FPF/FPF-Spec.md`, ревизия закреплена полем `fpf_version` во frontmatter. Размер и число строк намеренно не дублируются.
+> Источник: `{{HOME_DIR}}/IWE/Base/FPF/FPF-Spec.md`, ревизия закреплена полем `fpf_version` во frontmatter. Размер и число строк намеренно не дублируются.
 
 ## Когда читать FPF
 
@@ -157,4 +157,4 @@ description: "Справочник FPF паттернов применимых �
 
 ## Обновление
 
-Периодически: `cd {{HOME_DIR}}/IWE/FPF && git pull`. FPF обновляется ~раз в 2 недели (апстрим). После pull — проверить `memory/fpf-term-map.yaml` на новые переименования (WP-481 Ф11).
+Периодически: `cd {{HOME_DIR}}/IWE/Base/FPF && git pull`. FPF обновляется ~раз в 2 недели (апстрим). После pull — проверить `memory/fpf-term-map.yaml` на новые переименования (WP-481 Ф11).

@@ -4,6 +4,28 @@
 
 > Журнал синхронизаций с upstream (ailev/FPF). Обновляется еженедельно при week-close.
 
+### 2026-08-26
+
+**Действие:** Синхронизация `Base/FPF` с `origin/main` (ailev/FPF, А. Левинчук).
+
+**FPF версия:** 20260826 (commit `c7ac61b`, 2026-08-26)
+- Последний коммит: «improvisation and process mining».
+- Подтянуто 6 коммитов с `f0b498d`. Журнал версии отставал: записано `3d09862` (19.08), фактически локально уже `f0b498d` (21.08) без записи (`d9170ae` Context notion refactoring, `f0b498d` relation ontology refactoring).
+
+**Ключевые изменения upstream:**
+- membership relation refactoring: generic `MemberOf` отвергнут; принадлежность к коллекции ≠ parthood
+- analog MG-DA for methods («narrower contribution»)
+- FPF ecosystem amendment; DPF Suite Guide (`E.11.DSG`)
+- practical entries / practical-use cards in Readme
+- improvisation and process mining
+- новые паттерны: `A.3.1.MR`, `A.15.7`, `C.32.MWA`, `E.4.PFIP`, `E.11.PFP`, `E.11.DSG`, `E.23.CDI`, `F.0.2`
+
+**Побочные обновления:** `Base/FPF-VERSION.txt`, `Base/README.md` (пути `Principles/` → `Base/`), `memory/fpf-reference.md` (якорь SHA и путь `Base/FPF`), `memory/fpf-term-map.yaml` (`MemberOf`), `memory/updates-system-files.md` (пути клонов FPF/SPF).
+
+**SPF / ZP:** не трогали.
+
+---
+
 ### 2026-08-19
 
 **Действие:** Синхронизация `Base/FPF` с `origin/main` (ailev/FPF, А. Левинчук).
@@ -184,4 +206,4 @@ A: FPF — read-only копия. Конфликтов быть не должно
 
 ---
 
-*Last updated: 2026-06-28*
+*Last updated: 2026-08-26*
