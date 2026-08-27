@@ -1,1 +1,0 @@
-- 2026-04-14: Migrated Claude Code bash hooks to native Cursor Rules (.mdc) and Node.js scripts to fix WSL proxy output interference and improve compatibility with Cursor's native hook system.

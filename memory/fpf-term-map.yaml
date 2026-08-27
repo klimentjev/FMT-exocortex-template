@@ -1,0 +1,20 @@
+# fpf-term-map.yaml — словарь дрейфа терминологии FPF (WP-481 Ф11)
+# deprecated -> canonical. Заполняется по факту переименований в апстриме
+# (github.com/ailev/FPF), не превентивно.
+# При добавлении записи: grep IWE-корпус (CLAUDE.md, .claude/rules/, memory/,
+# PACK-*, FMT-exocortex-template/) на deprecated-форму, доложить пилоту
+# найденное (Drift Reporting) — не чинить молча.
+#
+# horizon: warm | status: active | valid_from: 2026-07-13 | owner: user
+
+terms:
+  - deprecated: "MemberOf"
+    canonical: "collection belonging (under the collection's own rule)"
+    scope: "публичное отношение mereology рядом с ComponentOf/PortionOf/PhaseOf; не запрет слова member в обычной прозе"
+    found_at: "2026-08-25 (ailev/FPF 2124f3a membership relation refactoring)"
+    note: "апстрим отверг generic MemberOf: принадлежность к коллекции ≠ parthood ≠ classification ≠ participation ≠ mathematical inclusion. В IWE-корпусе вне FPF-Spec.md на 2026-08-26 не найдено."
+  - deprecated: "Principles-to-Work"
+    canonical: "Problem-to-Work"
+    scope: "фраза целиком, НЕ аббревиатура — P2W как код остаётся валидным (E.18.1), меняется только раскрытие"
+    found_at: "2026-07-12 (семинар 1 FPF, объявлено Левенчуком)"
+    note: "апстрим сам внутренне непоследователен на 2026-07-13 — в нескольких местах FPF-Spec.md ещё встречается старая проза 'Principles-to-Work (P2W)' рядом с новым заголовком; не грепать по голому P2W"

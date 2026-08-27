@@ -69,6 +69,8 @@
 ## Связанные карточки
 
 - LOG.DISTINCTION.001 — формальная vs содержательная логика (корневой водораздел)
+- LOG.DISTINCTION.004 — бытие (εἶναι) ≠ сущее (ὂν); LOG.DISTINCTION.007 — ὂν и ἕν в Γ.2
 - AUF.ENTITY.001 — эпистемическое противоречие (PACK-aufheben)
 - LOG.ENTITY.003 — виды предикации
+- LOG.ENTITY.004 — πολλαχῶς τὸ ὄν
 - HFP.ENTITY.001 — «Парменид»–«Софист» как диалектическая пара (PACK-history-of-philosophy)

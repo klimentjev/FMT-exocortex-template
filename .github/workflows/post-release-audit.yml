@@ -1,0 +1,120 @@
+name: Post-Release Adversarial Audit
+
+# see VR.SC.006 (release-verification-protocol), VR.M.006 (5-layer verification, слой 5)
+# see AR.203 (release verification trigger)
+#
+# Триггеры:
+#   1. Manual: workflow_dispatch — автор запускает после релиза.
+#   2. Auto: push update-manifest.json, НО только когда patch=0 (x.y.0 —
+#      minor/major). Re-enabled 2026-08-10 (WP-7 Ф62) после того, как безусловный
+#      триггер на КАЖДЫЙ push (включая еженедельный авто-бамп patch-версии)
+#      вырубили 2026-06-01: 22 issue накопились нечитанными, потому что частота
+#      сама по себе (1-7 дней) не оставляла шанса разобрать. weekly-release.yml
+#      бампает только patch — этот фильтр не даёт рутинным patch-релизам создавать
+#      issue, но ловит любой minor/major bump (они всегда осознанные, не авто-cron).
+#
+# Цель: создать reminder с adversarial-промптом → автор прогоняет в Claude session
+# → находит классы регрессий, которые detectors не ловят.
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - update-manifest.json
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Релизная версия для аудита (например 0.29.18)'
+        required: true
+        type: string
+
+permissions:
+  issues: write
+  contents: read
+
+jobs:
+  create-audit-issue:
+    runs-on: ubuntu-latest
+    if: github.repository == 'TserenTserenov/FMT-exocortex-template'
+    steps:
+      - uses: actions/checkout@v6
+      - name: Determine version
+        id: ver
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            echo "version=${{ github.event.inputs.version }}" >> $GITHUB_OUTPUT
+          else
+            VER=$(grep -m1 '"version"' update-manifest.json \
+              | sed 's/.*"version"[[:space:]]*:[[:space:]]*"//;s/".*//')
+            echo "version=$VER" >> $GITHUB_OUTPUT
+          fi
+      - name: Skip routine patch bumps on auto-trigger (patch != 0)
+        id: gate
+        if: github.event_name != 'workflow_dispatch'
+        run: |
+          VERSION="${{ steps.ver.outputs.version }}"
+          PATCH=$(echo "$VERSION" | cut -d. -f3)
+          if [ "$PATCH" != "0" ]; then
+            echo "SKIP: $VERSION — patch-релиз (weekly auto-bump), не minor/major. Явный запуск доступен вручную."
+            echo "skip=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "skip=false" >> "$GITHUB_OUTPUT"
+          fi
+      - name: Create or update audit reminder issue
+        if: github.event_name == 'workflow_dispatch' || steps.gate.outputs.skip != 'true'
+        uses: actions/github-script@v8
+        with:
+          script: |
+            const fs = require('fs');
+            const version = '${{ steps.ver.outputs.version }}';
+            const promptBody = fs.readFileSync('setup/release-audit-prompt.md', 'utf8');
+
+            const title = `Post-release adversarial audit: v${version}`;
+            const body = `> **Manual-triggered reminder.** Релиз v${version} опубликован — нужен adversarial audit субагентом или внешним пилотом.
+            >
+            > Цель: найти классы регрессий, которые 8 detectors + smoke 14 НЕ ловят.
+            >
+            > **После audit — обновить \`docs/release-audit-log.md\`** (status + findings + result), затем закрыть этот issue.
+
+            ## Шаги
+
+            1. Открыть Claude Code сессию в FMT-exocortex-template
+            2. Скопировать промпт ниже и адаптировать <TARGET-VERSION>
+            3. Прогнать через \`Agent\` или sub-agent
+            4. Найденные классы → +detector в \`integration-contract-validator.sh\`
+            5. Закрыть issue с комментарием: STABLE / X classes found
+
+            ## Промпт
+
+            <details>
+            <summary>Развернуть промпт</summary>
+
+            \`\`\`
+            ${promptBody}
+            \`\`\`
+
+            </details>
+
+            ---
+
+            После добавления detector'а — закрыть issue.`;
+
+            const { data: issues } = await github.rest.issues.listForRepo({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              state: 'open',
+              labels: 'release-audit'
+            });
+            const existing = issues.find(i => i.title === title);
+            if (existing) {
+              console.log(`Issue already exists: #${existing.number}`);
+            } else {
+              const { data } = await github.rest.issues.create({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                title,
+                body,
+                labels: ['release-audit']
+              });
+              console.log(`Created issue #${data.number}: ${data.html_url}`);
+            }

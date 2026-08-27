@@ -13,8 +13,9 @@
 set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
-WORKSPACE="/mnt/c/Users/admin/IWE"
-LOG_DIR="/mnt/c/Users/admin/logs/synchronizer"
+# WP-273 0.29.4 R6.1 fix (issue #271): runtime-резолв вместо build-time {{WORKSPACE_DIR}} — как в strategist.sh.
+WORKSPACE="${IWE_WORKSPACE:-$HOME/IWE}"
+LOG_DIR="$HOME/logs/synchronizer"
 DATE=$(date +%Y-%m-%d)
 LOG_FILE="$LOG_DIR/code-scan-$DATE.log"
 
@@ -34,7 +35,7 @@ discover_repos() {
 
     # Governance-репо — исключаем из сканирования
     local exclude=(
-        "DS-strategy"
+        "${IWE_GOVERNANCE_REPO:-DS-strategy}"
     )
 
     for dir in "$WORKSPACE"/DS-*/; do

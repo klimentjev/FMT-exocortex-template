@@ -2,6 +2,7 @@
 
 > Краткая справка по Intellectual Work Environment (IWE) для поиска и ответов бота.
 > Полная установка: [SETUP-GUIDE.md](SETUP-GUIDE.md)
+> Не на macOS или не Claude Code? → **[PORTABILITY.md](PORTABILITY.md)**
 >
 > **Source-of-truth:** Pack-сущности платформы (доступны через Gateway `iwe-knowledge`):
 > - `DP.IWE.001` — что такое IWE, зачем, архитектура
@@ -31,7 +32,7 @@ IWE (Intellectual Work Environment) — интеллектуальная раб�
 ## Что нужно для установки
 
 ### Обязательно
-- macOS, Linux или Windows (через WSL)
+- macOS, Linux или Windows (через Git Bash — WSL не обязателен, не проверено вживую на реальном Windows, см. [SETUP-GUIDE.md § Windows](SETUP-GUIDE.md#00-windows-без-wsl))
 - Git + GitHub аккаунт + GitHub CLI (`gh`)
 - Node.js v18+ и npm
 - Claude Code CLI (`npm install -g @anthropic-ai/claude-code`)
@@ -133,6 +134,15 @@ bash update.sh          # обновить
 bash update.sh --check  # проверить без применения
 ```
 
+Для запросов к GitHub обновлятор сначала использует непустой `GH_TOKEN`, затем
+`GITHUB_TOKEN`, затем авторизованный `gh`, и только без явной авторизации —
+анонимный `curl`. Ошибка явного токена или `gh` останавливает обновление без
+понижения до анонимного доступа; значение токена не передаётся в аргументах
+процесса и не печатается в трассировке. Для запроса с токеном `CURL_OPTS`
+принимает только `--insecure` и числовые параметры ожидания/повторов;
+трассировка, дополнительные заголовки, конфигурация и файлы вывода блокируются
+до сетевого запроса; пользовательский `.curlrc` для такого запроса отключён.
+
 Обновляются: CLAUDE.md, memory/ (кроме MEMORY.md), промпты ролей, скрипты.
 НЕ трогаются: MEMORY.md, DS-strategy/, routing.md, личные настройки.
 
@@ -152,7 +162,7 @@ bash update.sh --check  # проверить без применения
 
 **Claude Code не запускается** — проверь подписку Anthropic и `claude --version`. Начинать можно с Pro plan ($20/мес). При необходимости — Max (~$100/мес).
 
-**Стратег не формирует план** — проверь `launchctl list | grep strategist` (macOS). Если нет — `bash roles/strategist/install.sh`.
+**Стратег не формирует план** — macOS: `launchctl list | grep strategist`. Linux: `systemctl --user list-timers | grep strategist`. Если нет — `bash roles/strategist/install.sh`.
 
 **MEMORY.md не загружается** — проверь путь: `~/.claude/projects/-Users-<username>-IWE/memory/MEMORY.md`. Имя директории = путь к workspace через дефисы.
 
@@ -190,11 +200,33 @@ export TELEGRAM_CHAT_ID="your-id"
 
 ---
 
+---
+
+## Создание Pack (базы знаний домена)
+
+Pack — репозиторий с формализованными знаниями предметной области. Это source-of-truth: всё, что Claude должен знать о домене — здесь.
+
+**Когда нужен Pack:**
+- Регулярно работаешь в одной области
+- Хочешь, чтобы Claude знал термины и паттерны твоей области
+- Устал повторять контекст в каждой сессии
+
+**Как создать:** написать `/pack-new` в Claude Code.
+
+Скилл проведёт: выбор домена → имя Pack → структура → дорожная карта наполнения.
+
+**После создания Pack** наполняй через `/ke` (Knowledge Extraction) — фиксируй знания по ходу работы.
+
+Подробно: [PACK-CREATION.md](PACK-CREATION.md)
+
+---
+
 ## Дополнительные материалы
 
 **В этом репо:**
 - [SETUP-GUIDE.md](SETUP-GUIDE.md) — пошаговая установка (от нуля до работающего IWE)
 - [LEARNING-PATH.md](LEARNING-PATH.md) — полный путь изучения: принципы, протоколы, агенты, Pack, SOTA
+- [PACK-CREATION.md](PACK-CREATION.md) — создание Pack: домен, имя, структура, наполнение
 - [principles-vs-skills.md](principles-vs-skills.md) — почему навыков недостаточно: принципы и генеративная иерархия
 
 **В Pack (через Gateway `knowledge_search`):**

@@ -6,9 +6,11 @@ globs: *
 
 ⛔ DAY OPEN: 
 1. Сначала выполни команду `date "+%Y-%m-%d %A %H:%M %Z"` в терминале, чтобы узнать реальную дату и время. Используй ЭТУ дату для определения дня недели, strategy_day, фильтров коммитов. НЕ доверяй currentDate из system prompt.
-2. SchedulerReport: читай `~/logs/strategist/YYYY-MM-DD.log`, НЕ файл из current/.
-3. EXTENSION LOADING: 
-   - ПЕРЕД шагом 1 проверь `extensions/day-open.before.md`. 
+2. **Проверка закрытия предыдущего дня (БЛОКИРУЮЩЕЕ):** до плана на сегодня — вчерашний DayPlan должен быть `status: closed` и иметь «Итоги дня» / «Завтра начать с». Иначе СТОП → предложить `/day-close` за вчера. Детали: `extensions/day-open.before.iwe-work-culture.md`.
+3. SchedulerReport: лог Strategist — `$IWE_LOG_ROOT/strategist/YYYY-MM-DD.log` если задан `IWE_LOG_ROOT`, иначе `~/logs/strategist/YYYY-MM-DD.log`. Не читай файл из current/ как единственный источник.
+4. EXTENSION LOADING: 
+   - ПЕРЕД шагом 1 проверь `extensions/day-open.before.md` и `extensions/day-open.before.*.md` (в т.ч. work-culture). 
    - ПОСЛЕ шага 6b проверь `extensions/day-open.after.md`. 
    - ПЕРЕД git commit проверь `extensions/day-open.checks.md`. 
    - Пропуск extensions = неполное открытие.
+5. **Ёмкость в чате (БЛОКИРУЮЩЕЕ для Cursor):** при `day-open.before.nervous-capacity` — вызвать tool `AskQuestion` с payload `DS-strategy/library/nervous-capacity/askquestion-open.json` (кликабельные кнопки в чате). Не подменять сразу HTML/plain-text, если `AskQuestion` доступен. HTML `survey-open.html` — только fallback.

@@ -1,0 +1,15 @@
+---
+description: >-
+  Apply when the user asks to close a chat / work thread, or uses phrases like
+  «закрывай чат», «закрываю чат», «закрыватель», «chat-closer», «выход из чата»,
+  «закрой чат». Not for day close or session close.
+globs: *
+---
+# Chat Closer
+
+⛔ БЛОКИРУЮЩЕЕ: выход из **чата** выполняется ТОЛЬКО через skill `chat-closer`.
+
+- ПЕРВОЕ действие = `Read` скилл `DS-strategy/.cursor/skills/chat-closer/SKILL.md` и выполнить его по шагам.
+- НЕ подменять стоп-отчет своей сводкой — текст стоп-отчета пишет **пилот**.
+- НЕ считать чат закрытым без свежего стоп-отчета в `DS-strategy/current/08-logbook.md` и без оценки нейроёмкости слота (кроме явного «без ёмкости»).
+- НЕ путать с Day Close («закрывай день») и Session Close («закрывай сессию» / «заливай») — у тех свои правила `iwe-day-close` / `iwe-session-close`.
