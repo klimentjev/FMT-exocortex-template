@@ -40,7 +40,6 @@
 > Полные формулировки → `.claude/rules-lazy/blocking-rules-full.md`.
 
 - Начало работы → какие сервисы (MAP.002) затронуты?
-- Нетривиальное действие/РП → **State-Transition Gate (WP-457):** `{тип состояния, из→в}`, только `gate_ready: true` → Agent Core ниже.
 - Пользовательский сценарий → **SC Gate:** какое обещание (08-service-clauses/) затронуто?
 - Создание/размещение артефакта → **Routing Gate:** карта DP.KR.001 §5; «по аналогии с соседним» запрещено.
 - Первое содержательное действие в репо → **Repo-Touch Gate:** прочитать `<repo>/CLAUDE.md`; блок «обязательно загружай» → загрузить ДО ответа.
@@ -92,7 +91,7 @@ Hot-каркас ≤20K токенов (M1), строгая цель ≤12K (M2)
 
 ## State-Transition Gate — CRITICAL
 
-**Перед любым нетривиальным действием или РП назвать целевой переход состояния пользователя** `{тип состояния, из→в}` (WP-457) — **применимо, если в `{{GOVERNANCE_REPO}}/docs/state-axes-registry.yaml` описаны оси состояний** (авторский артефакт, не шипится в шаблон по умолчанию). Если файл есть — типы только из него, допустимы только `gate_ready: true`; ссылка на declared FSM-owner обязательна, свободный текст не принимается; нет ссылки или тип не `gate_ready` → действие = inventory → СТОП/отложить. **Файла нет (типовая установка)** → гейт неактивен, действовать по остальным Pre-action Gates без остановки. Модель осей (авторский пример) → `archive/wp-contexts/WP-457/CONCEPT-user-states.md §5`; cross-axis → `memory/reference/agent-core.md`.
+**Есть `{{GOVERNANCE_REPO}}/docs/state-axes-registry.yaml` → до любого нетривиального действия или РП полностью прочитать и выполнить `.claude/rules-lazy/state-transition-gate.md`; lazy-файл отсутствует или нечитаем → только inventory, СТОП. Реестра нет → гейт неактивен.**
 
 ## Git Staging — CRITICAL
 
@@ -172,11 +171,16 @@ Respond in Russian unless the user writes in English.
 - **Среда:** Windows; основной клиент — Cursor (+ наследие Claude Code). Governance-репо — `DS-strategy`. Корень рабочей среды — `{{HOME_DIR}}/IWE/`.
 - **Без Obsidian (DS-strategy):** просмотр через VS Code / Cursor.
 - **Комментарии кода — только EN** во всём дереве IWE; исключение — user-facing строки по языку интерфейса.
-- **Extensions Gate (БЛОКИРУЮЩЕЕ):** кастом протоколов/скиллов — ТОЛЬКО `extensions/*.md` + `params.yaml`. Прямая правка `.claude/skills/` или `memory/protocol-*.md` «под себя» = ошибка слоя.
+- **Различения (авторские):** `memory/distinctions-warm.md` и `extensions/`; `.claude/rules/distinctions.md` — поставляемый платформенный hot-слой, пользовательские правки допустимы только внутри явного `USER-SPACE` блока.
+- **Extensions Gate (БЛОКИРУЮЩЕЕ):** кастом протоколов/скиллов — ТОЛЬКО `extensions/*.md` + `params.yaml`; новый project-local skill допустим в `.claude/skills/<name>/`, только если каталог отсутствует в `update-manifest.json`. Прямая правка платформенного skill или `memory/protocol-*.md` «под себя» = ошибка слоя.
+- **WP Entry Filter (S-47, БЛОКИРУЮЩЕЕ):** новый РП — только при явной связи с R1-R6 месяца или внешнем заказчике; иначе → `inbox/backlog-with-triggers.md`. Исключения: spin-off закрытого РП; прямое поручение пилота.
 - **Именование РП:** существительное-артефакт, по возможности русский; колонка «Название» в реестре ≤80 символов → SYNC-CORE; переименование — синхронно REGISTRY + WeekPlan + DayPlan + WP-context.
+- **Память (S-35):** новые `memory/*.md` — обязательный frontmatter; шаблон и горизонты → `memory/memory-lifecycle-spec.md` (единственный источник).
+- **Security Audit Cadence (WP-212, S-36):** per-ArchGate (§Б B7.1 + STRIDE) · Week Close (`security-posture.md §3`) · Daily (tsekh-1) · Month Close (VR.R.002).
 - **WeekPlan/WeekReport:** WeekPlan = только интенты, WeekReport = только факты.
 - **Режим «на пальцах»:** триггеры «объясни», «на пальцах», «что сделали», «простыми словами» → Response Style + `memory/feedback_response_clarity_for_pilot.md`.
 - **Маршрутизация знания (фаза 6):** домен → Pack по `DS-strategy/exocortex/capture-routing.md`; жизнь/план/стоп-отчет → `_my-plus`/`current`; ритуалы → `extensions/`; DP/FMT Церена — читать, не авторствовать.
+- **Календарный конвейер (WP-357):** SoT — `DS-strategy/calendar/process-catalog.yaml` (+ derived `date-ledger.yaml`, не редактировать); новый процесс = каталог + plist; спецификация → `docs/calendar-pipeline.md`.
 - **DS-exocortex (dormant):** второй checkout шаблона Церена, ~793 behind; **не использовать**. L1 = корень IWE + `update.sh`. Решение: `DS-strategy/inbox/decision-2026-08-04-ds-exocortex-dormant.md`. Удаление/gitlink — только АрхГейт.
 
 ---

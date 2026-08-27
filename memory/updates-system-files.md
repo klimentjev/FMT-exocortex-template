@@ -42,7 +42,7 @@ bash update.sh --check
 **Обновляет:** репозиторий FPF (принципы, мета-онтология).
 
 ```bash
-cd ~/Github/Principles/FPF
+cd /c/Users/admin/IWE/Base/FPF
 git pull
 ```
 
@@ -55,11 +55,11 @@ git pull
 **Обновляет:** репозиторий SPF (форма и процесс Pack, контракты).
 
 ```bash
-cd ~/Github/Principles/SPF
+cd /c/Users/admin/IWE/Base/SPF
 git pull
 ```
 
-Справка: `Principles/SPF/CLAUDE.md`.
+Справка: `Base/SPF/CLAUDE.md`.
 
 ---
 
@@ -84,8 +84,8 @@ git pull --rebase
 ## Порядок при полном обновлении
 
 1. Экзокортекс: `cd /c/Users/admin/IWE && bash update.sh` (при рабочем `python3`, см. выше).
-2. FPF: `cd ~/Github/Principles/FPF && git pull` (или ваш путь к клону FPF).
-3. SPF: `cd ~/Github/Principles/SPF && git pull`.
+2. FPF: `cd /c/Users/admin/IWE/Base/FPF && git pull`.
+3. SPF: `cd /c/Users/admin/IWE/Base/SPF && git pull`.
 4. DS-strategy: `git pull --rebase` в каталоге клона `DS-strategy` (у вас может быть `c:\Users\admin\IWE\DS-strategy` или отдельный репо).
 
 Backup на Close: `memory/ + CLAUDE.md → DS-strategy/exocortex/` (протокол Close).

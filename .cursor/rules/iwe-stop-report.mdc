@@ -1,0 +1,17 @@
+---
+description: >-
+  Apply when the user wants a stop-report questionnaire or uses phrases like
+  «стоп-отчет», «опросник стоп-отчета», «stop-report», «поставь стоп-отчет»,
+  «заполни стоп-отчет», «собери стоп-отчет». Not for chat close (use chat-closer)
+  or day/session close.
+globs: *
+---
+# Stop Report — опросник
+
+⛔ БЛОКИРУЮЩЕЕ: опросник стоп-отчета выполняется ТОЛЬКО через skill `stop-report`.
+
+- ПЕРВОЕ действие = `Read` скилл `DS-strategy/.cursor/skills/stop-report/SKILL.md` и выполнить его по шагам.
+- НЕ сочинять поля «Где остановился» / «Следующий шаг» / «Где материалы» — текст пишет **пилот**.
+- Все **6** полей обязательны: Мини-РП · ДАТА · Где остановился · Следующий шаг · Бюджет времени · Где материалы (канон → `DS-strategy/current/08-logbook.md`).
+- После записи в журнал — `node DS-strategy/tools/sync-mini-wp-logbook.js`.
+- НЕ путать с **chat-closer** («закрывай чат»), **Day Close**, **Session Close**.
